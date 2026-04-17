@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hakan Zeki Gülmez</title>
+<meta name="description" content="AI, applied econometrics, and economic policy. M.Sc. Management & Technology at TU Munich.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #fdfcf8;
+    --ink: #1a1814;
+    --ink-soft: #4a463f;
+    --ink-faint: #7a766e;
+    --accent: #a83232;
+    --accent-soft: #f4ebe5;
+    --rule: #d9d3c7;
+    --paper: #f7f3ea;
+    --serif: 'Fraunces', Georgia, 'Times New Roman', serif;
+    --sans: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #14120e;
+      --ink: #ebe5d6;
+      --ink-soft: #b8b0a0;
+      --ink-faint: #7a766e;
+      --accent: #d97a7a;
+      --accent-soft: #2a1e1c;
+      --rule: #2f2b24;
+      --paper: #1c1a14;
+    }
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--serif);
+    font-size: 19px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  .container {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 80px 28px 120px;
+  }
+
+  /* Header */
+  header.site-header {
+    margin-bottom: 64px;
+  }
+
+  .eyebrow {
+    font-family: var(--sans);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 24px;
+  }
+
+  h1 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(2.4rem, 6vw, 3.6rem);
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    font-variation-settings: "opsz" 72;
+    margin-bottom: 24px;
+    color: var(--ink);
+  }
+
+  .tagline {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+    line-height: 1.45;
+    color: var(--ink-soft);
+    margin-bottom: 40px;
+  }
+
+  .byline {
+    font-family: var(--sans);
+    font-size: 14px;
+    color: var(--ink-faint);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 20px;
+    align-items: center;
+  }
+
+  .byline .dot { color: var(--rule); }
+
+  /* Sections */
+  section { margin-bottom: 64px; }
+
+  h2 {
+    font-family: var(--sans);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  p {
+    margin-bottom: 1.3em;
+    color: var(--ink);
+  }
+
+  p.muted { color: var(--ink-soft); }
+
+  /* Writing list */
+  .essay-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .essay {
+    padding: 24px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .essay:last-child { border-bottom: none; }
+
+  .essay a {
+    text-decoration: none;
+    color: var(--ink);
+    display: block;
+    transition: color 0.2s;
+  }
+
+  .essay a:hover .essay-title { color: var(--accent); }
+
+  .essay-meta {
+    font-family: var(--sans);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 8px;
+  }
+
+  .essay-title {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 1.35rem;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    margin-bottom: 8px;
+    color: var(--ink);
+    transition: color 0.2s;
+  }
+
+  .essay-desc {
+    font-family: var(--serif);
+    font-size: 16px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+  }
+
+  /* Work / research item */
+  .item {
+    padding: 16px 0;
+  }
+
+  .item-title {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 1.1rem;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+
+  .item-meta {
+    font-family: var(--sans);
+    font-size: 13px;
+    color: var(--ink-faint);
+    margin-bottom: 8px;
+  }
+
+  .item-desc {
+    font-family: var(--serif);
+    font-size: 16px;
+    color: var(--ink-soft);
+    line-height: 1.55;
+  }
+
+  .item-desc a,
+  p a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+    transition: border-color 0.2s;
+  }
+
+  .item-desc a:hover,
+  p a:hover { border-bottom-color: var(--accent); }
+
+  /* Contact */
+  .contact-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px 32px;
+    font-family: var(--sans);
+    font-size: 15px;
+  }
+
+  .contact-list a {
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 2px;
+    transition: all 0.2s;
+  }
+
+  .contact-list a:hover {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+
+  /* Footer */
+  footer {
+    margin-top: 80px;
+    padding-top: 24px;
+    border-top: 1px solid var(--rule);
+    font-family: var(--sans);
+    font-size: 13px;
+    color: var(--ink-faint);
+  }
+
+  /* Selection */
+  ::selection { background: var(--accent); color: var(--bg); }
+
+  /* Responsive */
+  @media (max-width: 640px) {
+    body { font-size: 17px; }
+    .container { padding: 56px 20px 80px; }
+    section { margin-bottom: 48px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <header class="site-header">
+    <div class="eyebrow">Hakan Zeki Gülmez</div>
+    <h1>AI, econometrics, and economic policy.</h1>
+    <p class="tagline">I build rigorous evidence on how AI changes firms, tasks, and markets — and how policy shapes that change.</p>
+    <div class="byline">
+      <span>M.Sc. Management &amp; Technology — TU Munich</span>
+      <span class="dot">·</span>
+      <span>B.Sc. Economics — METU</span>
+      <span class="dot">·</span>
+      <span>Munich</span>
+    </div>
+  </header>
+
+  <section>
+    <h2>Writing</h2>
+    <ul class="essay-list">
+      <li class="essay">
+        <a href="/ai-policy/">
+          <div class="essay-meta">2026 · Essay</div>
+          <div class="essay-title">Understanding AI Policy Under Global Competition: From Adoption to Task Transformation</div>
+          <div class="essay-desc">Why enterprise AI adoption is the wrong benchmark for policy and strategy — and what Task Transformation Intensity measures instead. Comparative analysis of the EU, US, and China.</div>
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Research</h2>
+    <div class="item">
+      <div class="item-title">Generative AI as a Task Shock: Evidence from B2B Software Firms</div>
+      <div class="item-meta">M.Sc. Thesis · TU Munich · 2026</div>
+      <div class="item-desc">A causal study of how generative AI affects revenue trajectories in B2B software. Panel of 143 NYSE/Nasdaq firms built from SEC EDGAR XBRL filings (2020–2025), with a literature-grounded replicability index (LLM-as-judge) and difference-in-differences design with continuous treatment. <a href="https://github.com/hakangulmez/thesis-ai-task-shock">Repository</a> · <a href="https://github.com/hakangulmez/ai-task-replicability-explorer">Companion dashboard</a>.</div>
+    </div>
+    <div class="item">
+      <div class="item-title">Credit Risk Prediction for SBA-Guaranteed Loans</div>
+      <div class="item-meta">ML Project · 2026</div>
+      <div class="item-desc">End-to-end credit-risk pipeline on 897k+ SBA-guaranteed loans. Benchmarked ElasticNet, LightGBM, and XGBoost with time-based validation, Bayesian tuning, calibration, fairness diagnostics, and expected-loss simulation. <a href="https://github.com/hakangulmez/Credit-Scoring-EDA">Repository</a>.</div>
+    </div>
+    <div class="item">
+      <div class="item-title">Assessing Lockdown Impacts on PM2.5 Levels: Evidence from Italy and Japan</div>
+      <div class="item-meta">Research Paper · 2025</div>
+      <div class="item-desc">Daily city-level panel combining air pollution, meteorological, and lockdown stringency data. Difference-in-differences with fixed effects and nearest-neighbor propensity score matching; stronger pollution declines under lockdown in Italy, validated with parallel-trends and placebo tests.</div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Experience</h2>
+    <div class="item">
+      <div class="item-title">M&amp;A and Strategy Intern — Yıldız Holding</div>
+      <div class="item-meta">2023</div>
+      <div class="item-desc">DCF and EV/EBITDA valuation for FMCG and F&amp;B acquisition targets; benchmarked IoT and data monetization across 30+ FMCG firms.</div>
+    </div>
+    <div class="item">
+      <div class="item-title">Financial Accountant Intern — Evidea</div>
+      <div class="item-meta">2022</div>
+      <div class="item-desc">Monthly P&amp;L, balance sheet, and cash-flow reporting; supported liquidity planning and transaction monitoring.</div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Elsewhere</h2>
+    <ul class="contact-list">
+      <li><a href="https://github.com/hakangulmez">GitHub</a></li>
+      <li><a href="https://www.linkedin.com/in/hakan-zeki-gülmez-088700180/">LinkedIn</a></li>
+      <li><a href="mailto:hakanzekigulmez@gmail.com">Email</a></li>
+    </ul>
+  </section>
+
+  <footer>
+    © 2026 Hakan Zeki Gülmez
+  </footer>
+
+</div>
+
+</body>
+</html>
