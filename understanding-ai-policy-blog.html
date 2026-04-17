@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Understanding AI Policy Under Global Competition — Hakan Zeki Gülmez</title>
+<meta name="description" content="Why enterprise AI adoption is the wrong benchmark for policy and strategy — and what Task Transformation Intensity (TTI) measures instead.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$', '$']], displayMath: [['$$', '$$']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
+<style>
+  :root {
+    --bg: #fdfcf8;
+    --ink: #1a1814;
+    --ink-soft: #4a463f;
+    --ink-faint: #7a766e;
+    --accent: #a83232;
+    --accent-soft: #f4ebe5;
+    --rule: #d9d3c7;
+    --paper: #f7f3ea;
+    --code-bg: #f2ede2;
+    --serif: 'Fraunces', Georgia, 'Times New Roman', serif;
+    --sans: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    --mono: 'JetBrains Mono', 'SF Mono', Menlo, monospace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #14120e;
+      --ink: #ebe5d6;
+      --ink-soft: #b8b0a0;
+      --ink-faint: #7a766e;
+      --accent: #d97a7a;
+      --accent-soft: #2a1e1c;
+      --rule: #2f2b24;
+      --paper: #1c1a14;
+      --code-bg: #1f1c16;
+    }
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--serif);
+    font-size: 19px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 60px 28px 120px;
+  }
+
+  /* ===== HEADER ===== */
+  header.post-header {
+    padding-bottom: 40px;
+    margin-bottom: 56px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .eyebrow {
+    font-family: var(--sans);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 28px;
+  }
+
+  h1 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(2.1rem, 5.2vw, 3.4rem);
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    font-variation-settings: "opsz" 72;
+    margin-bottom: 20px;
+    color: var(--ink);
+  }
+
+  .subtitle {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(1.15rem, 2.3vw, 1.4rem);
+    line-height: 1.4;
+    color: var(--ink-soft);
+    margin-bottom: 36px;
+  }
+
+  .byline {
+    font-family: var(--sans);
+    font-size: 14px;
+    color: var(--ink-faint);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px 24px;
+    align-items: center;
+  }
+
+  .byline .author { color: var(--ink); font-weight: 500; }
+
+  .byline .dot { color: var(--rule); }
+
+  /* ===== ABSTRACT / NOTE ===== */
+  .author-note {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--ink-soft);
+    padding: 22px 26px;
+    background: var(--paper);
+    border-left: 3px solid var(--accent);
+    margin: 0 0 48px;
+  }
+
+  /* ===== BODY TYPOGRAPHY ===== */
+  article { }
+
+  article p {
+    margin-bottom: 1.4em;
+    color: var(--ink);
+  }
+
+  article p + p { text-indent: 0; }
+
+  article .lead {
+    font-size: 1.15em;
+    color: var(--ink);
+    margin-bottom: 1.6em;
+  }
+
+  article .drop-cap::first-letter {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 4.2em;
+    float: left;
+    line-height: 0.85;
+    padding: 8px 10px 0 0;
+    color: var(--accent);
+    font-variation-settings: "opsz" 144;
+  }
+
+  /* Headings */
+  article h2 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 2rem;
+    line-height: 1.15;
+    letter-spacing: -0.015em;
+    margin: 80px 0 24px;
+    color: var(--ink);
+    font-variation-settings: "opsz" 72;
+  }
+
+  article h2 .part-label {
+    display: block;
+    font-family: var(--sans);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+
+  article h3 {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 500;
+    font-size: 1.4rem;
+    line-height: 1.25;
+    margin: 48px 0 18px;
+    color: var(--ink);
+  }
+
+  article h4 {
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 0.82rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin: 36px 0 14px;
+  }
+
+  /* Emphasis & links */
+  article strong { font-weight: 600; color: var(--ink); }
+  article em { font-style: italic; }
+
+  article a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+    transition: border-color 0.2s;
+  }
+  article a:hover { border-bottom-color: var(--accent); }
+
+  /* Lists */
+  article ul, article ol {
+    margin: 0 0 1.5em 1.4em;
+    padding-left: 0.4em;
+  }
+
+  article li {
+    margin-bottom: 0.6em;
+    padding-left: 0.3em;
+  }
+
+  article ul li::marker { color: var(--accent); }
+  article ol li::marker { color: var(--ink-faint); font-variant-numeric: oldstyle-nums; }
+
+  /* Blockquotes / pull */
+  .pull {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 1.5rem;
+    line-height: 1.35;
+    color: var(--accent);
+    padding: 30px 0 30px 28px;
+    margin: 40px 0;
+    border-left: 3px solid var(--accent);
+    letter-spacing: -0.005em;
+  }
+
+  /* Math */
+  .math-display {
+    margin: 28px 0;
+    padding: 18px 20px;
+    background: var(--paper);
+    border-radius: 4px;
+    text-align: center;
+    font-size: 1.05em;
+    overflow-x: auto;
+  }
+
+  mjx-container { font-size: 1em !important; }
+
+  /* Code inline */
+  article code {
+    font-family: var(--mono);
+    font-size: 0.88em;
+    background: var(--code-bg);
+    padding: 2px 6px;
+    border-radius: 3px;
+    color: var(--ink);
+  }
+
+  /* Horizontal rules */
+  article hr {
+    border: none;
+    text-align: center;
+    margin: 64px 0;
+    color: var(--ink-faint);
+  }
+  article hr::before {
+    content: "§ § §";
+    font-family: var(--serif);
+    font-size: 14px;
+    letter-spacing: 0.5em;
+    color: var(--ink-faint);
+  }
+
+  /* ===== TABLES ===== */
+  .table-wrap {
+    margin: 36px 0;
+    overflow-x: auto;
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--sans);
+    font-size: 14px;
+    line-height: 1.55;
+    background: var(--bg);
+  }
+
+  table caption {
+    caption-side: top;
+    text-align: left;
+    font-family: var(--sans);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    padding: 10px 16px;
+    background: var(--paper);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  th {
+    font-weight: 600;
+    text-align: left;
+    padding: 14px 16px;
+    background: var(--paper);
+    border-bottom: 1px solid var(--rule);
+    color: var(--ink);
+    vertical-align: top;
+  }
+
+  td {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--rule);
+    vertical-align: top;
+    color: var(--ink-soft);
+  }
+
+  tr:last-child td { border-bottom: none; }
+
+  .section-row th {
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  /* ===== FOOTNOTES / REFS ===== */
+  .references {
+    margin-top: 72px;
+    padding-top: 40px;
+    border-top: 1px solid var(--rule);
+    font-family: var(--sans);
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+  }
+
+  .references h2 {
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin: 0 0 24px;
+  }
+
+  .references p {
+    margin-bottom: 14px;
+    padding-left: 20px;
+    text-indent: -20px;
+  }
+
+  /* ===== BIO ===== */
+  .bio {
+    margin-top: 56px;
+    padding: 28px 0 0;
+    border-top: 1px solid var(--rule);
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--ink-faint);
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 640px) {
+    body { font-size: 17px; }
+    .container { padding: 40px 20px 80px; }
+    article h2 { font-size: 1.6rem; margin: 56px 0 18px; }
+    article h3 { font-size: 1.2rem; margin: 36px 0 14px; }
+    .pull { font-size: 1.2rem; padding: 20px 0 20px 20px; margin: 28px 0; }
+    table { font-size: 13px; }
+    th, td { padding: 10px 12px; }
+  }
+
+  /* Selection */
+  ::selection { background: var(--accent); color: var(--bg); }
+
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <header class="post-header">
+    <div class="eyebrow">Essay · AI Policy & Economics</div>
+    <h1>Understanding AI Policy Under Global Competition</h1>
+    <p class="subtitle">From Adoption to Task Transformation — why the metric most policymakers and investors use is already obsolete.</p>
+    <div class="byline">
+      <span class="author">Hakan Zeki Gülmez</span>
+      <span class="dot">·</span>
+      <span>Winter Term 2025/26</span>
+      <span class="dot">·</span>
+      <span>≈ 15 min read</span>
+    </div>
+  </header>
+
+  <div class="author-note">
+    This essay adapts a seminar paper I wrote for the Advanced Seminar in Economics, Policy &amp; Econometrics: <em>The Politics of Innovation &amp; Technology</em>. I've kept the core framework and evidence intact but rewritten it for a broader audience — policy readers, investors, and enterprise decision-makers who care less about academic conventions and more about what AI actually does to firms.
+  </div>
+
+  <article>
+
+    <p class="lead drop-cap">Consider two firms reporting AI use in a survey. The first deploys AI for peripheral tasks — drafting communications, formatting reports, summarizing meetings — without materially altering core workflows. The second integrates AI into production and quality control, eliminating roles, creating new ones, and restructuring value generation.</p>
+
+    <p>Both appear identically in adoption data. Their economic implications differ fundamentally.</p>
+
+    <p>This contrast is the starting point of this essay. AI is increasingly understood as a general-purpose technology reshaping production, organization, and labor markets. Recent advances enable AI to perform non-routine, cognitively intensive tasks previously considered automation-resistant. The policy and business stakes are high: AI influences productivity, competitiveness, and rent distribution while raising concerns about displacement and polarization.</p>
+
+    <p>Yet most of the public conversation still leans on <strong>enterprise AI adoption</strong> as the headline indicator of progress. This is a weak benchmark. Off-the-shelf tools for peripheral tasks receive the same classification as task-specific systems embedded in core production. The availability of powerful general-purpose models enables adoption with minimal investment, but not necessarily transformation. High adoption rates don't predict frontier leadership or AI-intensive deployment. The United States, the frontier leader, ranked only 24th globally in working-age AI usage.</p>
+
+    <div class="pull">
+      The firms that look most AI-mature in surveys may not be the ones actually being transformed by it.
+    </div>
+
+    <p>This essay makes four arguments:</p>
+
+    <ol>
+      <li><strong>Task Transformation Intensity (TTI)</strong> is a better lens than adoption for evaluating how deeply AI changes production.</li>
+      <li>The <strong>AI frontier</strong> is multidimensional — performance, cost efficiency, access, and production integration — not just benchmark scores.</li>
+      <li><strong>Policy coherence</strong>, not regulatory stringency, is the main conditioning mechanism that turns frontier capability into economic impact.</li>
+      <li>A comparative reading of the <strong>EU, US, and China</strong> illustrates how coherence differences shape realized transformation.</li>
+    </ol>
+
+    <h3>Why measurement is already shifting</h3>
+
+    <p>A practical signal that adoption is an insufficient metric is that official statistical systems increasingly attempt to measure <em>how</em> AI is used rather than <em>whether</em> it is used. The U.S. Census Bureau fielded a dedicated AI supplement in the Business Trends and Outlook Survey (BTOS), asking about types of AI used and business-reported impacts. A related Census working paper motivates this approach explicitly as a way to track firm AI use in near real time using repeated short-cycle measurement.</p>
+
+    <p>Using the 2023 Annual Business Survey, the Census Bureau reports that many firms adopting advanced technologies indicate little near-term change in worker counts or skill requirements. High-frequency UK business trackers report prevalence over time, providing diffusion baselines but not direct measures of task-level restructuring.</p>
+
+    <p>Taken together, these developments support the motivating claim: <strong>adoption is informative about diffusion, but too coarse to proxy production-critical transformation.</strong></p>
+
+    <hr>
+
+    <h2><span class="part-label">Part 1</span>Task Transformation Intensity</h2>
+
+    <h3>Depth × scale, weighted by economic importance</h3>
+
+    <p>Production consists of tasks differing in cognitive content and routineness. AI affects outcomes by altering how tasks are performed, not by adoption per se. A task-based perspective distinguishes <strong>automation</strong> (substitution) from <strong>augmentation</strong> (complementing skills). In practice, AI generates mixed outcomes across workflows.</p>
+
+    <p><strong>Task Transformation Intensity (TTI)</strong> captures the depth and breadth of AI-induced task change. Two dimensions matter:</p>
+
+    <ul>
+      <li><strong>Depth</strong> — how substantially AI alters individual tasks, from marginal support to assuming responsibility for complex decision-making.</li>
+      <li><strong>Scale</strong> — breadth across organizations or economies.</li>
+    </ul>
+
+    <p>High TTI arises when AI deeply transforms tasks across large production shares. Conceptually, TTI increases in (i) the share of core tasks affected, (ii) the degree of task-level substitution or augmentation, including decision authority shifts from workers to AI, and (iii) the organizational restructuring required. These components interlock: deeper transformation requires greater restructuring; scale without depth yields limited impact.</p>
+
+    <h3>Measurement proxies</h3>
+
+    <p>To operationalize TTI, I use a proxy battery aligned to the two conceptual dimensions plus the complementary investments required for production:</p>
+
+    <ul>
+      <li><strong>Scale:</strong> share of core value-generating tasks or workflows in which AI plays a substantive role, based on task inventories and workflow mapping.</li>
+      <li><strong>Depth:</strong> degree of substitution or augmentation within affected tasks, proxied by changes in time allocation, shifts in decision authority, and task completion or error rates.</li>
+      <li><strong>Complementary change:</strong> organizational and technical complements — SOP redesign, data governance, MLOps, system integration, job redesign — enabling AI to operate reliably at scale.</li>
+    </ul>
+
+    <p><strong>An illustration.</strong> A logistics firm deploying AI route optimization that reduces driver decisions, eliminates dispatchers, and creates fleet coordinator roles exhibits higher TTI than a retailer using chatbots for inquiries without altering core responsibilities. A financial firm integrating AI into credit risk assessment demonstrates higher TTI than one using AI for formatting, even if the latter affects more employees.</p>
+
+    <p>TTI differs from population-level "usage." High consumer usage of general tools can coexist with low task restructuring in core production. Conversely, low usage prevalence can accompany high TTI if frontier capabilities integrate deeply into key sectors.</p>
+
+    <h3>A 2×2 typology</h3>
+
+    <div class="table-wrap">
+      <table>
+        <caption>Table 1 — TTI: depth and scale</caption>
+        <thead>
+          <tr>
+            <th></th>
+            <th>Low scale (pilot / limited)</th>
+            <th>High scale (organization-wide)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>Low depth (peripheral tasks)</th>
+            <td><strong>Low TTI.</strong> Email drafting, meeting summaries, marketing copy.</td>
+            <td><strong>Moderate TTI.</strong> Company-wide assistants, standardized drafting, support chatbots.</td>
+          </tr>
+          <tr>
+            <th>High depth (core tasks)</th>
+            <td><strong>Moderate TTI.</strong> AI pricing in one unit, pilot automation in one line, diagnostic support in one department.</td>
+            <td><strong>High TTI.</strong> AI-driven pricing across the firm, automated production control, integrated agents end-to-end.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>The same observed "AI use" can correspond to very different transformation profiles. Low-depth uses may scale across an organization without materially changing core production. High-depth applications can remain economically narrow if confined to pilots or a single unit. <strong>Adoption prevalence alone does not identify production-critical transformation.</strong></p>
+
+    <h3>A simple formalization</h3>
+
+    <p>Let output be produced by a bundle of tasks indexed by $i \in I$. For each task, AI can change execution through automation or augmentation. Define a task-level transformation score $d_i \in [0, 1]$ capturing depth, and a diffusion score $s_i \in [0, 1]$ capturing scale. Assign an economic weight $w_i \geq 0$ such that $\sum w_i = 1$. Then:</p>
+
+    <div class="math-display">
+      $$ TTI = \sum_{i \in I} w_i \, d_i \, s_i $$
+    </div>
+
+    <p>This representation makes explicit why adoption measures are weak proxies for transformation: binary adoption corresponds roughly to whether there exists an $i$ such that $s_i > 0$, but it does not identify the weighted depth of transformation, nor whether transformation occurs in high-weight core tasks.</p>
+
+    <h3>What existing data can and cannot tell us</h3>
+
+    <p>The critique of adoption metrics does not imply that adoption statistics are useless; rather, they should be interpreted as diffusion indicators rather than as direct measures of transformation. Stronger inference comes from triangulating diffusion measures (who uses AI), implementation descriptors (what type of AI and where), and impact or complement measures (what changes in workflows, jobs, or decision authority).</p>
+
+    <div class="table-wrap">
+      <table>
+        <caption>Table 2 — Implementation data and TTI</caption>
+        <thead>
+          <tr>
+            <th>Source</th>
+            <th>What it measures well</th>
+            <th>How it maps to TTI</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Census BTOS AI supplement</td>
+            <td>High-frequency AI use, types, expectations, reported impacts</td>
+            <td>Separates diffusion from implementation characteristics</td>
+          </tr>
+          <tr>
+            <td>Census ABS (2023)</td>
+            <td>Representative adoption plus workforce impacts</td>
+            <td>Suggests adoption often does not imply deep restructuring</td>
+          </tr>
+          <tr>
+            <td>Eurostat enterprise AI use</td>
+            <td>Comparable adoption shares with size/sector breakdowns</td>
+            <td>Useful for SME vs. large-firm gradients</td>
+          </tr>
+          <tr>
+            <td>UK ONS business trackers</td>
+            <td>Frequent time series on business-reported AI use</td>
+            <td>Baseline diffusion and timing</td>
+          </tr>
+          <tr>
+            <td>OECD enterprise survey (G7+)</td>
+            <td>Barriers, complements, scaling challenges</td>
+            <td>Closest to complementary change and scaling constraints</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <hr>
+
+    <h2><span class="part-label">Part 2</span>Frontier Capacity &amp; the Scaling Environment</h2>
+
+    <h3>Agentic AI as a step-change in integration</h3>
+
+    <p>A central reason why frontier capability may translate into higher realized TTI today is the rise of <strong>agentic AI</strong> — systems that combine frontier models with tools, memory, retrieval, and control logic to execute multi-step workflows.</p>
+
+    <p>Relative to "chat" use of general-purpose models, agentic architectures directly target the integration bottleneck: they embed AI into existing production systems — ERP, CRM, ticketing, supply-chain software, code repositories — and act on the environment rather than merely generate text. Agentic AI raises the <em>integration into production</em> component of frontier capacity by making task reallocation operationally feasible at lower marginal coordination cost.</p>
+
+    <p>From a task perspective, agents matter because many economically relevant tasks are not single prompts but processes. An "AI customer support agent" that drafts responses is a low-depth tool unless it can also retrieve account history, validate policy compliance, initiate refunds, update records, and escalate edge cases with structured handoffs. Agents can shift decision authority within workflows by consistently executing such sequences — raising $d_i$ (depth) for tasks previously only weakly affected by text-generation tools.</p>
+
+    <p>Agentic systems also sharpen the distinction between frontier performance and scaling feasibility. Even with strong base models, firms face failure modes — hallucinations, non-determinism, security risks — that make deep integration costly. Agent design partially addresses this through verification steps, tool-level permissions, and audit trails. This connects directly to policy coherence: predictable compliance pathways reduce the fixed costs of deploying agents in production-critical settings.</p>
+
+    <h3>Scaling environment: what turns capability into transformation</h3>
+
+    <p>Even when frontier capacity is high, realized task transformation depends on the surrounding scaling environment. Three elements are central: <strong>economic scalability</strong> (cost efficiency that expands viable deployment), <strong>production integration</strong> (embedding AI into workflows and adapting performance metrics), and <strong>organizational complementarity</strong> (investments in skills, management practices, and governance).</p>
+
+    <p>Foundation models expand general capability and lower marginal development costs. Agentic systems raise integration feasibility by turning model outputs into auditable, tool-mediated actions. Denote potential task transformation by $TTI^*$ and summarize policy coherence by $\Omega \in (0, 1]$ as a reduced-form multiplier from potential to realized transformation:</p>
+
+    <div class="math-display">
+      $$ TTI_R = \Omega \cdot TTI^* $$
+    </div>
+
+    <p>Frontier capacity and scaling complements jointly shape potential transformation. Policy coherence scales this potential into realized transformation.</p>
+
+    <hr>
+
+    <h2><span class="part-label">Part 3</span>Policy Coherence as the Conditioning Mechanism</h2>
+
+    <h3>What coherence means</h3>
+
+    <p>Policy coherence is the degree to which objectives, instruments, and implementation align to provide clear signals. In AI contexts, coherence conditions whether frontier capabilities and organizational investments translate into sustained transformation versus isolated applications.</p>
+
+    <p>Two forms matter. <strong>Internal coherence</strong> is consistency within AI policy between regulations, standards, investment, and guidance. Low coherence arises when policies simultaneously promote deployment while imposing uncertain obligations. <strong>Systemic coherence</strong> extends across adjacent domains — competition, labor, data, education, industrial policy. Task transformation crosses boundaries; misalignment encourages superficial adoption avoiding regulatory frictions.</p>
+
+    <h3>A taxonomy</h3>
+
+    <p>For analytical clarity, coherence can be decomposed into three forms. <strong>Vertical coherence</strong> is alignment across governance levels (supranational, national, local). <strong>Horizontal coherence</strong> is consistency across domains (AI regulation, data, labor, procurement, competition). <strong>Temporal coherence</strong> is stability and predictability over time.</p>
+
+    <p>Temporal coherence matters especially for task transformation, because deep integration requires irreversible organizational investments. When policy signals are volatile, firms rationally assign an option value to waiting, delaying high-TTI investments even when frontier tools are available.</p>
+
+    <div class="table-wrap">
+      <table>
+        <caption>Table 3 — Observable indicators of coherence</caption>
+        <thead>
+          <tr>
+            <th>Indicator</th>
+            <th>Operational interpretation</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Lead authority</td><td>Designated body or clear hierarchy reducing jurisdictional ambiguity</td></tr>
+          <tr><td>Compliance infrastructure</td><td>Shared tooling, sandboxes, safe harbors, templates lowering fixed costs</td></tr>
+          <tr><td>Procurement–standards alignment</td><td>Consistency between procurement rules, liability, and technical standards</td></tr>
+          <tr><td>Cross-domain coordination</td><td>Mechanisms aligning AI policy with labor, data, competition</td></tr>
+          <tr><td>Implementation predictability</td><td>Timelines, stable guidance, clear transition periods</td></tr>
+          <tr><td>SME accessibility</td><td>Feasibility of compliance pathways for SMEs vs. incumbent concentration</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Two vignettes: the fixed-cost channel</h3>
+
+    <p>A concrete illustration of coherence frictions is <strong>France's Health Data Hub</strong>. The initiative aimed to enable scalable secondary use of health data, but it quickly became contested because core infrastructure and procurement choices interacted with EU data-protection constraints and cross-border legal exposure. In October 2020, France's highest administrative court highlighted the risk of data transfer to the US linked to a provider subject to US law, triggering additional safeguards. By early 2026, reporting indicated the platform planned a complete exit from Microsoft Azure toward a SecNumCloud-qualified sovereign cloud by end of 2026.</p>
+
+    <p>The episode is informative not because privacy rules were "strict," but because data-governance obligations, procurement realities, and operational timelines were misaligned. The mechanism is a <strong>fixed-cost channel</strong>: resolving cloud-sovereignty constraints, documentation, and governance requirements imposed a large up-front burden before productivity gains could be realized. This is especially constraining for smaller research teams and SMEs that cannot amortize these costs at scale.</p>
+
+    <p>A non-European illustration is the <strong>US FTC enforcement action against Rite Aid's use of facial recognition</strong>. The FTC alleged that Rite Aid deployed facial recognition without reasonable procedures to prevent false-positive harms and without adequate bias mitigation, settling with governance and monitoring requirements including a multi-year prohibition on facial recognition use. Deep deployment in sensitive settings can be constrained by enforcement risk and the need for auditable controls. Meeting these requirements raises fixed production-deployment costs, which can discourage broad rollout or shift use toward lower-risk, peripheral applications.</p>
+
+    <h3>A micro-foundation for "compliance-minimizing AI"</h3>
+
+    <p>Consider a manufacturing firm evaluating AI predictive maintenance. Deployment requires simultaneous decisions about worker data (privacy), algorithmic authority (labor regulation), and equipment modification (safety). When domains provide coherent signals through aligned standards, firms are more likely to commit to deep integration. When domains conflict, firms default to lower-risk, peripheral uses.</p>
+
+    <p>Deep integration can be represented as requiring a fixed cost $F$ (compliance, documentation, audits, organizational redesign) and yielding a per-unit benefit $b$ over deployment scale $Q$. Deep deployment occurs when:</p>
+
+    <div class="math-display">
+      $$ b \cdot Q \geq F $$
+    </div>
+
+    <p>For SMEs with smaller $Q$, the same fixed cost implies a higher effective threshold, biasing adoption toward shallow tools rather than production-critical integration. This provides a micro-foundation for the EU "compliance-minimizing AI" pattern.</p>
+
+    <h3>Five testable propositions</h3>
+
+    <ol>
+      <li>Adoption rates correlate more with access and digital readiness than with TTI; high adoption weakly predicts frontier capacity or competitive integration.</li>
+      <li>Frontier performance raises potential TTI, but realized TTI increases primarily with cost efficiency and integration capacity rather than performance alone.</li>
+      <li>Higher policy coherence strengthens the frontier-to-TTI link by lowering uncertainty and coordination costs.</li>
+      <li>Lower coherence shifts deployments toward shallow, peripheral applications, reducing the depth component of TTI more than the scale component.</li>
+      <li>Coherent complementary policies in skills and experimentation shift transformation from automation-heavy toward augmentation-heavy pathways.</li>
+    </ol>
+
+    <hr>
+
+    <h2><span class="part-label">Part 4</span>Comparative Evidence: EU, US, China</h2>
+
+    <p>Rather than evaluating through adoption or model counts, this section focuses on how frontier capacities plausibly translate into task transformation under different governance environments.</p>
+
+    <div class="table-wrap">
+      <table>
+        <caption>Table 4 — Framework-based comparison</caption>
+        <thead>
+          <tr>
+            <th>Dimension</th>
+            <th>US</th>
+            <th>China</th>
+            <th>EU</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="section-row"><th colspan="4">Frontier capacity</th></tr>
+          <tr><td>Performance</td><td>Frontier leader</td><td>High</td><td>Moderate</td></tr>
+          <tr><td>Cost efficiency</td><td>High scale; falling cost</td><td>Efficiency-oriented</td><td>Higher overhead</td></tr>
+          <tr><td>Access / distribution</td><td>Global cloud / API</td><td>Domestic platforms</td><td>Fragmented pathways</td></tr>
+          <tr class="section-row"><th colspan="4">Scale</th></tr>
+          <tr><td>Integration complements</td><td>Mature enterprise stack</td><td>Coordinated deployment</td><td>Fragmented implementation</td></tr>
+          <tr><td>Organizational complements</td><td>High variance</td><td>Policy-linked adoption</td><td>Institutionally constrained</td></tr>
+          <tr class="section-row"><th colspan="4">TTI markers</th></tr>
+          <tr><td>Workflow integration</td><td>Agentic / workflow redesign</td><td>Smart factory / logistics</td><td>Compliance-manageable use</td></tr>
+          <tr><td>Governance fixed costs</td><td>Lower fixed costs</td><td>Central guidance</td><td>Higher SME burden</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>United States: market-oriented scaling</h3>
+
+    <p>The US exhibits market-oriented development: private leadership, deep capital, extensive infrastructure. Frontier capabilities concentrate among large firms and startups sustaining high costs and rapid iteration. In 2024, US institutions produced 40 notable models versus China's 15 and Europe's 3. Venture capital lowers scaling barriers beyond pilots. Cloud infrastructure reduces downstream adopter fixed costs. The US and China host 86% of global data-center capacity.</p>
+
+    <p>Policy relies on soft-law instruments and ex post oversight with limited ex ante constraints. This configuration aligns with relatively high TTI through rapid scaling. Markers include agentic deployment, workflow redesign in professional services, and depth in software and finance. Distribution remains uneven; absence of binding coordination may limit coherence where standards and liability are contested.</p>
+
+    <h3>China: cost-efficient coordination</h3>
+
+    <p>China combines state coordination with explicit deployment emphasis. Policy alignment, planning, and infrastructure reduce uncertainty, plausibly accelerating capability translation. A defining feature is cost efficiency emphasis. DeepSeek models illustrate cost-efficient scaling: DeepSeek-V3 reports pre-training costs of $5.6 million under explicit hardware assumptions. While partial, this figure has been noted as indicative of an efficiency-focused scaling trajectory.</p>
+
+    <p>Coordination facilitates production integration. Applications embed in manufacturing, logistics, services, and platforms. Coherence stems from industrial–infrastructure–deployment alignment. Responsibility concerns like data control are managed through centralized oversight rather than decentralized obligations. Markers include smart manufacturing automation, logistics integration, and public service breadth.</p>
+
+    <h3>European Union: responsibility-oriented constraints</h3>
+
+    <p>The EU emphasizes responsibility, risk management, and rights protection. The AI Act establishes a risk-based framework with extensive compliance obligations for high-risk applications. At the same time, AI-relevant policy is distributed across institutions and embedded in a fragmented market structure.</p>
+
+    <p>Consider a manufacturing firm deploying AI-based predictive maintenance. It may need to navigate GDPR requirements (with interpretation varying across national authorities), AI Act conformity procedures (with delegated acts still developing), works council co-determination in some member states, and sector-specific safety standards. Each requirement serves a legitimate purpose, but their interaction creates compounding complexity that raises the fixed costs of deep integration.</p>
+
+    <div class="pull">
+      The distinctive European feature is not regulation per se, but the interaction of multiple horizontal regimes with multi-country implementation.
+    </div>
+
+    <p>These costs fall disproportionately on SMEs. Large incumbents amortize compliance and redesign costs across large deployment volumes. SMEs face similar fixed costs at smaller scale, making production-critical integration less attractive than shallow peripheral adoption. This concentrates AI-intensive production among larger firms, widening gaps and limiting the breadth component of TTI across the firm-size distribution.</p>
+
+    <p>Similar frictions exist elsewhere — federal–state overlaps in the US, center–local implementation in China. The distinctive European feature is the interaction of multiple horizontal regimes with multi-country implementation, which raises fixed compliance and coordination costs for deep, cross-border deployment. Deployment may concentrate in narrower, compliance-manageable applications, consistent with comparatively lower realized TTI.</p>
+
+    <h3>Automation versus augmentation patterns</h3>
+
+    <p>Cross-jurisdictional differences shape not only the intensity of task transformation but also its <strong>direction</strong>. These should be read as framework-consistent tendencies rather than measured outcomes.</p>
+
+    <p>In the <strong>US</strong>, direction is heterogeneous: high-skill service sectors (law, finance, software) face stronger conditions for augmentation where complementary investments are available, while back-office operations, customer service, and logistics are more exposed to automation incentives under competitive pressure.</p>
+
+    <p>In <strong>China</strong>, the combination of coordinated deployment and large-scale integration makes automation-heavy trajectories in manufacturing and logistics a plausible tendency, with augmentation emerging in some knowledge-intensive domains.</p>
+
+    <p>In the <strong>EU</strong>, compliance frictions and risk-sensitive governance plausibly favor augmentation-oriented, human-in-the-loop deployments, though the depth of integration may remain limited when fixed compliance costs discourage production-critical redesign.</p>
+
+    <p>A second mechanism shaping direction operates through <strong>fiscal incentives</strong> affecting the relative cost of capital and labor. Labor is heavily burdened through payroll taxes and social contributions, while capital investment can receive preferential treatment via accelerated depreciation or targeted incentives. When AI adoption is embodied in software, compute, and complementary capital, these wedges reduce the effective user cost of AI-intensive capital relative to labor and strengthen incentives for labor-saving redesign.</p>
+
+    <p><strong>Coherence determines whether deep integration occurs at all; fiscal design influences whether deep integration takes an automation- or augmentation-heavy form.</strong></p>
+
+    <h3>Policy coherence as differentiator</h3>
+
+    <p>Differences across the US, China, and EU appear to stem less from regulatory stringency or state intervention per se than from how effectively governance arrangements reduce coordination costs and enable production integration.</p>
+
+    <ul>
+      <li>The <strong>US</strong> exhibits ecosystem-led coordination via dominant platform providers and cloud infrastructure supplying shared tooling, interfaces, and integration pathways.</li>
+      <li><strong>China</strong> exhibits stronger top-down alignment between industrial policy priorities, infrastructure buildout, and deployment targets.</li>
+      <li>The <strong>EU</strong>'s objectives and implementation remain more fragmented across overlapping regimes and multi-country enforcement. Firms face uncertainty not primarily about whether regulation exists, but about how overlapping requirements interact and how enforcement will emerge across 27 member states.</li>
+    </ul>
+
+    <p>Frontier capabilities translate into economic impact only when governance provides sufficiently coherent signals that align scaling incentives with production integration.</p>
+
+    <hr>
+
+    <h2><span class="part-label">Part 5</span>Trade-offs and Implications</h2>
+
+    <h3>Labor displacement and steering asymmetries</h3>
+
+    <p>Despite widespread concern about labor displacement, it rarely constitutes a primary steering objective in AI policy. AI governance is typically designed within innovation, digital, or industrial policy domains, while labor-market outcomes are largely delegated to education, training, and welfare systems. This separation allows governments to acknowledge displacement risks without directly constraining deployment.</p>
+
+    <p>A further asymmetry concerns <strong>automation versus augmentation</strong>. Automation-oriented deployments often deliver relatively immediate and measurable cost savings, making them attractive under competitive pressure. Augmentation-oriented deployments typically require complementary investments in skills, workflow redesign, and management practices, with benefits that are slower to materialize and harder to quantify. Absent targeted incentives that lower the cost of complements, policy environments may implicitly tilt transformation toward automation-heavy pathways.</p>
+
+    <h3>Alternative explanations</h3>
+
+    <p>The emphasis on policy coherence faces alternatives. One is that cross-country differences primarily reflect <strong>structural endowments</strong> — capital-market depth, engineering talent, compute infrastructure. These matter but do not fully account for observed divergences. Europe contributes a substantial share of global AI research output yet lags in commercialization. China has faced constraints on advanced semiconductors while still achieving broad diffusion in several domains.</p>
+
+    <p>A second concern is <strong>reverse causality</strong>: successful AI sectors may lobby for clearer policy frameworks, rather than coherence enabling success. This endogeneity cannot be fully dismissed without causal identification. Still, the timing of major policy initiatives and subsequent scaling trajectories is at least consistent with the view that governance arrangements shape outcomes.</p>
+
+    <p>Finally, <strong>firm-level factors</strong> like managerial quality and absorptive capacity may drive differences independently of policy. But these are themselves partly conditioned by the broader environment. Sustained uncertainty discourages long-term organizational investments; clearer policy mixes support the commitments required for deep integration.</p>
+
+    <h3>Designing coherent policy</h3>
+
+    <p>Designing AI policy under global competition requires balancing speed, responsibility, and economic integration. High-friction steering — broad prohibitions or poorly sequenced obligations — raises uncertainty and delays transformation without necessarily addressing underlying risks. Uncoordinated deregulation may accelerate deployment while undermining legitimacy and long-run stability.</p>
+
+    <p><strong>Policy coherence offers a middle path.</strong> Coherent policy mixes align regulatory safeguards with investment, infrastructure, and capability-building. Sequencing is critical: safeguards introduced alongside supportive measures — standardized compliance tooling, sandboxes, safe-harbor provisions — are less likely to deter organizational restructuring than safeguards imposed in isolation.</p>
+
+    <p>The central implication is not that governments should intervene less, but that intervention should be <strong>coordinated across domains</strong> that jointly condition task transformation. Effective AI policy requires reducing siloed governance, establishing clear priorities, and providing predictable implementation pathways for deep integration.</p>
+
+    <div class="pull">
+      Under competitive pressure, coherence becomes a source of comparative advantage.
+    </div>
+
+    <p>Jurisdictions that align governance objectives with frontier scaling and task-level integration are better positioned to translate AI capabilities into sustained economic gains while maintaining legitimacy.</p>
+
+    <hr>
+
+    <h2>Limitations</h2>
+
+    <p>TTI remains conceptual — the paper provides proxies and examples but not quantitative estimates. Coherence's causal role is theorized, not isolated; comparative analysis identifies patterns but cannot rule out confounding without quasi-experimental variation. The focus on three major economies limits generalizability to middle-income countries, small economies, and technology-importers. Environmental costs and sustainability are not addressed. Sector-specific dynamics and distributional consequences (across occupations, skills, regions, firm sizes) receive limited attention. The framework argues for coherence but does not specify optimal institutional designs.</p>
+
+    <p>Future work should develop firm and sectoral TTI indicators using surveys on automation depth, restructuring metrics, and productivity decompositions; exploit policy changes for stronger identification; and integrate fiscal, sectoral, and distributional factors into empirical designs.</p>
+
+    <h2>Conclusion</h2>
+
+    <p>Enterprise AI adoption is an inadequate benchmark because it does not capture whether AI reshapes production. <strong>Task Transformation Intensity</strong> conceptualizes AI's economic relevance through depth, scale, and organizational restructuring. The AI frontier is multidimensional — performance, cost efficiency, access, production integration — not just benchmark scores.</p>
+
+    <p>Comparative analysis of the US, China, and EU suggests that cross-country differences are shaped less by regulatory stringency or technical capability alone than by <strong>policy coherence</strong>: the alignment of governance authority, compliance infrastructure, cross-domain coordination, and implementation predictability. Market-led coordination in the US is consistent with high TTI through rapid scaling. Centralized, deployment-oriented policy in China is consistent with broad diffusion and a plausible push toward automation-heavy integration. Fragmented implementation and higher fixed coordination costs in the EU plausibly constrain deep integration, with disproportionate burdens for SMEs.</p>
+
+    <p>Policy design should focus on coherent, predictable pathways that reduce coordination costs and enable production-critical integration, while remaining consistent with safety, rights protection, and distributional objectives.</p>
+
+    <div class="references">
+      <h2>References</h2>
+      <p>Abramo, T. &amp; Campbell-Mohn, E. (2021). The forgotten third: A comparison of China, the US, and the European Union in artificial intelligence development. <em>Journal of Student Research</em>, 10(3):1–23.</p>
+      <p>Acemoglu, D. &amp; Restrepo, P. (2019). Automation and new tasks. <em>Journal of Economic Perspectives</em>, 33(2):3–30.</p>
+      <p>Bonney, K. et al. (2024). Tracking firm use of AI in real time. US Census Bureau, Center for Economic Studies.</p>
+      <p>Brollo, F. et al. (2024). Broadening the gains from generative AI: The role of fiscal policies. IMF Staff Discussion Note SDN/2024/002.</p>
+      <p>Brynjolfsson, E., Li, D. &amp; Raymond, L. R. (2023). Generative AI at work. NBER Working Paper 31161.</p>
+      <p>CIO Online (2026). Le Health Data Hub sort d'Azure pour basculer fin 2026 vers un cloud SecNumCloud.</p>
+      <p>Conseil d'État (2020). Ordonnance du juge des référés, 13 octobre 2020, n° 444937.</p>
+      <p>DeepSeek-AI, Liu, A. et al. (2024). DeepSeek-V3 technical report. arXiv preprint.</p>
+      <p>Djeffal, C., Siewert, M. B. &amp; Wurster, S. (2022). Role of the state and responsibility in governing artificial intelligence. <em>Journal of European Public Policy</em>, 29(11):1799–1821.</p>
+      <p>European Parliament &amp; Council (2024). Regulation (EU) 2024/1689 (Artificial Intelligence Act).</p>
+      <p>Eurostat (2025). Use of artificial intelligence in enterprises.</p>
+      <p>Executive Office of the President (2023). Executive Order 14110.</p>
+      <p>Federal Trade Commission (2023). Rite Aid banned from using AI facial recognition. Press release.</p>
+      <p>Gibney, E. (2025). China's cheap, open AI model DeepSeek thrills scientists. <em>Nature</em>, 638(8049):13–14.</p>
+      <p>Maslej, N. et al. (2025). Artificial Intelligence Index Report 2025. Stanford HAI.</p>
+      <p>Microsoft AI Economy Institute (2025). AI Diffusion Report: Where AI is most used, developed, and built.</p>
+      <p>Mügge, D. (2024). EU AI sovereignty. <em>Journal of European Public Policy</em>, 31(8):2200–2225.</p>
+      <p>OECD (2025). The adoption of artificial intelligence in firms.</p>
+      <p>Office for National Statistics (2024, 2026). Business insights and impact on the UK economy.</p>
+      <p>Prenga, K. (2024). AI regulation in the EU, the US, and China. <em>Journal of Ethics and Legal Technologies</em>, 6(2):132–161.</p>
+      <p>Tabassi, E. (2023). AI Risk Management Framework (AI RMF 1.0). NIST AI 100-1.</p>
+      <p>United States District Court (2023). Stipulated order for permanent injunction (FTC v. Rite Aid).</p>
+      <p>US Census Bureau (2024). Business Trends and Outlook Survey — AI supplement.</p>
+      <p>US Census Bureau (2025). How AI and other technology impacted businesses (2023 ABS).</p>
+      <p>Wang, S., Zhang, Y., Xiao, Y. &amp; Liang, Z. (2025). Artificial intelligence policy frameworks in China, the EU, and the US. <em>Technological Forecasting and Social Change</em>, 212:123971.</p>
+    </div>
+
+    <div class="bio">
+      This essay draws from a seminar paper completed in Winter Term 2025/26 for the Advanced Seminar in Economics, Policy &amp; Econometrics: <em>The Politics of Innovation &amp; Technology</em>.
+    </div>
+
+  </article>
+
+</div>
+
+</body>
+</html>
