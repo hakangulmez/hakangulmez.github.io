@@ -3,8 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hakan Zeki Gülmez</title>
-<meta name="description" content="AI, applied econometrics, and economic policy. M.Sc. Management & Technology at TU Munich.">
+<title>Hakan Zeki Gülmez — Economics &amp; Research</title>
+<meta name="description" content="Hakan Zeki Gülmez: research on AI and software markets, monetary policy, inflation forecasting, causal machine learning, and SBA lending. TUM master’s thesis and reproducible economics projects.">
+<link rel="canonical" href="https://hakangulmez.github.io/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
@@ -18,8 +19,6 @@
     --accent-soft: #f4ebe5;
     --rule: #d9d3c7;
     --paper: #f7f3ea;
-    --status-wip: #c97b3b;
-    --status-wip-bg: #f7ece0;
     --serif: 'Fraunces', Georgia, 'Times New Roman', serif;
     --sans: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
   }
@@ -29,13 +28,11 @@
       --bg: #14120e;
       --ink: #ebe5d6;
       --ink-soft: #b8b0a0;
-      --ink-faint: #7a766e;
+      --ink-faint: #a49c8c;
       --accent: #d97a7a;
       --accent-soft: #2a1e1c;
       --rule: #2f2b24;
       --paper: #1c1a14;
-      --status-wip: #e4a16a;
-      --status-wip-bg: #2a1f15;
     }
   }
 
@@ -55,7 +52,7 @@
   }
 
   .container {
-    max-width: 680px;
+    max-width: 760px;
     margin: 0 auto;
     padding: 80px 28px 120px;
   }
@@ -206,19 +203,6 @@
     flex-wrap: wrap;
   }
 
-  .status-badge {
-    font-family: var(--sans);
-    font-size: 10px;
-    font-weight: 600;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    padding: 3px 8px;
-    border-radius: 3px;
-    background: var(--status-wip-bg);
-    color: var(--status-wip);
-    border: 1px solid color-mix(in srgb, var(--status-wip) 25%, transparent);
-  }
-
   .item-desc {
     font-family: var(--serif);
     font-size: 16px;
@@ -269,121 +253,248 @@
     color: var(--ink-faint);
   }
 
+
+  a:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 5px;
+    border-radius: 2px;
+  }
+
+  .skip-link {
+    position: absolute;
+    top: -80px;
+    left: 20px;
+    padding: 8px 14px;
+    background: var(--bg);
+    color: var(--accent);
+    font-family: var(--sans);
+    z-index: 1;
+  }
+
+  .skip-link:focus { top: 12px; }
+
+  .site-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 24px;
+    margin-top: 28px;
+    font-family: var(--sans);
+    font-size: 14px;
+  }
+
+  .site-nav a, .project-links a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+    padding-bottom: 2px;
+  }
+
+  .site-nav a:hover, .project-links a:hover { border-bottom-color: var(--accent); }
+
+  .featured {
+    background: var(--paper);
+    padding: 28px;
+    border: 1px solid var(--rule);
+    border-left: 3px solid var(--accent);
+    border-radius: 3px;
+  }
+
+  .featured .item-title {
+    font-size: clamp(1.4rem, 3vw, 1.65rem);
+    margin-bottom: 14px;
+  }
+
+  .item-desc p { color: var(--ink-soft); margin-bottom: 14px; }
+  .item-desc p:last-child { margin-bottom: 0; }
+
+  .project-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 18px;
+    font-family: var(--sans);
+    font-size: 13px;
+    line-height: 1.6;
+    margin-top: 16px;
+  }
+
+  .section-intro {
+    font-family: var(--sans);
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+    margin-bottom: 10px;
+  }
+
+  .earlier-work .item { padding: 16px 0; }
+  .earlier-work .item-title { font-size: 1.05rem; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { transition: none !important; }
+  }
+
   ::selection { background: var(--accent); color: var(--bg); }
 
   @media (max-width: 640px) {
     body { font-size: 17px; }
     .container { padding: 56px 20px 80px; }
     section { margin-bottom: 48px; }
+    .featured { padding: 22px 18px; }
+    .project-links { gap: 10px 16px; }
   }
 </style>
 </head>
 <body>
-
+<a class="skip-link" href="#main">Skip to research</a>
 <div class="container">
 
   <header class="site-header">
     <div class="eyebrow">Hakan Zeki Gülmez</div>
     <h1>AI, econometrics, and economic policy.</h1>
-    <p class="tagline">I build rigorous evidence on how AI changes firms, tasks, and markets — and how policy shapes that change.</p>
+    <p class="tagline">I study technological change, macroeconomic uncertainty, and credit risk with econometrics and reproducible research.</p>
     <div class="byline">
-      <span>M.Sc. Management &amp; Technology — TU Munich</span>
-      <span class="dot">·</span>
+      <span>M.Sc. candidate, Management &amp; Technology — TU Munich</span>
       <span>B.Sc. Economics — METU</span>
-      <span class="dot">·</span>
       <span>Munich</span>
     </div>
+    <nav class="site-nav" aria-label="Main navigation">
+      <a href="#thesis">Thesis</a>
+      <a href="#research">Research</a>
+      <a href="#writing">Writing</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
+    </nav>
   </header>
 
-  <section>
-    <h2>Writing</h2>
-    <ul class="essay-list">
-      <li class="essay">
-        <a href="/ai-policy/">
-          <div class="essay-meta">2026 · Essay</div>
-          <div class="essay-title">Understanding AI Policy Under Global Competition: From Adoption to Task Transformation</div>
-          <div class="essay-desc">Why enterprise AI adoption is the wrong benchmark for policy and strategy — and what Task Transformation Intensity measures instead. Comparative analysis of the EU, US, and China.</div>
-        </a>
-      </li>
-    </ul>
-  </section>
+  <main id="main">
+    <section id="thesis" aria-labelledby="thesis-heading">
+      <h2 id="thesis-heading">Master’s thesis</h2>
+      <article class="featured">
+        <h3 class="item-title">Generative AI as a Task Shock: Product-Level LLM Substitution in B2B Software Markets</h3>
+        <div class="item-meta"><span>TU Munich · Submitted September 2026</span></div>
+        <div class="item-desc">
+          <p>Can frontier AI perform the tasks that business customers buy software to do, and how are software suppliers adjusting? I build a product–capability–task dataset from the business descriptions in 1,122 SEC annual reports, covering 14,435 customer-facing tasks. Exposure is scored against dated AI capability evidence, with each firm’s 2022 task basket held fixed.</p>
+          <p>Measured exposure more than triples by 2025. A continuous-treatment difference-in-differences design finds no statistically distinguishable same-period differential revenue response. The negative association with one-year-lagged exposure weakens when firm-specific trends are included. More exposed suppliers also add more substantive AI functionality, conditional on initial functionality. These results describe early adjustment; they do not rule out later substitution.</p>
+        </div>
+        <div class="project-links">
+          <a href="mailto:hakanzekigulmez@gmail.com?subject=Thesis%20and%20replication%20request">Thesis &amp; replication on request</a>
+        </div>
+      </article>
+    </section>
 
-  <section>
-    <h2>Research</h2>
+    <section id="research" aria-labelledby="research-heading">
+      <h2 id="research-heading">Selected research</h2>
+      <p class="section-intro">Four reproducible projects, with policy notes, technical reports, and code. Each reports its assumptions, uncertainty, and limits.</p>
 
-    <div class="item">
-      <div class="item-title">Generative AI as a Task Shock: Product-Level LLM Substitution in B2B Software Markets</div>
-      <div class="item-meta">
-        <span class="status-badge">In Progress</span>
-        <span>Master's Thesis · TU Munich · 2026</span>
-      </div>
-      <div class="item-desc">Difference-in-differences study across NYSE/Nasdaq-listed B2B software firms (SIC 7370–7379), estimating revenue impact of LLM task replicability. Treatment variable constructed via LLM-as-judge scoring of pre-shock product page text using a 10-criteria rubric grounded in Eloundou et al. (2024), Acemoglu &amp; Restrepo (2022), and Brynjolfsson et al. (2023). Preliminary β ≈ −0.60 (p &lt; 0.01); quantity channel dominant; 1.52× intensification from early to advanced AI era. <a href="https://github.com/hakangulmez/thesis-ai-task-shock">Repository</a> · <a href="https://ai-task-replicability.streamlit.app/" target="_blank" rel="noopener">Launch dashboard ↗</a>.</div>
-    </div>
+      <article class="item" id="sba-lending">
+        <h3 class="item-title">Local Economic Conditions and Public–Lender Loss Sharing in SBA 7(a) Lending</h3>
+        <div class="item-meta"><span>Working paper · 2026</span></div>
+        <div class="item-desc">Official SBA loan-level data on recorded charge-off within 36 months. Firth logistic scorecards and machine-learning benchmarks show modest out-of-time discrimination and substantial calibration failures across cohorts. A separate macro-conditioned exercise estimates associations and assumption-based public–lender loss sharing under fixed scenarios; it is not a causal evaluation or a real-time forecast.</div>
+        <div class="project-links">
+          <a href="https://github.com/hakangulmez/credit-risk-sba/blob/main/report/working_paper.pdf" aria-label="SBA lending working paper">Working paper</a>
+          <a href="https://github.com/hakangulmez/credit-risk-sba/blob/main/report/policy_note.pdf" aria-label="SBA lending policy note">Policy note</a>
+          <a href="https://github.com/hakangulmez/credit-risk-sba/blob/main/report/technical_report.pdf" aria-label="SBA lending technical report">Technical report</a>
+          <a href="https://github.com/hakangulmez/credit-risk-sba/blob/main/notebooks/research_walkthrough.ipynb" aria-label="SBA lending results notebook">Results notebook</a>
+          <a href="https://github.com/hakangulmez/credit-risk-sba" aria-label="SBA lending repository">Repository</a>
+        </div>
+      </article>
 
-    <div class="item">
-      <div class="item-title">Does the Existing Technology Stock Accelerate New Invention? Evidence from 10,000 Years of General Purpose Technologies</div>
-      <div class="item-meta">
-        <span class="status-badge">In Progress</span>
-        <span>Working Paper · 2026</span>
-      </div>
-      <div class="item-desc">GDP growth panel regression across 30 General Purpose Technologies spanning 10,000 BCE–2017. Key test: does higher accumulated technology stock amplify the growth payoff of new GPT arrivals? Interaction term β₃ = 11.81 (p = 0.048), robust across 100% of leave-one-out iterations. <a href="https://github.com/hakangulmez/tcdc-invention-acceleration">Repository</a>.</div>
-    </div>
+      <article class="item" id="monetary-policy">
+        <h3 class="item-title">Monetary Policy Responses: Identification and Estimator Choice</h3>
+        <div class="item-meta"><span>Euro area &amp; Türkiye · 2026</span></div>
+        <div class="item-desc">How much do monetary-policy response estimates depend on identification and estimator choice? Recursive, sign-restricted, and proxy VARs are compared with local projections using recursive shocks. A common euro-area sample holds settings fixed within two lag panels. Proxy estimates show euro appreciation, while price responses remain uncertain; instrument validity and conditional inference limit interpretation.</div>
+        <div class="project-links">
+          <a href="https://github.com/hakangulmez/macro-var-lab/blob/main/report/policy_note.pdf" aria-label="Monetary policy note">Policy note</a>
+          <a href="https://github.com/hakangulmez/macro-var-lab/blob/main/report/technical_report.pdf" aria-label="Monetary policy technical report">Technical report</a>
+          <a href="https://github.com/hakangulmez/macro-var-lab" aria-label="Monetary policy repository">Repository</a>
+        </div>
+      </article>
 
-    <div class="item">
-      <div class="item-title">Determinants of Technology Diffusion Speed: Endogenous λ Estimation Across 15 Technologies and 132 Countries</div>
-      <div class="item-meta">
-        <span class="status-badge">In Progress</span>
-        <span>Working Paper · 2026</span>
-      </div>
-      <div class="item-desc">Logistic adoption curves fit to the CHAT dataset (843 technology-country pairs, median R² = 0.987) to recover technology-specific diffusion speeds (λ). Second stage regresses λ on human capital, predecessor adoption, trade openness, and institutional quality. Predecessor adoption β = 0.516 (p &lt; 0.001, technology FE) — consistent with the technology-stock feedback mechanism. <a href="https://github.com/hakangulmez/drivers-of-diffusion-speed">Repository</a>.</div>
-    </div>
+      <article class="item" id="forecasting">
+        <h3 class="item-title">Inflation Forecasting and GDP Nowcasting Under Publication Delays</h3>
+        <div class="item-meta"><span>Euro area, Türkiye &amp; Germany · 2026</span></div>
+        <div class="item-desc">Fixed inflation models are evaluated against simple benchmarks with expanding windows and explicit assumed publication lags. The comparison does not establish a general gain over a random walk. German GDP bridge, MIDAS, and factor nowcasts show rankings that depend on pandemic quarters. Release masks on latest-vintage data approximate information timing rather than reconstruct historical vintages.</div>
+        <div class="project-links">
+          <a href="https://github.com/hakangulmez/inflation-forecast-nowcast/blob/main/report/policy_note.pdf" aria-label="Inflation and nowcasting policy note">Policy note</a>
+          <a href="https://github.com/hakangulmez/inflation-forecast-nowcast/blob/main/report/technical_report.pdf" aria-label="Inflation and nowcasting technical report">Technical report</a>
+          <a href="https://github.com/hakangulmez/inflation-forecast-nowcast" aria-label="Inflation and nowcasting repository">Repository</a>
+        </div>
+      </article>
 
-    <div class="item">
-      <div class="item-title">Credit Risk Prediction for SBA-Guaranteed Loans</div>
-      <div class="item-meta">
-        <span>ML Project · 2026</span>
-      </div>
-      <div class="item-desc">End-to-end credit-risk pipeline on 897k+ SBA-guaranteed loans. Benchmarked ElasticNet, LightGBM, and XGBoost with time-based validation, Bayesian tuning, calibration, fairness diagnostics, and expected-loss simulation. <a href="https://github.com/hakangulmez/Credit-Scoring-EDA">Repository</a>.</div>
-    </div>
+      <article class="item" id="causal-ml">
+        <h3 class="item-title">Regularization Bias, Double Machine Learning, and Causal Assumptions</h3>
+        <div class="item-meta"><span>Monte Carlo &amp; observational applications · 2026</span></div>
+        <div class="item-desc">Seeded simulations compare OLS, plug-in machine learning, and cross-fitted double machine learning. Orthogonalization reduces bias sharply in the sparse design, but learner rankings are not universal. Historical 401(k) and staggered-adoption applications examine propensity overlap, unobserved-confounding sensitivity, and cohort balance alongside the assumptions needed for causal interpretation.</div>
+        <div class="project-links">
+          <a href="https://github.com/hakangulmez/causal-ml-lab/blob/main/report/policy_note.pdf" aria-label="Causal machine learning policy note">Policy note</a>
+          <a href="https://github.com/hakangulmez/causal-ml-lab/blob/main/report/technical_report.pdf" aria-label="Causal machine learning technical report">Technical report</a>
+          <a href="https://github.com/hakangulmez/causal-ml-lab" aria-label="Causal machine learning repository">Repository</a>
+        </div>
+      </article>
+    </section>
 
-    <div class="item">
-      <div class="item-title">Assessing Lockdown Impacts on PM2.5 Levels: Evidence from Italy and Japan</div>
-      <div class="item-meta">
-        <span>Research Paper · 2025</span>
-      </div>
-      <div class="item-desc">Daily city-level panel combining air pollution, meteorological, and lockdown stringency data. Difference-in-differences with fixed effects and nearest-neighbor propensity score matching; stronger pollution declines under lockdown in Italy, validated with parallel-trends and placebo tests. <a href="https://github.com/hakangulmez/lockdown-pm25-did">Repository</a>.</div>
-    </div>
+    <section id="writing" aria-labelledby="writing-heading">
+      <h2 id="writing-heading">Writing</h2>
+      <ul class="essay-list">
+        <li class="essay">
+          <a href="/ai-policy/">
+            <div class="essay-meta">2026 · Essay</div>
+            <div class="essay-title">Understanding AI Policy Under Global Competition: From Adoption to Task Transformation</div>
+            <div class="essay-desc">A conceptual comparison of EU, US, and Chinese AI policy, asking how adoption measures differ from changes in tasks and functionality.</div>
+          </a>
+        </li>
+      </ul>
+    </section>
 
-  </section>
+    <section class="earlier-work" id="earlier-work" aria-labelledby="earlier-heading">
+      <h2 id="earlier-heading">Earlier work</h2>
+      <article class="item">
+        <h3 class="item-title">Technology Stock and the Arrival of New Inventions</h3>
+        <div class="item-desc">Exploratory work on historical general-purpose technologies and the intervals between inventions.</div>
+        <div class="project-links"><a href="https://github.com/hakangulmez/tcdc-invention-acceleration" aria-label="Technology stock earlier-work repository">Repository</a></div>
+      </article>
+      <article class="item">
+        <h3 class="item-title">Drivers of Technology Diffusion Speed</h3>
+        <div class="item-desc">Logistic adoption curves using the CHAT dataset, followed by regressions on cross-country differences in estimated diffusion speed.</div>
+        <div class="project-links"><a href="https://github.com/hakangulmez/drivers-of-diffusion-speed" aria-label="Technology diffusion earlier-work repository">Repository</a></div>
+      </article>
+      <article class="item">
+        <h3 class="item-title">Lockdowns and Urban Air Quality</h3>
+        <div class="item-desc">A 2025 course paper applying propensity-score matching and difference-in-differences to city-level data from Italy and Japan, with balance, pre-trend, and placebo diagnostics.</div>
+        <div class="project-links"><a href="https://github.com/hakangulmez/lockdown-pm25-did" aria-label="Air quality earlier-work repository">Repository</a></div>
+      </article>
+    </section>
 
-  <section>
-    <h2>Experience</h2>
-    <div class="item">
-      <div class="item-title">M&amp;A and Strategy Intern — Yıldız Holding</div>
-      <div class="item-meta"><span>2023</span></div>
-      <div class="item-desc">DCF and EV/EBITDA valuation for FMCG and F&amp;B acquisition targets; benchmarked IoT and data monetization across 30+ FMCG firms.</div>
-    </div>
-    <div class="item">
-      <div class="item-title">Financial Accountant Intern — Evidea</div>
-      <div class="item-meta"><span>2022</span></div>
-      <div class="item-desc">Monthly P&amp;L, balance sheet, and cash-flow reporting; supported liquidity planning and transaction monitoring.</div>
-    </div>
-  </section>
+    <section id="experience" aria-labelledby="experience-heading">
+      <h2 id="experience-heading">Experience</h2>
+      <article class="item">
+        <h3 class="item-title">M&amp;A and Strategy Intern — Yıldız Holding</h3>
+        <div class="item-meta"><span>June–September 2023</span></div>
+        <div class="item-desc">DCF and WACC modelling, peer multiples, due-diligence research, and decision materials. Benchmarked data, IoT, and AI use cases across FMCG and retail peers.</div>
+      </article>
+      <article class="item">
+        <h3 class="item-title">Consulting Intern — EY</h3>
+        <div class="item-meta"><span>September–November 2022</span></div>
+        <div class="item-desc">Export-market screening, market-size and consumer-trend research, and client presentation materials.</div>
+      </article>
+      <article class="item">
+        <h3 class="item-title">Financial Accountant Intern — Evidea</h3>
+        <div class="item-meta"><span>June–September 2021</span></div>
+        <div class="item-desc">Monthly financial-statement reporting and transaction reconciliation within the finance team.</div>
+      </article>
+    </section>
+  </main>
 
-  <section>
-    <h2>Elsewhere</h2>
+  <section id="contact" aria-labelledby="contact-heading">
+    <h2 id="contact-heading">Contact</h2>
     <ul class="contact-list">
-      <li><a href="https://github.com/hakangulmez">GitHub</a></li>
-      <li><a href="https://www.linkedin.com/in/hakan-zeki-gülmez-088700180/">LinkedIn</a></li>
       <li><a href="mailto:hakanzekigulmez@gmail.com">Email</a></li>
+      <li><a href="https://github.com/hakangulmez">GitHub</a></li>
+      <li><a href="https://www.linkedin.com/in/hakan-zeki-g%C3%BClmez-088700180/">LinkedIn</a></li>
     </ul>
   </section>
 
-  <footer>
-    © 2026 Hakan Zeki Gülmez
-  </footer>
-
+  <footer>© 2026 Hakan Zeki Gülmez · Updated 9 October 2026</footer>
 </div>
-
 </body>
 </html>
