@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Hakan Zeki Gülmez — Economics &amp; Research</title>
-<meta name="description" content="Hakan Zeki Gülmez: research on AI and software markets, monetary policy, inflation forecasting, causal machine learning, and SBA lending. TUM master’s thesis and reproducible economics projects.">
+<meta name="description" content="Hakan Zeki Gülmez: research on AI and software markets, monetary policy, inflation forecasting, causal machine learning, SBA lending, and urban air quality. TUM master’s thesis and reproducible economics projects.">
 <link rel="canonical" href="https://hakangulmez.github.io/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -325,9 +325,6 @@
     margin-bottom: 10px;
   }
 
-  .earlier-work .item { padding: 16px 0; }
-  .earlier-work .item-title { font-size: 1.05rem; }
-
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     * { transition: none !important; }
@@ -384,7 +381,7 @@
 
     <section id="research" aria-labelledby="research-heading">
       <h2 id="research-heading">Selected research</h2>
-      <p class="section-intro">Four reproducible projects, with policy notes, technical reports, and code. Each reports its assumptions, uncertainty, and limits.</p>
+      <p class="section-intro">Research on credit risk, monetary policy, forecasting, causal methods, and environmental policy.</p>
 
       <article class="item" id="sba-lending">
         <h3 class="item-title">Local Economic Conditions and Public–Lender Loss Sharing in SBA 7(a) Lending</h3>
@@ -431,6 +428,16 @@
           <a href="https://github.com/hakangulmez/causal-ml-lab" aria-label="Causal machine learning repository">Repository</a>
         </div>
       </article>
+
+      <article class="item" id="lockdowns-air-quality">
+        <h3 class="item-title">Lockdowns and Urban Air Quality</h3>
+        <div class="item-meta"><span>Italy &amp; Japan · Research paper · 2025</span></div>
+        <div class="item-desc">A matched city-level study of PM₂.₅ outcomes during COVID-19 restrictions. Propensity-score matching and difference-in-differences combine air-quality observations, policy stringency, and weather controls. Country-level, city-day, and fixed city-pair comparisons include balance, pre-trend, and placebo diagnostics. Interpretation depends on parallel trends and the comparability of the two countries.</div>
+        <div class="project-links">
+          <a href="https://github.com/hakangulmez/hakangulmez.github.io/blob/main/papers/lockdowns-urban-air-quality.pdf" aria-label="Lockdowns and urban air quality research paper">Research paper</a>
+          <a href="https://github.com/hakangulmez/lockdown-pm25-did" aria-label="Lockdowns and urban air quality repository">Repository</a>
+        </div>
+      </article>
     </section>
 
     <section id="writing" aria-labelledby="writing-heading">
@@ -444,25 +451,6 @@
           </a>
         </li>
       </ul>
-    </section>
-
-    <section class="earlier-work" id="earlier-work" aria-labelledby="earlier-heading">
-      <h2 id="earlier-heading">Earlier work</h2>
-      <article class="item">
-        <h3 class="item-title">Technology Stock and the Arrival of New Inventions</h3>
-        <div class="item-desc">Exploratory work on historical general-purpose technologies and the intervals between inventions.</div>
-        <div class="project-links"><a href="https://github.com/hakangulmez/tcdc-invention-acceleration" aria-label="Technology stock earlier-work repository">Repository</a></div>
-      </article>
-      <article class="item">
-        <h3 class="item-title">Drivers of Technology Diffusion Speed</h3>
-        <div class="item-desc">Logistic adoption curves using the CHAT dataset, followed by regressions on cross-country differences in estimated diffusion speed.</div>
-        <div class="project-links"><a href="https://github.com/hakangulmez/drivers-of-diffusion-speed" aria-label="Technology diffusion earlier-work repository">Repository</a></div>
-      </article>
-      <article class="item">
-        <h3 class="item-title">Lockdowns and Urban Air Quality</h3>
-        <div class="item-desc">A 2025 course paper applying propensity-score matching and difference-in-differences to city-level data from Italy and Japan, with balance, pre-trend, and placebo diagnostics.</div>
-        <div class="project-links"><a href="https://github.com/hakangulmez/lockdown-pm25-did" aria-label="Air quality earlier-work repository">Repository</a></div>
-      </article>
     </section>
 
     <section id="experience" aria-labelledby="experience-heading">
