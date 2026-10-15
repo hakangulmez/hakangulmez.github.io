@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Generative AI as a Task Shock — thesis summary — Hakan Zeki Gülmez</title>
+<meta name="description" content="Dated AI capability evidence, fixed software tasks, and early supplier adjustment: a summary of Hakan Zeki Gülmez's master's thesis.">
+<link rel="canonical" href="https://hakangulmez.github.io/thesis/">
+<link rel="icon" href="data:,">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Generative AI as a Task Shock — thesis summary">
+<meta property="og:description" content="Dated AI capability evidence, fixed software tasks, and early supplier adjustment: a summary of Hakan Zeki Gülmez's master's thesis.">
+<meta property="og:url" content="https://hakangulmez.github.io/thesis/">
+<meta property="og:image" content="https://hakangulmez.github.io/thesis/img/R_by_vintage.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="1200">
+<meta property="og:image:alt" content="The same software tasks become more technically supportable as dated frontier evidence expands.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Generative AI as a Task Shock — thesis summary">
+<meta name="twitter:description" content="Dated AI capability evidence, fixed software tasks, and early supplier adjustment: a summary of Hakan Zeki Gülmez's master's thesis.">
+<meta name="twitter:image" content="https://hakangulmez.github.io/thesis/img/R_by_vintage.png">
+<meta name="twitter:image:alt" content="The same software tasks become more technically supportable as dated frontier evidence expands.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+  :root {
+    color-scheme: light dark;
+    --bg: #fdfcf8;
+    --ink: #1a1814;
+    --ink-soft: #4a463f;
+    --ink-faint: #7a766e;
+    --accent: #a83232;
+    --accent-soft: #f4ebe5;
+    --rule: #d9d3c7;
+    --paper: #f7f3ea;
+    --serif: 'Fraunces', Georgia, 'Times New Roman', serif;
+    --sans: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #14120e;
+      --ink: #ebe5d6;
+      --ink-soft: #b8b0a0;
+      --ink-faint: #a49c8c;
+      --accent: #d97a7a;
+      --accent-soft: #2a1e1c;
+      --rule: #2f2b24;
+      --paper: #1c1a14;
+    }
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--serif);
+    font-size: 19px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+  .container { max-width: 720px; margin: 0 auto; padding: 60px 28px 100px; }
+  a { color: var(--accent); text-underline-offset: 0.2em; text-decoration-thickness: 1px; }
+  a:hover { text-decoration-thickness: 2px; }
+  a:focus-visible, summary:focus-visible, .table-wrap:focus-visible {
+    outline: 2px solid var(--accent); outline-offset: 5px; border-radius: 2px;
+  }
+  .skip-link {
+    position: absolute; top: -80px; left: 20px; padding: 8px 14px;
+    background: var(--bg); font-family: var(--sans); z-index: 1;
+  }
+  .skip-link:focus { top: 12px; }
+  .back-link { display: inline-block; font-family: var(--sans); font-size: 14px; margin-bottom: 34px; }
+  .post-header { border-bottom: 1px solid var(--rule); padding-bottom: 36px; margin-bottom: 40px; }
+  .eyebrow {
+    color: var(--accent); font-family: var(--sans); font-size: 12px;
+    font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 22px;
+  }
+  h1 {
+    font-size: clamp(2.1rem, 5.2vw, 3.4rem); font-weight: 500; line-height: 1.08;
+    letter-spacing: -0.02em; font-variation-settings: "opsz" 72; margin-bottom: 26px;
+  }
+  .title-subtitle { display: block; font-size: 0.62em; line-height: 1.25; margin-top: 14px; }
+  .byline { font-family: var(--sans); font-size: 14px; line-height: 1.7; color: var(--ink-soft); }
+  .byline strong { color: var(--ink); font-weight: 500; }
+  .page-nav { display: flex; flex-wrap: wrap; gap: 9px 20px; margin-top: 28px; font-family: var(--sans); font-size: 14px; }
+  section { scroll-margin-top: 24px; }
+  h2 {
+    font-size: 2rem; font-weight: 500; line-height: 1.15; letter-spacing: -0.015em;
+    font-variation-settings: "opsz" 72; margin: 64px 0 22px;
+  }
+  #abstract h2 { margin-top: 0; }
+  h3 { font-size: 1.35rem; font-weight: 500; line-height: 1.3; margin: 30px 0 12px; }
+  p { margin-bottom: 1.25em; }
+  ul, ol { margin: 0 0 24px 1.3em; padding-left: 0.2em; }
+  li { padding-left: 0.15em; margin-bottom: 10px; }
+  li::marker { color: var(--accent); }
+  .abstract-text { font-size: 17px; line-height: 1.75; color: var(--ink-soft); }
+  .source, figcaption, .note { font-family: var(--sans); font-size: 13px; line-height: 1.65; color: var(--ink-soft); }
+  .source { margin-top: 14px; }
+  .note { color: var(--ink-soft); }
+  .callout { border-left: 3px solid var(--accent); background: var(--paper); padding: 20px 24px; margin: 24px 0; }
+  .callout p:last-child { margin-bottom: 0; }
+  .pipeline { list-style: none; padding: 0; margin: 24px 0 16px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .pipeline li { margin: 0; padding: 18px 20px; border: 1px solid var(--rule); background: var(--paper); }
+  .pipeline .count { display: block; font-size: 1.7rem; line-height: 1.2; font-variant-numeric: lining-nums tabular-nums; }
+  .pipeline .label { display: block; font-family: var(--sans); font-size: 13px; color: var(--ink-soft); margin-top: 6px; }
+  .pipeline .flow { color: var(--accent); font-family: var(--sans); font-size: 15px; }
+  details { margin: 22px 0; border: 1px solid var(--rule); background: var(--paper); border-radius: 3px; }
+  summary { cursor: pointer; padding: 16px 20px; font-family: var(--sans); font-size: 15px; font-weight: 500; }
+  summary::marker { color: var(--accent); }
+  .detail-body { padding: 4px 20px 20px; font-size: 16px; }
+  .detail-body > :last-child { margin-bottom: 0; }
+  .ledger { border-left: 3px solid var(--accent); padding-left: 18px; margin-top: 22px; }
+  .ledger h3 { font-size: 1.2rem; margin-top: 0; }
+  .record-id { font-family: var(--sans); font-size: 13px; color: var(--accent); margin-bottom: 6px; }
+  dl { margin: 18px 0; }
+  dt { font-family: var(--sans); font-size: 13px; font-weight: 600; margin-top: 16px; }
+  dd { margin: 4px 0 0; color: var(--ink-soft); }
+  figure { margin: 30px 0 22px; }
+  .chart-link { display: block; border: 1px solid var(--rule); border-radius: 3px; background: white; overflow: hidden; }
+  figure img { display: block; width: 100%; height: auto; }
+  figcaption { margin-top: 12px; }
+  figcaption .source { display: block; margin-top: 5px; }
+  .table-wrap { overflow-x: auto; max-width: 100%; margin: 24px 0 16px; border: 1px solid var(--rule); border-radius: 3px; }
+  table { width: 100%; border-collapse: collapse; font-family: var(--sans); font-size: 14px; line-height: 1.55; background: var(--bg); }
+  caption { text-align: left; padding: 12px 14px; background: var(--paper); color: var(--ink-soft); border-bottom: 1px solid var(--rule); }
+  th, td { text-align: left; padding: 12px 14px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  th { font-weight: 600; background: var(--paper); }
+  td { color: var(--ink-soft); }
+  tbody tr:last-child > * { border-bottom: none; }
+  .numbers { font-variant-numeric: lining-nums tabular-nums; white-space: nowrap; }
+  .examples { min-width: 650px; }
+  .examples .product { width: 20%; }
+  .examples .task { width: 25%; }
+  .examples .scores { width: 13%; }
+  .examples .occupation { display: block; margin-top: 10px; color: var(--ink-soft); font-size: 12px; }
+  .examples .scores span { display: block; white-space: nowrap; }
+  .results p { margin-bottom: 1em; }
+  .access { border-top: 1px solid var(--rule); padding-top: 4px; margin-top: 58px; }
+  footer { margin-top: 56px; padding-top: 20px; border-top: 1px solid var(--rule); font-family: var(--sans); font-size: 14px; }
+  ::selection { background: var(--accent); color: var(--bg); }
+  @media (max-width: 640px) {
+    body { font-size: 17px; }
+    .container { padding: 32px 20px 72px; }
+    h2 { font-size: 1.6rem; margin-top: 48px; }
+    h3 { font-size: 1.2rem; }
+    .abstract-text { font-size: 16px; }
+    .byline { font-size: 13px; }
+    .pipeline { grid-template-columns: minmax(0, 1fr); }
+    .pipeline li { padding: 14px 18px; }
+    .pipeline .count { font-size: 1.5rem; }
+    .callout { padding: 18px; }
+    summary { padding: 14px 16px; }
+    .detail-body { padding: 2px 16px 16px; }
+    table { font-size: 13px; }
+    th, td { padding: 10px; }
+    .detail-body .table-wrap th, .detail-body .table-wrap td { padding: 9px 8px; }
+  }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to thesis summary</a>
+<div class="container">
+  <a class="back-link" href="/#thesis">Back to the portfolio</a>
+  <header class="post-header">
+    <p class="eyebrow">Master's thesis · Applied econometrics</p>
+    <h1 data-source="identity">Generative AI as a Task Shock: <span class="title-subtitle">Product-Level LLM Substitution in B2B Software Markets</span></h1>
+    <p class="byline" data-source="identity"><strong>Hakan Zeki Gülmez</strong> · Master's thesis, TUM School of Management · Supervisor: Prof. Dr. Helmut Farbmacher · 2026</p>
+    <nav class="page-nav" aria-label="Thesis sections">
+      <a href="#question">Question</a><a href="#measurement">Measurement</a><a href="#findings">Findings</a><a href="#limits">Limits</a><a href="#access">Access</a>
+    </nav>
+  </header>
+  <main id="main">
+    <article>
+      <section id="abstract" aria-labelledby="abstract-heading">
+        <h2 id="abstract-heading">Abstract</h2>
+        <p class="abstract-text" data-source="abstract">Generative AI systems can increasingly perform work for which business customers currently purchase software. This thesis examines what this development has meant, to date, for the firms that supply such software. Using the business descriptions in 1,122 annual reports, I represent the B2B software products of U.S.-listed software and IT-service firms as sets of customer-facing tasks and score each task against dated evidence on the capabilities of frontier AI systems. Holding each firm’s 2022 tasks fixed, measured exposure more than triples by 2025, and most of the increase is already visible in 2023. Revenue has followed, if at all, only with a delay. A continuous-treatment difference-in-differences design detects no statistically distinguishable differential revenue response between more and less exposed suppliers in the same period. With a one-year lag, more exposed suppliers’ revenue grows more slowly, although the estimate halves once firm-specific trends are allowed. The clearest difference appears in suppliers’ products: conditional on initial functionality, more exposed suppliers add more substantive AI functionality. The structural coding replicates closely across independent runs; the graded exposure scores are noisier, and a stronger model rates them higher. Some disagreements involve AI agents that operate the incumbent’s software, which points to a question that the task framework leaves open: whether AI replaces the worker who uses the software or the software itself. The findings describe early adjustment, not the absence of later substitution.</p>
+        <p class="source">Source: thesis abstract, reproduced verbatim.</p>
+      </section>
+
+      <section id="question" aria-labelledby="question-heading">
+        <h2 id="question-heading">The question</h2>
+        <p>Software products perform work that customers would otherwise have to do themselves. As external AI systems become more capable, they may support the tasks customers buy software to perform. The question is how this technical exposure is associated with early adjustment among software suppliers.</p>
+        <p data-source="question-channels">The thesis distinguishes three possible channels: AI may replace a worker directly, replace the worker who operates existing software, or replace the software itself. These are conceptual possibilities, not outcomes separately identified by the estimates. <strong>An agent operating a product still needs the product.</strong></p>
+      </section>
+
+      <section id="measurement" aria-labelledby="measurement-heading">
+        <h2 id="measurement-heading">How it is measured</h2>
+        <p data-source="universe">The dataset starts with Item 1 business descriptions for FY2022–FY2025. It links disclosed products to their capabilities and then to the customer-facing tasks those capabilities support.</p>
+        <ol class="pipeline" aria-label="From business descriptions to product tasks" data-source="universe">
+          <li><span class="count">1,122</span><span class="label">Annual reports <span class="flow" aria-hidden="true">→</span></span></li>
+          <li><span class="count">9,824</span><span class="label">Economic products <span class="flow" aria-hidden="true">→</span></span></li>
+          <li><span class="count">25,750</span><span class="label">Capabilities <span class="flow" aria-hidden="true">→</span></span></li>
+          <li><span class="count">14,435</span><span class="label">Customer-facing tasks</span></li>
+        </ol>
+        <p class="source">Source: thesis, Data and Measurement; counts cover the full product–task universe before the business-customer and financial screens.</p>
+        <p data-source="basket">The main exposure comparison uses a smaller, fixed basket: <strong>3,251 numerically scored FY2022 tasks from 207 firms</strong>. Each firm's baseline tasks are rescored against successive frontier vintages. Later changes in product descriptions do not redefine that basket.</p>
+        <p>The external exposure score <strong>R</strong> measures technical supportability. A separate measure, <strong>T</strong>, records the depth of AI functionality the supplier discloses for its own products. Keeping these measures separate avoids building the supplier's response into exposure.</p>
+
+        <details id="frontier-details">
+          <summary>The dated frontier ledger</summary>
+          <div class="detail-body">
+            <p data-source="ledger-history">The ledger contains 66 dated operational capability records compiled from first-party documentation. It begins with the ChatGPT research preview of 30 November 2022; the latest records date from September 2026. Only records available by the relevant year-end enter each scored vintage.</p>
+            <p data-source="ledger-cutoffs">Cumulative records at the year-end cutoffs are <strong>1 / 16 / 33 / 56</strong> for <strong>2022 / 2023 / 2024 / 2025</strong>.</p>
+            <p>A task can be credited only with capabilities documented by that vintage; a citation to a later record is rejected. These checks constrain the supplied evidence dates, but do not eliminate every possible form of model look-ahead.</p>
+            <div class="ledger" data-source="ledger-example">
+              <p class="record-id">OC-2025-006 · Effective 25 March 2025</p>
+              <h3>One capability record</h3>
+              <dl>
+                <dt>System or surface</dt><dd>GPT-4o image generation in ChatGPT/API</dd>
+                <dt>Operational capability</dt><dd>Generate images with improved text rendering and instruction following, and transform user-uploaded images over multiple turns.</dd>
+                <dt>Required input</dt><dd>Text prompt and optional source image(s).</dd>
+                <dt>Produced result</dt><dd>Generated or edited raster image.</dd>
+                <dt>Not established</dt><dd>Pixel-perfect deterministic edits, layered source files, factual authenticity, or external publication.</dd>
+              </dl>
+              <p class="source">Source: frontier ledger, selected fields from this record; date also listed in the thesis frontier-record index.</p>
+            </div>
+          </div>
+        </details>
+
+        <details id="scale-details">
+          <summary>The exposure scale and aggregation</summary>
+          <div class="detail-body">
+            <div class="table-wrap" tabindex="0" role="region" aria-label="Exposure scale" data-source="r-scale">
+              <table>
+                <caption>What dated frontier capabilities can support</caption>
+                <thead><tr><th scope="col">Level</th><th scope="col">Meaning</th><th scope="col">Value</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row">R0</th><td>No direct performance of meaningful work required by the task.</td><td class="numbers">0</td></tr>
+                  <tr><th scope="row">R1</th><td>Useful assistance; the customer remains the principal performer.</td><td class="numbers">0.25</td></tr>
+                  <tr><th scope="row">R2</th><td>One bounded, material part is completed; substantial essential work or the required result remains.</td><td class="numbers">0.50</td></tr>
+                  <tr><th scope="row">R3</th><td>The central analytical, informational, or content output is produced; material judgment, verification, integration, authorization, or execution remains.</td><td class="numbers">0.75</td></tr>
+                  <tr><th scope="row">R4</th><td>The fixed task can be completed end to end and its required result delivered.</td><td class="numbers">1</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p data-source="r-weights">Firm exposure is the role-weighted mean of task values: CORE tasks have weight 1 and SUPPLEMENTAL tasks weight 0.5. UNKNOWN scores remain missing and are excluded from both numerator and denominator. The reported cohort mean gives firms equal weight.</p>
+            <p class="source">Source: thesis, Frontier replicability and Exposure of the fixed basket.</p>
+          </div>
+        </details>
+
+        <h3>Measurement and reliability</h3>
+        <p data-source="reliability">The classifications use Gemini 2.5 Flash at temperature 0, with required formats and citation checks. On identical inputs, 95% of task-level R classifications in the repeatability sample are identical. Repeating the full scoring chain gives the same level for 62% of tasks and a level within one step for 87%.</p>
+        <p>A stronger model rates exposure higher. These are repeatability and model-comparison checks, not validation against an independent expert benchmark; that benchmark remains future work.</p>
+        <p class="source">Source: thesis, Measurement reliability and the repeatability table.</p>
+      </section>
+
+      <section id="findings" aria-labelledby="findings-heading">
+        <h2 id="findings-heading" data-source="vintage-years">What changed, 2022–2025</h2>
+        <p>The fixed tasks become substantially more supportable as the dated evidence expands. Most of the rise arrives with the first post-baseline vintage. This measures a change in technical supportability, not observed customer adoption.</p>
+        <figure data-source="r-chart">
+          <a class="chart-link" href="/thesis/img/R_by_vintage.png" aria-label="Open the exposure chart at full size">
+            <img src="/thesis/img/R_by_vintage.png" width="1200" height="1200" alt="Stacked bars show the same baseline tasks moving toward higher exposure levels as frontier evidence expands. Exact shares and firm means are in the following table." decoding="async">
+          </a>
+          <figcaption>The task basket is held fixed. <a href="/thesis/img/R_by_vintage.png">Open chart at full size</a>.
+            <span class="source">Source: Gülmez, master's thesis, exposure-distribution figure; supplied chart based on the saved aggregate table.</span>
+          </figcaption>
+        </figure>
+        <div class="table-wrap" tabindex="0" role="region" aria-label="Exposure by vintage" data-source="exposure-table">
+          <table>
+            <caption>Task shares and firm means use different weights</caption>
+            <thead><tr><th scope="col">Vintage</th><th scope="col">Tasks at R3 or R4</th><th scope="col">Mean firm exposure</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">2022</th><td class="numbers">2.1%</td><td class="numbers">0.134</td></tr>
+              <tr><th scope="row">2023</th><td class="numbers">24.7%</td><td class="numbers">0.378</td></tr>
+              <tr><th scope="row">2024</th><td class="numbers">30.6%</td><td class="numbers">0.415</td></tr>
+              <tr><th scope="row">2025</th><td class="numbers">38.4%</td><td class="numbers">0.483</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="note">Task shares pool all numerically scored tasks. Mean firm exposure first applies role weights within each firm, then averages firms equally.</p>
+        <p class="source">Source: thesis exposure table; saved exposure-distribution and exposure-by-vintage tables.</p>
+      </section>
+
+      <section id="examples" aria-labelledby="examples-heading">
+        <h2 id="examples-heading">Examples</h2>
+        <p>These product tasks sit next to similar occupational tasks. The comparison illustrates why task ownership matters: performing work through software and supplying that software are different economic positions.</p>
+        <div class="table-wrap" tabindex="0" role="region" aria-label="Product tasks and illustrative occupational matches" data-source="examples">
+          <table class="examples">
+            <caption>Fixed FY2022 tasks, rescored against each vintage</caption>
+            <thead><tr><th class="product" scope="col">Product</th><th class="task" scope="col">Customer-facing task</th><th class="scores" scope="col">R by vintage</th><th scope="col">Similar O*NET task</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Illustrator<br><span class="occupation">Adobe</span></th><td>create digital graphics and illustrations</td><td class="scores"><span>2022: R1</span><span>2023: R2</span><span>2024: R4</span><span>2025: R4</span></td><td>“Develop graphics and layouts for product illustrations, company logos, and Web sites.”<span class="occupation">Graphic Designers · Task 306</span></td></tr>
+              <tr><th scope="row">Analyzer<br><span class="occupation">DocuSign</span></th><td>analyze inbound agreements</td><td class="scores"><span>2022: R1</span><span>2023: R3</span><span>2024: R4</span><span>2025: R4</span></td><td>“Prepare, edit, or review legal documents, including legislation, briefs, pleadings, appeals, wills, contracts, and real estate closing statements.”<span class="occupation">Paralegals and Legal Assistants · Task 23994</span></td></tr>
+              <tr><th scope="row">QuickBooks Online<br><span class="occupation">Intuit</span></th><td>create and send invoices and estimates</td><td class="scores"><span>2022: R1</span><span>2023: R3</span><span>2024: R3</span><span>2025: R4</span></td><td>“Prepare itemized statements, bills, or invoices and record amounts due for items purchased or services rendered.”<span class="occupation">Billing and Posting Clerks · Task 23240</span></td></tr>
+              <tr><th scope="row">Sales Hub<br><span class="occupation">HubSpot</span></th><td>manage conversations and live chat</td><td class="scores"><span>2022: R1</span><span>2023: R3</span><span>2024: R4</span><span>2025: R4</span></td><td>“Answer customers' questions about products, prices, availability, product uses, and credit terms.”<span class="occupation">Sales Representatives, Wholesale and Manufacturing, Except Technical and Scientific Products · Task 8113</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="note">Illustrative matches, not a formal crosswalk; single-task scores are noisier than averages. Scroll within the table on a narrow screen.</p>
+        <p class="source" data-source="onet-license">Source: PCT workbook, Tasks sheet; O*NET Task Statements, USDOL/ETA. Occupational statements reproduced verbatim under <a href="https://creativecommons.org/licenses/by/4.0/" rel="license">CC BY 4.0</a>. O*NET® is a trademark of USDOL/ETA.</p>
+      </section>
+
+      <section id="revenue" class="results" aria-labelledby="revenue-heading">
+        <h2 id="revenue-heading">Revenue and products</h2>
+        <h3>Pooled benchmark</h3>
+        <p data-source="pooled-revenue">In the pooled model, a one-standard-deviation exposure difference is associated with approximately <strong>−1.2% revenue</strong>, with a 95% confidence interval from −4.9% to 2.5%. Neither this benchmark nor the contemporaneous dated-dose specification is statistically distinguishable from zero.</p>
+        <h3>One-year-lagged exposure</h3>
+        <p data-source="lagged-revenue">In the lagged dated-dose model, a one-standard-deviation difference is associated with approximately <strong>−5.0% revenue</strong> (95% confidence interval −8.7% to −1.2%). The estimate halves once firm-specific trends are included. This specification and the pooled benchmark use different exposure definitions; their comparison is not a change in the lag alone.</p>
+        <p class="source">Source: thesis, Revenue paths and the revenue-specification table. These are conditional associations.</p>
+        <figure data-source="revenue-chart">
+          <a class="chart-link" href="/thesis/img/revenue_terciles.png" aria-label="Open the revenue-path chart at full size">
+            <img src="/thesis/img/revenue_terciles.png" width="1200" height="1200" alt="Descriptive revenue paths for exposure terciles. The upper-exposure group ends below the lower and middle groups, which finish at similar levels. These are raw group means, not fitted regression paths." loading="lazy" decoding="async">
+          </a>
+          <figcaption>Raw group means; no model is fitted. Available observations vary by year. <a href="/thesis/img/revenue_terciles.png">Open chart at full size</a>.
+            <span class="source">Source: Gülmez, master's thesis, lagged-exposure tercile figure; supplied chart based on the saved aggregate table.</span>
+          </figcaption>
+        </figure>
+        <div class="table-wrap" tabindex="0" role="region" aria-label="Descriptive revenue endpoints" data-source="revenue-endpoints">
+          <table>
+            <caption>FY2025 mean log revenue relative to FY2022</caption>
+            <thead><tr><th scope="col">Exposure tercile</th><th scope="col">Raw group mean</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Lower</th><td class="numbers">+0.38</td></tr>
+              <tr><th scope="row">Middle</th><td class="numbers">+0.38</td></tr>
+              <tr><th scope="row">Upper</th><td class="numbers">+0.24</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p data-source="tercile-gap">By FY2025, the upper tercile of lagged exposure is about <strong>0.15 log points</strong> below the lower tercile. The middle tercile ends approximately level with the lower one, so the figure does not show a monotone gradient.</p>
+        <h3>Disclosed product functionality</h3>
+        <p data-source="supplier-association">More exposed suppliers raised their share of products with substantive AI functionality more, conditional on baseline functionality and the other controls. A one-standard-deviation exposure difference corresponds to approximately <strong>4.5 percentage points</strong>. Without that conditioning, the association is much weaker.</p>
+        <p data-source="pooled-products">Across pooled products in the estimation cohort, the share with <strong>T ≥ 2</strong> rose from <strong>16% to 28%</strong>. This weights firms by their number of products with known T; it is not the change for an average firm.</p>
+        <p class="source">Source: thesis, Supplier response and the product-functionality distribution figure.</p>
+      </section>
+
+      <section id="limits" aria-labelledby="limits-heading">
+        <h2 id="limits-heading">What this does and does not show</h2>
+        <ul>
+          <li><strong>Identification remains uncertain.</strong> The pre-trend test has limited power, and further checks do not establish parallel trends.</li>
+          <li><strong>The comparison is relative.</strong> It describes firms with larger versus smaller measured exposure changes; changes common to all suppliers fall outside it.</li>
+          <li><strong>Technical support is not adoption.</strong> R records technical supportability; T records disclosed functionality, not verified customer use. The scores lack an independent expert benchmark.</li>
+          <li data-source="limits-years"><strong>The window and cohort are limited.</strong> The cohort requires reporting through FY2025. Results describe early adjustment among the observed suppliers, not the absence of later substitution.</li>
+        </ul>
+      </section>
+
+      <section id="next" aria-labelledby="next-heading">
+        <h2 id="next-heading">Next steps</h2>
+        <p data-source="next-years">Extend the financial horizon, score post-2025 vintages on the same baseline tasks, and benchmark the scores against domain experts. Linking product tasks to O*NET would also allow explicit coding of task ownership: work performed by a worker, by a product, or jointly.</p>
+      </section>
+
+      <section id="access" class="access" aria-labelledby="access-heading">
+        <h2 id="access-heading">Access</h2>
+        <p>The full thesis, the product–capability–task dataset and the frontier ledger are available on request.</p>
+        <p><a href="mailto:hakanzekigulmez@gmail.com?subject=Thesis%20request">Request the thesis and materials</a></p>
+      </section>
+    </article>
+  </main>
+  <footer><a href="/#thesis">Back to the portfolio</a></footer>
+</div>
+</body>
+</html>
