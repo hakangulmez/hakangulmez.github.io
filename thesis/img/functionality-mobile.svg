@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="360" viewBox="0 0 360 360" role="img" aria-labelledby="title description">
+<title id="title">Disclosed AI functionality</title>
+<desc id="description">Product share at T2 or above. Percentages use the saved aggregate table; the full-size chart shows the full distribution.</desc>
+<style>text { font-family: Arial, Helvetica, sans-serif; } .interval { stroke-linecap: round; }</style>
+<rect width="360" height="360" fill="#ffffff"/>
+<text x="24" y="38" font-size="22" fill="#202f50" font-weight="700" text-anchor="start">Disclosed AI functionality</text>
+<text x="24" y="68" font-size="16" fill="#555555" font-weight="400" text-anchor="start">Product share at T2 or above</text>
+<g data-source-file="figure2_T_distribution_data.csv" data-source-row="2022" data-field="share_known_T_ge2" data-value="0.16007445323406236">
+<text x="24" y="104" font-size="17" fill="#202f50" font-weight="600" text-anchor="start">2022</text>
+<text x="336" y="104" font-size="17" fill="#202f50" font-weight="700" text-anchor="end">16.0%</text>
+<rect x="24" y="114" width="312" height="14" rx="2" fill="#e9eff8"/>
+<rect class="share" x="24" y="114" width="49.943229" height="14" rx="2" fill="#2a78d6"/>
+</g>
+<g data-source-file="figure2_T_distribution_data.csv" data-source-row="2023" data-field="share_known_T_ge2" data-value="0.2">
+<text x="24" y="159" font-size="17" fill="#202f50" font-weight="600" text-anchor="start">2023</text>
+<text x="336" y="159" font-size="17" fill="#202f50" font-weight="700" text-anchor="end">20.0%</text>
+<rect x="24" y="169" width="312" height="14" rx="2" fill="#e9eff8"/>
+<rect class="share" x="24" y="169" width="62.400000" height="14" rx="2" fill="#2a78d6"/>
+</g>
+<g data-source-file="figure2_T_distribution_data.csv" data-source-row="2024" data-field="share_known_T_ge2" data-value="0.2469018112488084">
+<text x="24" y="214" font-size="17" fill="#202f50" font-weight="600" text-anchor="start">2024</text>
+<text x="336" y="214" font-size="17" fill="#202f50" font-weight="700" text-anchor="end">24.7%</text>
+<rect x="24" y="224" width="312" height="14" rx="2" fill="#e9eff8"/>
+<rect class="share" x="24" y="224" width="77.033365" height="14" rx="2" fill="#2a78d6"/>
+</g>
+<g data-source-file="figure2_T_distribution_data.csv" data-source-row="2025" data-field="share_known_T_ge2" data-value="0.2774252039891206">
+<text x="24" y="269" font-size="17" fill="#202f50" font-weight="600" text-anchor="start">2025</text>
+<text x="336" y="269" font-size="17" fill="#202f50" font-weight="700" text-anchor="end">27.7%</text>
+<rect x="24" y="279" width="312" height="14" rx="2" fill="#e9eff8"/>
+<rect class="share" x="24" y="279" width="86.556664" height="14" rx="2" fill="#2a78d6"/>
+</g>
+<text x="24" y="315" font-size="14" fill="#666666" font-weight="400" text-anchor="start">0%</text>
+<text x="180" y="315" font-size="14" fill="#666666" font-weight="400" text-anchor="middle">50%</text>
+<text x="336" y="315" font-size="14" fill="#666666" font-weight="400" text-anchor="end">100%</text>
+<text x="24" y="342" font-size="14" fill="#555555" font-weight="400" text-anchor="start">Known T only · products pooled</text>
+</svg>

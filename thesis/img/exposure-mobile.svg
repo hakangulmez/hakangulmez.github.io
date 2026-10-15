@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="360" viewBox="0 0 360 360" role="img" aria-labelledby="title description">
+<title id="title">Technical supportability</title>
+<desc id="description">Share of fixed tasks at R3 or R4. Percentages use the saved aggregate table; the full-size chart shows the full distribution.</desc>
+<style>text { font-family: Arial, Helvetica, sans-serif; } .interval { stroke-linecap: round; }</style>
+<rect width="360" height="360" fill="#ffffff"/>
+<text x="24" y="38" font-size="22" fill="#202f50" font-weight="700" text-anchor="start">Technical supportability</text>
+<text x="24" y="68" font-size="16" fill="#555555" font-weight="400" text-anchor="start">Share of fixed tasks at R3 or R4</text>
+<g data-source-file="figure1_R_distribution_data.csv" data-source-row="2022" data-field="share_known_R_ge3" data-value="0.02060904337127038">
+<text x="24" y="104" font-size="17" fill="#202f50" font-weight="600" text-anchor="start">2022</text>
+<text x="336" y="104" font-size="17" fill="#202f50" font-weight="700" text-anchor="end">2.1%</text>
+<rect x="24" y="114" width="312" height="14" rx="2" fill="#e9eff8"/>
+<rect class="share" x="24" y="114" width="6.430022" height="14" rx="2" fill="#2a78d6"/>
+</g>
+<g data-source-file="figure1_R_distribution_data.csv" data-source-row="2023" data-field="share_known_R_ge3" data-value="0.24700092279298677">
+<text x="24" y="159" font-size="17" fill="#202f50" font-weight="600" text-anchor="start">2023</text>
+<text x="336" y="159" font-size="17" fill="#202f50" font-weight="700" text-anchor="end">24.7%</text>
+<rect x="24" y="169" width="312" height="14" rx="2" fill="#e9eff8"/>
+<rect class="share" x="24" y="169" width="77.064288" height="14" rx="2" fill="#2a78d6"/>
+</g>
+<g data-source-file="figure1_R_distribution_data.csv" data-source-row="2024" data-field="share_known_R_ge3" data-value="0.306059673946478">
+<text x="24" y="214" font-size="17" fill="#202f50" font-weight="600" text-anchor="start">2024</text>
+<text x="336" y="214" font-size="17" fill="#202f50" font-weight="700" text-anchor="end">30.6%</text>
+<rect x="24" y="224" width="312" height="14" rx="2" fill="#e9eff8"/>
+<rect class="share" x="24" y="224" width="95.490618" height="14" rx="2" fill="#2a78d6"/>
+</g>
+<g data-source-file="figure1_R_distribution_data.csv" data-source-row="2025" data-field="share_known_R_ge3" data-value="0.383881882497693">
+<text x="24" y="269" font-size="17" fill="#202f50" font-weight="600" text-anchor="start">2025</text>
+<text x="336" y="269" font-size="17" fill="#202f50" font-weight="700" text-anchor="end">38.4%</text>
+<rect x="24" y="279" width="312" height="14" rx="2" fill="#e9eff8"/>
+<rect class="share" x="24" y="279" width="119.771147" height="14" rx="2" fill="#2a78d6"/>
+</g>
+<text x="24" y="315" font-size="14" fill="#666666" font-weight="400" text-anchor="start">0%</text>
+<text x="180" y="315" font-size="14" fill="#666666" font-weight="400" text-anchor="middle">50%</text>
+<text x="336" y="315" font-size="14" fill="#666666" font-weight="400" text-anchor="end">100%</text>
+<text x="24" y="342" font-size="14" fill="#555555" font-weight="400" text-anchor="start">Fixed FY2022 tasks · known R only</text>
+</svg>

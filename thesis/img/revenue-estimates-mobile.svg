@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="540" viewBox="0 0 360 540" role="img" aria-labelledby="title description">
+<title id="title">Revenue estimates by exposure timing</title>
+<desc id="description">Four saved coefficients and confidence intervals. The open square adds firm-specific trends. Values in parentheses are standard errors.</desc>
+<style>text { font-family: Arial, Helvetica, sans-serif; } .interval { stroke-linecap: round; }</style>
+<rect width="360" height="540" fill="#ffffff"/>
+<text x="24" y="38" font-size="22" fill="#202f50" font-weight="700" text-anchor="start">Revenue estimates</text>
+<text x="24" y="68" font-size="16" fill="#555555" font-weight="400" text-anchor="start">Firm-clustered 95% intervals</text>
+<g data-source-file="table4_lagged_dose.csv" data-source-row="T3_c" data-estimate="-0.0822124086374" data-se="0.125065976719" data-ci-low="-0.328814673123" data-ci-high="0.164389855848">
+<text x="24" y="104" font-size="17" fill="#202f50" font-weight="600" text-anchor="start">Pooled benchmark</text>
+<text x="24" y="128" font-size="16" fill="#555555" font-weight="400" text-anchor="start">−0.082 (SE 0.125)</text>
+<line x1="24" x2="336" y1="155" y2="155" stroke="#e9e7e2"/>
+<line x1="253.894737" x2="253.894737" y1="143" y2="167" stroke="#8c8b84" stroke-width="1"/>
+<line class="interval" x1="145.905076" x2="307.883826" y1="155" y2="155" stroke="#8c8b84" stroke-width="3"/>
+<circle class="estimate" cx="226.894451" cy="155" r="5" fill="#8c8b84"/>
+</g>
+<g data-source-file="table4_lagged_dose.csv" data-source-row="a" data-estimate="-0.158892724295" data-se="0.116005493895" data-ci-low="-0.387629733655" data-ci-high="0.0698442850648">
+<text x="24" y="198" font-size="17" fill="#202f50" font-weight="600" text-anchor="start">Same-period dated dose</text>
+<text x="24" y="222" font-size="16" fill="#555555" font-weight="400" text-anchor="start">−0.159 (SE 0.116)</text>
+<line x1="24" x2="336" y1="249" y2="249" stroke="#e9e7e2"/>
+<line x1="253.894737" x2="253.894737" y1="237" y2="261" stroke="#8c8b84" stroke-width="1"/>
+<line class="interval" x1="126.588972" x2="276.833070" y1="249" y2="249" stroke="#2a78d6" stroke-width="3"/>
+<circle class="estimate" cx="201.711021" cy="249" r="5" fill="#2a78d6"/>
+</g>
+<g data-source-file="table4_lagged_dose.csv" data-source-row="b" data-estimate="-0.338930321139" data-se="0.132848747271" data-ci-low="-0.60087847659" data-ci-high="-0.0769821656873">
+<text x="24" y="292" font-size="17" fill="#202f50" font-weight="600" text-anchor="start">One-year-lagged dated dose</text>
+<text x="24" y="316" font-size="16" fill="#555555" font-weight="400" text-anchor="start">−0.339 (SE 0.133)</text>
+<line x1="24" x2="336" y1="343" y2="343" stroke="#e9e7e2"/>
+<line x1="253.894737" x2="253.894737" y1="331" y2="355" stroke="#8c8b84" stroke-width="1"/>
+<line class="interval" x1="56.553595" x2="228.612173" y1="343" y2="343" stroke="#eb6834" stroke-width="3"/>
+<circle class="estimate" cx="142.582884" cy="343" r="5" fill="#eb6834"/>
+</g>
+<g data-source-file="table4_lagged_dose.csv" data-source-row="d" data-estimate="-0.169011820361" data-se="0.101078732313" data-ci-low="-0.368316578806" data-ci-high="0.0302929380845">
+<text x="24" y="386" font-size="17" fill="#202f50" font-weight="600" text-anchor="start">One-year lag + firm trends</text>
+<text x="24" y="410" font-size="16" fill="#555555" font-weight="400" text-anchor="start">−0.169 (SE 0.101)</text>
+<line x1="24" x2="336" y1="437" y2="437" stroke="#e9e7e2"/>
+<line x1="253.894737" x2="253.894737" y1="425" y2="449" stroke="#8c8b84" stroke-width="1"/>
+<line class="interval" x1="132.931818" x2="263.843575" y1="437" y2="437" stroke="#eb6834" stroke-width="3"/>
+<rect class="estimate" x="193.387697" y="432" width="10" height="10" fill="white" stroke="#eb6834" stroke-width="3"/>
+</g>
+<text x="56.842105" y="474" font-size="14" fill="#666666" font-weight="400" text-anchor="middle">−0.6</text>
+<text x="122.526316" y="474" font-size="14" fill="#666666" font-weight="400" text-anchor="middle">−0.4</text>
+<text x="188.210526" y="474" font-size="14" fill="#666666" font-weight="400" text-anchor="middle">−0.2</text>
+<text x="253.894737" y="474" font-size="14" fill="#666666" font-weight="400" text-anchor="middle">0</text>
+<text x="319.578947" y="474" font-size="14" fill="#666666" font-weight="400" text-anchor="middle">+0.2</text>
+<text x="24" y="511" font-size="15" fill="#555555" font-weight="400" text-anchor="start">Log revenue index per unit of exposure</text>
+</svg>

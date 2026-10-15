@@ -92,6 +92,13 @@
     font-variation-settings: "opsz" 72; margin: 64px 0 22px;
   }
   #abstract h2 { margin-top: 0; }
+  .key-findings { border: 1px solid var(--rule); border-left: 3px solid var(--accent); background: var(--paper); padding: 24px; margin-bottom: 40px; }
+  .key-findings h2 { font-size: 1.4rem; margin: 0 0 18px; }
+  .key-findings ul { list-style: none; margin: 0; padding: 0; }
+  .key-findings li { font-size: 17px; line-height: 1.6; margin: 0 0 14px; padding: 0; }
+  .key-findings li:last-child { margin-bottom: 0; }
+  .key-findings a { font-weight: 600; }
+  .contribution { border-left: 2px solid var(--rule); padding-left: 20px; }
   h3 { font-size: 1.35rem; font-weight: 500; line-height: 1.3; margin: 30px 0 12px; }
   p { margin-bottom: 1.25em; }
   ul, ol { margin: 0 0 24px 1.3em; padding-left: 0.2em; }
@@ -134,6 +141,7 @@
   figure img { display: block; width: 100%; height: auto; }
   figcaption { margin-top: 12px; }
   figcaption .source { display: block; margin-top: 5px; }
+  .mobile-chart-note { display: none; }
   .table-wrap { overflow-x: auto; max-width: 100%; margin: 24px 0 16px; border: 1px solid var(--rule); border-radius: 3px; }
   table { width: 100%; border-collapse: collapse; font-family: var(--sans); font-size: 14px; line-height: 1.55; background: var(--bg); }
   caption { text-align: left; padding: 12px 14px; background: var(--paper); color: var(--ink-soft); border-bottom: 1px solid var(--rule); }
@@ -159,6 +167,10 @@
     h3 { font-size: 1.2rem; }
     .abstract-text { font-size: 16px; }
     .byline { font-size: 13px; }
+    .key-findings { padding: 20px; margin-bottom: 32px; }
+    .key-findings h2 { font-size: 1.25rem; }
+    .key-findings li { font-size: 16px; }
+    .mobile-chart-note { display: block; margin-top: 5px; }
     .pipeline { grid-template-columns: minmax(0, 1fr); }
     .pipeline li { padding: 14px 18px; }
     .pipeline .count { font-size: 1.5rem; }
@@ -175,6 +187,18 @@
     table { font-size: 13px; }
     th, td { padding: 10px; }
     .detail-body .table-wrap th, .detail-body .table-wrap td { padding: 9px 8px; }
+    .examples-wrap { border: 0; overflow: visible; }
+    .examples { display: block; min-width: 0; background: transparent; }
+    .examples caption { display: block; padding: 0 0 14px; background: transparent; border: 0; }
+    .examples thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+    .examples tbody { display: grid; gap: 16px; }
+    .examples tbody tr { display: block; border: 1px solid var(--rule); border-radius: 3px; padding: 20px; background: var(--paper); }
+    .examples tbody th { display: block; padding: 0; border: 0; background: transparent; font-size: 17px; }
+    .examples .occupation { font-size: 13px; margin-top: 6px; }
+    .examples tbody td { display: block; padding: 18px 0 0; border: 0; font-size: 14px; }
+    .examples td::before { content: attr(data-label); display: block; font-size: 12px; font-weight: 600; color: var(--ink); margin-bottom: 7px; }
+    .examples tbody td.scores { display: grid; width: auto; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px 14px; }
+    .examples td.scores::before { grid-column: 1 / -1; margin-bottom: 1px; }
   }
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 </style>
@@ -193,6 +217,14 @@
   </header>
   <main id="main">
     <article>
+      <section class="key-findings" aria-labelledby="key-findings-heading">
+        <h2 id="key-findings-heading">The findings at a glance</h2>
+        <ul>
+          <li><a href="#findings">Technical supportability rose.</a> The same baseline tasks became more supportable as the AI frontier expanded.</li>
+          <li><a href="#revenue">Revenue evidence is timing-sensitive.</a> No same-period differential response is statistically distinguishable from zero. A negative lagged association weakens with firm-specific trends.</li>
+          <li><a href="#supplier-response">Product functionality changed.</a> More exposed suppliers showed larger increases in the share of products with disclosed substantive AI functionality, conditional on baseline functionality and the other controls.</li>
+        </ul>
+      </section>
       <section id="abstract" aria-labelledby="abstract-heading">
         <h2 id="abstract-heading">Abstract</h2>
         <p class="abstract-text" data-source="abstract">Generative AI systems can increasingly perform work for which business customers currently purchase software. This thesis examines what this development has meant, to date, for the firms that supply such software. Using the business descriptions in 1,122 annual reports, I represent the B2B software products of U.S.-listed software and IT-service firms as sets of customer-facing tasks and score each task against dated evidence on the capabilities of frontier AI systems. Holding each firm’s 2022 tasks fixed, measured exposure more than triples by 2025, and most of the increase is already visible in 2023. Revenue has followed, if at all, only with a delay. A continuous-treatment difference-in-differences design detects no statistically distinguishable differential revenue response between more and less exposed suppliers in the same period. With a one-year lag, more exposed suppliers’ revenue grows more slowly, although the estimate halves once firm-specific trends are allowed. The clearest difference appears in suppliers’ products: conditional on initial functionality, more exposed suppliers add more substantive AI functionality. The structural coding replicates closely across independent runs; the graded exposure scores are noisier, and a stronger model rates them higher. Some disagreements involve AI agents that operate the incumbent’s software, which points to a question that the task framework leaves open: whether AI replaces the worker who uses the software or the software itself. The findings describe early adjustment, not the absence of later substitution.</p>
@@ -202,6 +234,7 @@
       <section id="question" aria-labelledby="question-heading">
         <h2 id="question-heading">The question</h2>
         <p>Software products perform work that customers would otherwise have to do themselves. As external AI systems become more capable, they may support the tasks customers buy software to perform. The question is how this technical exposure is associated with early adjustment among software suppliers.</p>
+        <p class="contribution">The contribution is to measure AI exposure at the level of software product tasks, track the same tasks against dated capability evidence, and measure suppliers' own AI functionality separately.</p>
         <p data-source="question-channels">The thesis distinguishes three possible channels: AI may replace a worker directly, replace the worker who operates existing software, or replace the software itself. These are conceptual possibilities, not outcomes separately identified by the estimates. <strong>An agent operating a product still needs the product.</strong></p>
         <figure aria-labelledby="channels-caption" data-source="question-channels">
           <div class="channels">
@@ -306,9 +339,13 @@
         <p>The fixed tasks become substantially more supportable as the dated evidence expands. Most of the rise arrives with the first post-baseline vintage. This measures a change in technical supportability, not observed customer adoption.</p>
         <figure data-source="r-chart">
           <a class="chart-link" href="/thesis/img/R_by_vintage.png" aria-label="Open the exposure chart at full size">
-            <img src="/thesis/img/R_by_vintage.png" width="1200" height="1200" alt="Stacked bars show the same baseline tasks moving toward higher exposure levels as frontier evidence expands. Exact shares and firm means are in the following table." decoding="async">
+            <picture>
+              <source media="(max-width: 640px)" srcset="/thesis/img/exposure-mobile.svg" type="image/svg+xml" width="360" height="360">
+              <img src="/thesis/img/R_by_vintage.png" width="1200" height="1200" alt="Exposure rises across dated evidence vintages. The mobile summary shows the task share at R3 or R4; the full-size chart shows the full distribution. Exact shares and firm means are in the following table." decoding="async">
+            </picture>
           </a>
           <figcaption>The task basket is held fixed. <a href="/thesis/img/R_by_vintage.png">Open chart at full size</a>.
+            <span class="mobile-chart-note">The compact chart shows the share at R3 or R4; the full-size chart shows every level.</span>
             <span class="source">Source: Gülmez, master's thesis, exposure-distribution figure; supplied chart based on the saved aggregate table.</span>
           </figcaption>
         </figure>
@@ -331,19 +368,19 @@
       <section id="examples" aria-labelledby="examples-heading">
         <h2 id="examples-heading">Examples</h2>
         <p>These product tasks sit next to similar occupational tasks. The comparison illustrates why task ownership matters: performing work through software and supplying that software are different economic positions.</p>
-        <div class="table-wrap" tabindex="0" role="region" aria-label="Product tasks and illustrative occupational matches" data-source="examples">
-          <table class="examples">
+        <div class="table-wrap examples-wrap" tabindex="0" role="region" aria-label="Product tasks and illustrative occupational matches" data-source="examples">
+          <table class="examples" role="table">
             <caption>Fixed FY2022 tasks, rescored against each vintage</caption>
             <thead><tr><th class="product" scope="col">Product</th><th class="task" scope="col">Customer-facing task</th><th class="scores" scope="col">R by vintage</th><th scope="col">Similar O*NET task</th></tr></thead>
             <tbody>
-              <tr><th scope="row">Illustrator<br><span class="occupation">Adobe</span></th><td>create digital graphics and illustrations</td><td class="scores"><span>2022: R1</span><span>2023: R2</span><span>2024: R4</span><span>2025: R4</span></td><td>“Develop graphics and layouts for product illustrations, company logos, and Web sites.”<span class="occupation">Graphic Designers · Task 306</span></td></tr>
-              <tr><th scope="row">Analyzer<br><span class="occupation">DocuSign</span></th><td>analyze inbound agreements</td><td class="scores"><span>2022: R1</span><span>2023: R3</span><span>2024: R4</span><span>2025: R4</span></td><td>“Prepare, edit, or review legal documents, including legislation, briefs, pleadings, appeals, wills, contracts, and real estate closing statements.”<span class="occupation">Paralegals and Legal Assistants · Task 23994</span></td></tr>
-              <tr><th scope="row">QuickBooks Online<br><span class="occupation">Intuit</span></th><td>create and send invoices and estimates</td><td class="scores"><span>2022: R1</span><span>2023: R3</span><span>2024: R3</span><span>2025: R4</span></td><td>“Prepare itemized statements, bills, or invoices and record amounts due for items purchased or services rendered.”<span class="occupation">Billing and Posting Clerks · Task 23240</span></td></tr>
-              <tr><th scope="row">Sales Hub<br><span class="occupation">HubSpot</span></th><td>manage conversations and live chat</td><td class="scores"><span>2022: R1</span><span>2023: R3</span><span>2024: R4</span><span>2025: R4</span></td><td>“Answer customers' questions about products, prices, availability, product uses, and credit terms.”<span class="occupation">Sales Representatives, Wholesale and Manufacturing, Except Technical and Scientific Products · Task 8113</span></td></tr>
+              <tr><th scope="row">Illustrator<br><span class="occupation">Adobe</span></th><td data-label="Customer-facing task">create digital graphics and illustrations</td><td class="scores" data-label="R by vintage"><span>2022: R1</span><span>2023: R2</span><span>2024: R4</span><span>2025: R4</span></td><td data-label="Similar O*NET task">“Develop graphics and layouts for product illustrations, company logos, and Web sites.”<span class="occupation">Graphic Designers · Task 306</span></td></tr>
+              <tr><th scope="row">Analyzer<br><span class="occupation">DocuSign</span></th><td data-label="Customer-facing task">analyze inbound agreements</td><td class="scores" data-label="R by vintage"><span>2022: R1</span><span>2023: R3</span><span>2024: R4</span><span>2025: R4</span></td><td data-label="Similar O*NET task">“Prepare, edit, or review legal documents, including legislation, briefs, pleadings, appeals, wills, contracts, and real estate closing statements.”<span class="occupation">Paralegals and Legal Assistants · Task 23994</span></td></tr>
+              <tr><th scope="row">QuickBooks Online<br><span class="occupation">Intuit</span></th><td data-label="Customer-facing task">create and send invoices and estimates</td><td class="scores" data-label="R by vintage"><span>2022: R1</span><span>2023: R3</span><span>2024: R3</span><span>2025: R4</span></td><td data-label="Similar O*NET task">“Prepare itemized statements, bills, or invoices and record amounts due for items purchased or services rendered.”<span class="occupation">Billing and Posting Clerks · Task 23240</span></td></tr>
+              <tr><th scope="row">Sales Hub<br><span class="occupation">HubSpot</span></th><td data-label="Customer-facing task">manage conversations and live chat</td><td class="scores" data-label="R by vintage"><span>2022: R1</span><span>2023: R3</span><span>2024: R4</span><span>2025: R4</span></td><td data-label="Similar O*NET task">“Answer customers' questions about products, prices, availability, product uses, and credit terms.”<span class="occupation">Sales Representatives, Wholesale and Manufacturing, Except Technical and Scientific Products · Task 8113</span></td></tr>
             </tbody>
           </table>
         </div>
-        <p class="note">Illustrative matches, not a formal crosswalk; single-task scores are noisier than averages. Scroll within the table on a narrow screen.</p>
+        <p class="note">Illustrative matches, not a formal crosswalk; single-task scores are noisier than averages.</p>
         <p class="source" data-source="onet-license">Source: PCT workbook, Tasks sheet; O*NET Task Statements, USDOL/ETA. Occupational statements reproduced verbatim under <a href="https://creativecommons.org/licenses/by/4.0/" rel="license">CC BY 4.0</a>. O*NET® is a trademark of USDOL/ETA.</p>
       </section>
 
@@ -356,7 +393,10 @@
         <p class="source">Source: thesis, Revenue paths and the revenue-specification table. These are conditional associations.</p>
         <figure data-source="timing-figure">
           <a class="chart-link" href="/thesis/img/revenue-specifications.png" aria-label="Open thesis Figure 6 at full size">
-            <img src="/thesis/img/revenue-specifications.png" width="1200" height="1200" alt="Four revenue specifications with confidence intervals. The lagged estimate is negative; adding firm-specific trends reduces its magnitude and the interval includes zero. Coefficient values and units are available below." loading="lazy" decoding="async">
+            <picture>
+              <source media="(max-width: 640px)" srcset="/thesis/img/revenue-estimates-mobile.svg" type="image/svg+xml" width="360" height="540">
+              <img src="/thesis/img/revenue-specifications.png" width="1200" height="1200" alt="Four revenue specifications with confidence intervals. The lagged estimate is negative; adding firm-specific trends reduces its magnitude and the interval includes zero. Coefficient values and units are available below." loading="lazy" decoding="async">
+            </picture>
           </a>
           <figcaption>Coefficients and firm-clustered 95% confidence intervals; the open square adds firm-specific trends. <a href="/thesis/img/revenue-specifications.png">Open chart at full size</a>.<span class="source">Source: thesis, Figure 6; redrawn from the saved lagged-dose results table (estimates and confidence intervals unchanged).</span></figcaption>
         </figure>
@@ -382,7 +422,10 @@
         <p>Firm trends are fitted over the whole period and can absorb a relationship emerging gradually after frontier expansion. The smaller estimate is an important sensitivity, but establishes neither the presence nor the absence of substitution.</p>
         <figure data-source="revenue-chart">
           <a class="chart-link" href="/thesis/img/revenue_terciles.png" aria-label="Open the revenue-path chart at full size">
-            <img src="/thesis/img/revenue_terciles.png" width="1200" height="1200" alt="Descriptive revenue paths for exposure terciles. The upper-exposure group ends below the lower and middle groups, which finish at similar levels. These are raw group means, not fitted regression paths." loading="lazy" decoding="async">
+            <picture>
+              <source media="(max-width: 640px)" srcset="/thesis/img/revenue-paths-mobile.svg" type="image/svg+xml" width="360" height="450">
+              <img src="/thesis/img/revenue_terciles.png" width="1200" height="1200" alt="Descriptive revenue paths for exposure terciles. The upper-exposure group ends below the lower and middle groups, which finish at similar levels. These are raw group means, not fitted regression paths." loading="lazy" decoding="async">
+            </picture>
           </a>
           <figcaption>Raw group means; no model is fitted. Available observations vary by year. <a href="/thesis/img/revenue_terciles.png">Open chart at full size</a>.
             <span class="source">Source: Gülmez, master's thesis, lagged-exposure tercile figure; supplied chart based on the saved aggregate table.</span>
@@ -400,14 +443,17 @@
           </table>
         </div>
         <p data-source="tercile-gap">By FY2025, the upper tercile of lagged exposure is about <strong>0.15 log points</strong> below the lower tercile. The middle tercile ends approximately level with the lower one, so the figure does not show a monotone gradient.</p>
-        <h3>Disclosed product functionality</h3>
+        <h3 id="supplier-response">Disclosed product functionality</h3>
         <p data-source="supplier-association">More exposed suppliers raised their share of products with substantive AI functionality more, conditional on baseline functionality and the other controls. A one-standard-deviation exposure difference corresponds to approximately <strong>4.5 percentage points</strong>. Without that conditioning, the association is much weaker.</p>
         <p data-source="pooled-products">Across pooled products in the estimation cohort, the share with <strong>T ≥ 2</strong> rose from <strong>16% to 28%</strong>. This weights firms by their number of products with known T; it is not the change for an average firm.</p>
         <figure data-source="functionality-figure">
           <a class="chart-link" href="/thesis/img/product-functionality.png" aria-label="Open thesis Figure 3 at full size">
-            <img src="/thesis/img/product-functionality.png" width="1200" height="1200" alt="Product functionality shifts toward substantive AI output features. The pooled product share above the substantive-output threshold rises across fiscal years; the detailed scale and shares are given below." loading="lazy" decoding="async">
+            <picture>
+              <source media="(max-width: 640px)" srcset="/thesis/img/functionality-mobile.svg" type="image/svg+xml" width="360" height="360">
+              <img src="/thesis/img/product-functionality.png" width="1200" height="1200" alt="Product functionality shifts toward substantive AI output features. The pooled product share above the substantive-output threshold rises across fiscal years; the detailed scale and shares are given below." loading="lazy" decoding="async">
+            </picture>
           </a>
-          <figcaption>Shares pool products with known T. They do not give every firm equal weight. <a href="/thesis/img/product-functionality.png">Open chart at full size</a>.<span class="source">Source: thesis, Figure 3; redrawn from the saved product-functionality distribution table.</span></figcaption>
+          <figcaption>Shares pool products with known T. They do not give every firm equal weight. <a href="/thesis/img/product-functionality.png">Open chart at full size</a>.<span class="mobile-chart-note">The compact chart shows the share at T2 or above; the full-size chart shows every level.</span><span class="source">Source: thesis, Figure 3; redrawn from the saved product-functionality distribution table.</span></figcaption>
         </figure>
         <details id="functionality-details">
           <summary>Product shares and the functionality scale</summary>
@@ -451,7 +497,7 @@
           <li><strong>Identification remains uncertain.</strong> The pre-trend test has limited power, and further checks do not establish parallel trends.</li>
           <li><strong>The comparison is relative.</strong> It describes firms with larger versus smaller measured exposure changes; changes common to all suppliers fall outside it.</li>
           <li><strong>Technical support is not adoption.</strong> R records technical supportability; T records disclosed functionality, not verified customer use. The scores lack an independent expert benchmark.</li>
-          <li data-source="limits-years"><strong>The window and cohort are limited.</strong> The cohort requires reporting through FY2025. Results describe early adjustment among the observed suppliers, not the absence of later substitution.</li>
+          <li data-source="limits-years"><strong>The window and cohort are limited.</strong> The cohort requires reporting through FY2025. Firms that stop reporting fall outside this cohort, so the comparison may miss adjustment associated with exit. Results describe early adjustment among the observed suppliers, not the absence of later substitution.</li>
         </ul>
         <details id="robustness-details">
           <summary>What else was checked?</summary>
