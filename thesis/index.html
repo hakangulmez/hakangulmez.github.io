@@ -108,6 +108,16 @@
   .pipeline .count { display: block; font-size: 1.7rem; line-height: 1.2; font-variant-numeric: lining-nums tabular-nums; }
   .pipeline .label { display: block; font-family: var(--sans); font-size: 13px; color: var(--ink-soft); margin-top: 6px; }
   .pipeline .flow { color: var(--accent); font-family: var(--sans); font-size: 15px; }
+  .channels { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 24px 0 12px; }
+  .channel { padding: 18px 14px; background: var(--paper); border: 1px solid var(--rule); min-width: 0; }
+  .channel h3 { margin: 0 0 18px; font-size: 1.05rem; line-height: 1.3; }
+  .channel-route { display: flex; flex-direction: column; align-items: center; gap: 6px; margin-bottom: 16px; font-family: var(--sans); font-size: 13px; }
+  .channel-route .node { width: 100%; padding: 8px; text-align: center; border: 1px solid var(--rule); background: var(--bg); }
+  .channel-route .arrow { color: var(--accent); line-height: 1; }
+  .channel p { font-family: var(--sans); font-size: 13px; line-height: 1.6; color: var(--ink-soft); margin-bottom: 0; }
+  .model-list { font-size: 17px; }
+  .model-list li { margin-bottom: 14px; }
+  .interpretation h3 { margin-top: 26px; }
   details { margin: 22px 0; border: 1px solid var(--rule); background: var(--paper); border-radius: 3px; }
   summary { cursor: pointer; padding: 16px 20px; font-family: var(--sans); font-size: 15px; font-weight: 500; }
   summary::marker { color: var(--accent); }
@@ -152,6 +162,13 @@
     .pipeline { grid-template-columns: minmax(0, 1fr); }
     .pipeline li { padding: 14px 18px; }
     .pipeline .count { font-size: 1.5rem; }
+    .channels { grid-template-columns: minmax(0, 1fr); }
+    .channel { padding: 18px; }
+    .channel h3 { font-size: 1.15rem; }
+    .channel-route { flex-direction: row; flex-wrap: wrap; gap: 8px; }
+    .channel-route .node { width: auto; flex: 1 1 70px; }
+    .channel-route .arrow { transform: rotate(-90deg); }
+    .model-list { font-size: 16px; }
     .callout { padding: 18px; }
     summary { padding: 14px 16px; }
     .detail-body { padding: 2px 16px 16px; }
@@ -171,7 +188,7 @@
     <h1 data-source="identity">Generative AI as a Task Shock: <span class="title-subtitle">Product-Level LLM Substitution in B2B Software Markets</span></h1>
     <p class="byline" data-source="identity"><strong>Hakan Zeki Gülmez</strong> · Master's thesis, TUM School of Management · Supervisor: Prof. Dr. Helmut Farbmacher · 2026</p>
     <nav class="page-nav" aria-label="Thesis sections">
-      <a href="#question">Question</a><a href="#measurement">Measurement</a><a href="#findings">Findings</a><a href="#limits">Limits</a><a href="#access">Access</a>
+      <a href="#question">Question</a><a href="#measurement">Measurement</a><a href="#design">Design</a><a href="#findings">Findings</a><a href="#interpretation">Interpretation</a><a href="#limits">Limits</a><a href="#access">Access</a>
     </nav>
   </header>
   <main id="main">
@@ -186,6 +203,27 @@
         <h2 id="question-heading">The question</h2>
         <p>Software products perform work that customers would otherwise have to do themselves. As external AI systems become more capable, they may support the tasks customers buy software to perform. The question is how this technical exposure is associated with early adjustment among software suppliers.</p>
         <p data-source="question-channels">The thesis distinguishes three possible channels: AI may replace a worker directly, replace the worker who operates existing software, or replace the software itself. These are conceptual possibilities, not outcomes separately identified by the estimates. <strong>An agent operating a product still needs the product.</strong></p>
+        <figure aria-labelledby="channels-caption" data-source="question-channels">
+          <div class="channels">
+            <div class="channel">
+              <h3>Direct worker substitution</h3>
+              <div class="channel-route"><span class="node">AI</span><span class="arrow" aria-hidden="true">↓</span><span class="node">Task result</span></div>
+              <p>AI performs work previously done directly by a worker. This is the worker-side task comparison.</p>
+            </div>
+            <div class="channel">
+              <h3>AI operates the product</h3>
+              <div class="channel-route"><span class="node">AI</span><span class="arrow" aria-hidden="true">↓</span><span class="node">Existing software</span><span class="arrow" aria-hidden="true">↓</span><span class="node">Task result</span></div>
+              <p>The operator changes, while the incumbent product remains part of the workflow.</p>
+            </div>
+            <div class="channel">
+              <h3>AI supplies the product's function</h3>
+              <div class="channel-route"><span class="node">AI</span><span class="arrow" aria-hidden="true">↓</span><span class="node">Task result</span></div>
+              <p>The function is supplied without using the incumbent product. This is the product-side substitution possibility.</p>
+            </div>
+          </div>
+          <figcaption id="channels-caption">The same result can involve different relationships between workers, AI and software. These channels are not separately identified.<span class="source">Source: thesis, Discussion; diagram adapted from its task-ownership distinction.</span></figcaption>
+        </figure>
+        <p>Crediting an agent that uses existing software need not mean its function can be supplied independently. This ambiguity motivates explicit task-ownership coding in future work.</p>
       </section>
 
       <section id="measurement" aria-labelledby="measurement-heading">
@@ -249,6 +287,20 @@
         <p class="source">Source: thesis, Measurement reliability and the repeatability table.</p>
       </section>
 
+      <section id="design" aria-labelledby="design-heading">
+        <h2 id="design-heading">How firms are compared</h2>
+        <p data-source="empirical-design">A continuous-treatment difference-in-differences framework compares firms whose fixed FY2022 tasks gain more technical support with firms whose tasks gain less. Exposure varies continuously across suppliers. The main threshold is the GPT-4 announcement on 14 March 2023, applied to accounting period ends rather than filing dates.</p>
+        <p>The outcome is a chain-linked log revenue index. Each annual growth link uses current revenue and the prior-period comparative from the same filing, so both ends share a reporting presentation. Firm fixed effects absorb persistent level differences, and year effects absorb common annual movements.</p>
+        <p>Baseline exposure, size, growth, disclosed AI functionality and industry are interacted with year indicators. Contemporaneous functionality is excluded because it may itself be part of supplier adjustment. Panel uncertainty is clustered by firm.</p>
+        <ul class="model-list" data-source="exposure-specifications">
+          <li><strong>Pooled benchmark:</strong> relates post-threshold revenue paths to the eventual 2022–2025 exposure change.</li>
+          <li><strong>Contemporaneous dated dose:</strong> uses the latest year-end vintage available by each accounting period end.</li>
+          <li><strong>Lagged dated dose:</strong> uses the preceding vintage, allowing an associated revenue pattern to appear later.</li>
+        </ul>
+        <p>Fixing the basket prevents later disclosures from redefining exposure. It does not randomize product specialization or establish parallel revenue paths. The estimates remain conditional associations.</p>
+        <p class="source">Source: thesis, Empirical Strategy and Interpretation and limits.</p>
+      </section>
+
       <section id="findings" aria-labelledby="findings-heading">
         <h2 id="findings-heading" data-source="vintage-years">What changed, 2022–2025</h2>
         <p>The fixed tasks become substantially more supportable as the dated evidence expands. Most of the rise arrives with the first post-baseline vintage. This measures a change in technical supportability, not observed customer adoption.</p>
@@ -302,6 +354,32 @@
         <h3>One-year-lagged exposure</h3>
         <p data-source="lagged-revenue">In the lagged dated-dose model, a one-standard-deviation difference is associated with approximately <strong>−5.0% revenue</strong> (95% confidence interval −8.7% to −1.2%). The estimate halves once firm-specific trends are included. This specification and the pooled benchmark use different exposure definitions; their comparison is not a change in the lag alone.</p>
         <p class="source">Source: thesis, Revenue paths and the revenue-specification table. These are conditional associations.</p>
+        <figure data-source="timing-figure">
+          <a class="chart-link" href="/thesis/img/revenue-specifications.png" aria-label="Open thesis Figure 6 at full size">
+            <img src="/thesis/img/revenue-specifications.png" width="1532" height="698" alt="Four revenue specifications with confidence intervals. The lagged estimate is negative; adding firm-specific trends reduces its magnitude and the interval includes zero. Coefficient values and units are available below." loading="lazy" decoding="async">
+          </a>
+          <figcaption>Coefficients and firm-clustered 95% confidence intervals; the open square adds firm-specific trends. <a href="/thesis/img/revenue-specifications.png">Open chart at full size</a>.<span class="source">Source: thesis, Figure 6. The original plot is reproduced from the PDF without redrawing.</span></figcaption>
+        </figure>
+        <details id="timing-details">
+          <summary>Coefficient values and units</summary>
+          <div class="detail-body">
+            <div class="table-wrap" tabindex="0" role="region" aria-label="Revenue coefficients by specification" data-source="timing-coefficients">
+              <table>
+                <caption>Log revenue index per unit of exposure</caption>
+                <thead><tr><th scope="col">Specification</th><th scope="col">Coefficient</th><th scope="col">Standard error</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row">Pooled benchmark</th><td class="numbers">−0.082</td><td class="numbers">0.125</td></tr>
+                  <tr><th scope="row">Same-period dated dose</th><td class="numbers">−0.159</td><td class="numbers">0.116</td></tr>
+                  <tr><th scope="row">One-year-lagged dated dose</th><td class="numbers">−0.339</td><td class="numbers">0.133</td></tr>
+                  <tr><th scope="row">Lagged dose with firm trends</th><td class="numbers">−0.169</td><td class="numbers">0.101</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p>These coefficients use a full unit of the exposure scale. They are not the percentage interpretations for a standard-deviation contrast reported above.</p>
+            <p class="source" data-source="timing-figure">Source: thesis, Figure 6 and the saved lagged-dose results table.</p>
+          </div>
+        </details>
+        <p>Firm trends are fitted over the whole period and can absorb a relationship emerging gradually after frontier expansion. The smaller estimate is an important sensitivity, but establishes neither the presence nor the absence of substitution.</p>
         <figure data-source="revenue-chart">
           <a class="chart-link" href="/thesis/img/revenue_terciles.png" aria-label="Open the revenue-path chart at full size">
             <img src="/thesis/img/revenue_terciles.png" width="1200" height="1200" alt="Descriptive revenue paths for exposure terciles. The upper-exposure group ends below the lower and middle groups, which finish at similar levels. These are raw group means, not fitted regression paths." loading="lazy" decoding="async">
@@ -325,7 +403,46 @@
         <h3>Disclosed product functionality</h3>
         <p data-source="supplier-association">More exposed suppliers raised their share of products with substantive AI functionality more, conditional on baseline functionality and the other controls. A one-standard-deviation exposure difference corresponds to approximately <strong>4.5 percentage points</strong>. Without that conditioning, the association is much weaker.</p>
         <p data-source="pooled-products">Across pooled products in the estimation cohort, the share with <strong>T ≥ 2</strong> rose from <strong>16% to 28%</strong>. This weights firms by their number of products with known T; it is not the change for an average firm.</p>
-        <p class="source">Source: thesis, Supplier response and the product-functionality distribution figure.</p>
+        <figure data-source="functionality-figure">
+          <a class="chart-link" href="/thesis/img/product-functionality.png" aria-label="Open thesis Figure 3 at full size">
+            <img src="/thesis/img/product-functionality.png" width="1350" height="790" alt="Product functionality shifts toward substantive AI output features. The pooled product share above the substantive-output threshold rises across fiscal years; the detailed scale and shares are given below." loading="lazy" decoding="async">
+          </a>
+          <figcaption>Shares pool products with known T. They do not give every firm equal weight. <a href="/thesis/img/product-functionality.png">Open chart at full size</a>.<span class="source">Source: thesis, Figure 3. The original plot is reproduced from the PDF without redrawing.</span></figcaption>
+        </figure>
+        <details id="functionality-details">
+          <summary>Product shares and the functionality scale</summary>
+          <div class="detail-body">
+            <p data-source="t-definitions">T0 means that no current AI function is established; T1 covers assistance. T2 requires a substantive customer-facing output, T3 connected workflow steps, T4 an operational action or persistent change, and T5 planning and execution across an end-to-end workflow. UNKNOWN remains outside the denominator.</p>
+            <div class="table-wrap" tabindex="0" role="region" aria-label="Pooled product functionality shares" data-source="t-shares">
+              <table>
+                <caption>Pooled product share at T ≥ 2</caption>
+                <thead><tr><th scope="col">Fiscal year</th><th scope="col">Share</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row">2022</th><td class="numbers">16.0%</td></tr>
+                  <tr><th scope="row">2023</th><td class="numbers">20.0%</td></tr>
+                  <tr><th scope="row">2024</th><td class="numbers">24.7%</td></tr>
+                  <tr><th scope="row">2025</th><td class="numbers">27.7%</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="source">Source: thesis, Product-level AI transition; saved product-functionality distribution table.</p>
+          </div>
+        </details>
+        <p>Suppliers already offering more AI functionality have less room to raise a bounded share. Baseline functionality accounts for much of the gap between controlled and uncontrolled estimates in the common-sample decomposition. This cannot separate economic adjustment from the mechanics of room to grow.</p>
+        <p>The positive pattern concerns substantive output features, rather than a general move toward deeper workflow integration. Because both exposure and functionality use the same classifier, their measurement errors may also be correlated. The finding describes a conditional pattern of disclosure changes, not a demonstrated protective mechanism.</p>
+        <p class="source">Source: thesis, Supplier response and Discussion.</p>
+      </section>
+
+      <section id="interpretation" class="interpretation" aria-labelledby="interpretation-heading">
+        <h2 id="interpretation-heading">Why might adjustment take time?</h2>
+        <p>The discussion considers explanations for the gap between technical supportability and revenue, without identifying their separate contributions.</p>
+        <h3>Adaptation through existing products</h3>
+        <p>An incumbent can incorporate the same external capability that makes its tasks easier to reproduce. Customer relationships, access to data and a place in established business processes may help it deliver that capability as a usable service. The disclosure results are consistent with adaptation, but do not show that it offsets substitution.</p>
+        <h3>Switching and renewal</h3>
+        <p>Customers may need to migrate data, redesign workflows and retrain users before changing products. Existing contracts and renewal cycles can add delay. The lagged pattern is consistent with this possibility, but the analysis does not observe contract duration or renewal decisions.</p>
+        <h3>Competition through new suppliers</h3>
+        <p>Substitution could arrive through AI-native suppliers packaging frontier capabilities for a particular workflow. That route may take time to reach enterprise customers. The sample observes listed incumbents, so it cannot measure those entrants' growth or distinguish their competition from direct use of general-purpose AI.</p>
+        <p class="source">Source: thesis, Discussion. These are possible mechanisms, not separately established findings.</p>
       </section>
 
       <section id="limits" aria-labelledby="limits-heading">
@@ -336,6 +453,14 @@
           <li><strong>Technical support is not adoption.</strong> R records technical supportability; T records disclosed functionality, not verified customer use. The scores lack an independent expert benchmark.</li>
           <li data-source="limits-years"><strong>The window and cohort are limited.</strong> The cohort requires reporting through FY2025. Results describe early adjustment among the observed suppliers, not the absence of later substitution.</li>
         </ul>
+        <details id="robustness-details">
+          <summary>What else was checked?</summary>
+          <div class="detail-body">
+            <p>The pooled benchmark is re-estimated under alternative timing rules, sample boundaries, financial-data restrictions, task weights and outcome definitions. These checks address different vulnerabilities; the dated models are separate timing specifications rather than robustness checks of the same estimand.</p>
+            <p>Pre-period diagnostics have limited power. Profitability and mechanism outcomes show no statistically detectable relationship after multiple-testing adjustment and do not establish a route from exposure to performance. Identification and economic mechanisms remain uncertain.</p>
+            <p class="source">Source: thesis, Robustness checks, Profitability and mechanisms, and Interpretation and limits.</p>
+          </div>
+        </details>
       </section>
 
       <section id="next" aria-labelledby="next-heading">
