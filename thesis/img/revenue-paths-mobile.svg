@@ -20,29 +20,29 @@
 <text x="275.200000" y="325" font-size="14" fill="#666666" font-weight="400" text-anchor="middle">2024</text>
 <text x="332.000000" y="325" font-size="14" fill="#666666" font-weight="400" text-anchor="middle">2025</text>
 <g data-source-file="figure6_lagged_tercile_paths_data.csv" data-group="Lower lagged exposure">
-<polygon class="band" points="48.000000,240.017457 104.800000,209.638206 161.600000,185.714286 218.400000,159.535689 275.200000,138.956546 332.000000,113.044538 332.000000,149.015041 275.200000,166.559220 218.400000,177.005277 161.600000,185.714286 104.800000,232.879439 48.000000,285.414238" fill="#8c8b84" fill-opacity="0.12"/>
-<polyline class="mean" points="48.000000,262.715848 104.800000,221.258822 161.600000,185.714286 218.400000,168.270483 275.200000,152.757883 332.000000,131.029789" fill="none" stroke="#8c8b84" stroke-width="2.5" stroke-linejoin="round"/>
-<circle cx="48.000000" cy="262.715848" r="3" fill="#8c8b84" data-year="2020" data-mean="-0.5390109332293944" data-band-lower="-0.697899668094834" data-band-upper="-0.3801221983639549"/>
-<circle cx="104.800000" cy="221.258822" r="3" fill="#8c8b84" data-year="2021" data-mean="-0.24881175693811614" data-band-lower="-0.33015607352910986" data-band-upper="-0.1674674403471224"/>
-<circle cx="161.600000" cy="185.714286" r="3" fill="#8c8b84" data-year="2022" data-mean="0.0" data-band-lower="0.0" data-band-upper="0.0"/>
-<circle cx="218.400000" cy="168.270483" r="3" fill="#8c8b84" data-year="2023" data-mean="0.12210661640431206" data-band-lower="0.060963057788728015" data-band-upper="0.1832501750198961"/>
-<circle cx="275.200000" cy="152.757883" r="3" fill="#8c8b84" data-year="2024" data-mean="0.23069482092838772" data-band-lower="0.13408546085459472" data-band-upper="0.3273041810021807"/>
-<circle cx="332.000000" cy="131.029789" r="3" fill="#8c8b84" data-year="2025" data-mean="0.38279147352242554" data-band-lower="0.25689470974673967" data-band-upper="0.5086882372981114"/>
+<polygon class="band" points="48.000000,240.017457 104.800000,209.638206 161.600000,185.714286 218.400000,159.535689 275.200000,138.956546 332.000000,113.044538 332.000000,149.015041 275.200000,166.559220 218.400000,177.005277 161.600000,185.714286 104.800000,232.879439 48.000000,285.414238" fill="#2a78d6" fill-opacity="0.12"/>
+<polyline class="mean" points="48.000000,262.715848 104.800000,221.258822 161.600000,185.714286 218.400000,168.270483 275.200000,152.757883 332.000000,131.029789" fill="none" stroke="#2a78d6" stroke-width="2.5" stroke-linejoin="round"/>
+<circle cx="48.000000" cy="262.715848" r="3" fill="#2a78d6" data-year="2020" data-mean="-0.5390109332293944" data-band-lower="-0.697899668094834" data-band-upper="-0.3801221983639549"/>
+<circle cx="104.800000" cy="221.258822" r="3" fill="#2a78d6" data-year="2021" data-mean="-0.24881175693811614" data-band-lower="-0.33015607352910986" data-band-upper="-0.1674674403471224"/>
+<circle cx="161.600000" cy="185.714286" r="3" fill="#2a78d6" data-year="2022" data-mean="0.0" data-band-lower="0.0" data-band-upper="0.0"/>
+<circle cx="218.400000" cy="168.270483" r="3" fill="#2a78d6" data-year="2023" data-mean="0.12210661640431206" data-band-lower="0.060963057788728015" data-band-upper="0.1832501750198961"/>
+<circle cx="275.200000" cy="152.757883" r="3" fill="#2a78d6" data-year="2024" data-mean="0.23069482092838772" data-band-lower="0.13408546085459472" data-band-upper="0.3273041810021807"/>
+<circle cx="332.000000" cy="131.029789" r="3" fill="#2a78d6" data-year="2025" data-mean="0.38279147352242554" data-band-lower="0.25689470974673967" data-band-upper="0.5086882372981114"/>
 </g>
-<line x1="24" x2="43" y1="350" y2="350" stroke="#8c8b84" stroke-width="3"/>
+<line x1="24" x2="43" y1="350" y2="350" stroke="#2a78d6" stroke-width="3"/>
 <text x="53" y="355" font-size="15" fill="#333333" font-weight="400" text-anchor="start">Lower lagged exposure</text>
 <text x="336" y="355" font-size="15" fill="#333333" font-weight="400" text-anchor="end">+0.38</text>
 <g data-source-file="figure6_lagged_tercile_paths_data.csv" data-group="Middle lagged exposure">
-<polygon class="band" points="48.000000,242.788110 104.800000,207.878011 161.600000,185.714286 218.400000,165.428355 275.200000,148.866548 332.000000,105.007584 332.000000,157.287230 275.200000,183.801839 218.400000,184.299018 161.600000,185.714286 104.800000,217.228604 48.000000,263.430077" fill="#2a78d6" fill-opacity="0.12"/>
-<polyline class="mean" points="48.000000,253.109094 104.800000,212.553307 161.600000,185.714286 218.400000,174.863687 275.200000,166.334193 332.000000,131.147407" fill="none" stroke="#2a78d6" stroke-width="2.5" stroke-linejoin="round"/>
-<circle cx="48.000000" cy="253.109094" r="3" fill="#2a78d6" data-year="2020" data-mean="-0.4717636551105993" data-band-lower="-0.544010541669469" data-band-upper="-0.3995167685517296"/>
-<circle cx="104.800000" cy="212.553307" r="3" fill="#2a78d6" data-year="2021" data-mean="-0.18787315218302664" data-band-lower="-0.22060022970886228" data-band-upper="-0.155146074657191"/>
-<circle cx="161.600000" cy="185.714286" r="3" fill="#2a78d6" data-year="2022" data-mean="0.0" data-band-lower="0.0" data-band-upper="0.0"/>
-<circle cx="218.400000" cy="174.863687" r="3" fill="#2a78d6" data-year="2023" data-mean="0.07595419380588479" data-band-lower="0.009906872903196542" data-band-upper="0.14200151470857303"/>
-<circle cx="275.200000" cy="166.334193" r="3" fill="#2a78d6" data-year="2024" data-mean="0.13566064624196084" data-band-lower="0.01338712811419085" data-band-upper="0.2579341643697308"/>
-<circle cx="332.000000" cy="131.147407" r="3" fill="#2a78d6" data-year="2025" data-mean="0.3819681514853354" data-band-lower="0.19898939163153936" data-band-upper="0.5649469113391314"/>
+<polygon class="band" points="48.000000,242.788110 104.800000,207.878011 161.600000,185.714286 218.400000,165.428355 275.200000,148.866548 332.000000,105.007584 332.000000,157.287230 275.200000,183.801839 218.400000,184.299018 161.600000,185.714286 104.800000,217.228604 48.000000,263.430077" fill="#8c8b84" fill-opacity="0.12"/>
+<polyline class="mean" points="48.000000,253.109094 104.800000,212.553307 161.600000,185.714286 218.400000,174.863687 275.200000,166.334193 332.000000,131.147407" fill="none" stroke="#8c8b84" stroke-width="2.5" stroke-linejoin="round"/>
+<circle cx="48.000000" cy="253.109094" r="3" fill="#8c8b84" data-year="2020" data-mean="-0.4717636551105993" data-band-lower="-0.544010541669469" data-band-upper="-0.3995167685517296"/>
+<circle cx="104.800000" cy="212.553307" r="3" fill="#8c8b84" data-year="2021" data-mean="-0.18787315218302664" data-band-lower="-0.22060022970886228" data-band-upper="-0.155146074657191"/>
+<circle cx="161.600000" cy="185.714286" r="3" fill="#8c8b84" data-year="2022" data-mean="0.0" data-band-lower="0.0" data-band-upper="0.0"/>
+<circle cx="218.400000" cy="174.863687" r="3" fill="#8c8b84" data-year="2023" data-mean="0.07595419380588479" data-band-lower="0.009906872903196542" data-band-upper="0.14200151470857303"/>
+<circle cx="275.200000" cy="166.334193" r="3" fill="#8c8b84" data-year="2024" data-mean="0.13566064624196084" data-band-lower="0.01338712811419085" data-band-upper="0.2579341643697308"/>
+<circle cx="332.000000" cy="131.147407" r="3" fill="#8c8b84" data-year="2025" data-mean="0.3819681514853354" data-band-lower="0.19898939163153936" data-band-upper="0.5649469113391314"/>
 </g>
-<line x1="24" x2="43" y1="375" y2="375" stroke="#2a78d6" stroke-width="3"/>
+<line x1="24" x2="43" y1="375" y2="375" stroke="#8c8b84" stroke-width="3"/>
 <text x="53" y="380" font-size="15" fill="#333333" font-weight="400" text-anchor="start">Middle lagged exposure</text>
 <text x="336" y="380" font-size="15" fill="#333333" font-weight="400" text-anchor="end">+0.38</text>
 <g data-source-file="figure6_lagged_tercile_paths_data.csv" data-group="Upper lagged exposure">
