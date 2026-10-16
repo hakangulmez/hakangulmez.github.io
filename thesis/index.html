@@ -160,12 +160,89 @@
   td { color: var(--ink-soft); }
   tbody tr:last-child > * { border-bottom: none; }
   .numbers { font-variant-numeric: lining-nums tabular-nums; white-space: nowrap; }
-  .examples { min-width: 650px; }
-  .examples .product { width: 20%; }
-  .examples .task { width: 25%; }
-  .examples .scores { width: 13%; }
-  .examples .occupation { display: block; margin-top: 10px; color: var(--ink-soft); font-size: 12px; }
-  .examples .scores span { display: block; white-space: nowrap; }
+  /* Product-task examples: wider comparison table, stacked records on small screens. */
+  #examples .examples-wrap {
+    width: min(1040px, calc(100vw - 64px)); max-width: none;
+    margin: 28px 0 20px 50%; transform: translateX(-50%);
+    overflow: hidden; border-radius: 8px;
+  }
+  #examples .examples { width: 100%; table-layout: fixed; }
+  #examples .examples caption {
+    padding: 16px 22px; font-size: 13px; line-height: 1.5;
+  }
+  #examples .examples .product { width: 15%; }
+  #examples .examples .task { width: 22%; }
+  #examples .examples .scores { width: 23%; }
+  #examples .examples thead th {
+    padding: 14px 20px; color: var(--ink-soft); font-size: 12px;
+    font-weight: 500; line-height: 1.5;
+  }
+  #examples .examples tbody th,
+  #examples .examples tbody td { padding: 24px 20px; }
+  #examples .examples tbody th { background: transparent; }
+  #examples .examples tbody tr:nth-child(even) { background: var(--paper); }
+  #examples .product-name {
+    display: block; font-size: 15px; font-weight: 600; line-height: 1.45;
+    overflow-wrap: break-word;
+  }
+  #examples .product-maker {
+    display: block; margin-top: 6px; color: var(--ink-soft);
+    font-size: 12px; font-weight: 400; line-height: 1.5;
+  }
+  #examples .examples .customer-task { color: var(--ink); font-size: 15px; line-height: 1.6; }
+  #examples .vintage-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; }
+  #examples .vintage-score {
+    display: grid; gap: 7px; justify-items: center;
+    padding: 9px 3px 11px; border: 1px solid var(--rule);
+    border-radius: 5px; background: var(--bg);
+    font-variant-numeric: lining-nums tabular-nums;
+  }
+  #examples .vintage-year { color: var(--ink-soft); font-size: 10px; line-height: 1.2; white-space: nowrap; }
+  #examples .vintage-level { color: var(--accent); font-size: 15px; font-weight: 600; line-height: 1.2; }
+  #examples .onet-quote {
+    display: block; font-family: var(--serif); color: var(--ink);
+    font-size: 16px; line-height: 1.6;
+  }
+  #examples .onet-occupation { display: block; margin-top: 12px; font-size: 12px; line-height: 1.6; }
+  @media (max-width: 900px) {
+    #examples .examples-wrap {
+      width: 100%; max-width: 100%; margin: 24px 0 18px;
+      transform: none; overflow: visible; border: 0; border-radius: 0;
+    }
+    #examples .examples { display: block; min-width: 0; background: transparent; }
+    #examples .examples caption {
+      display: block; padding: 0 0 16px; background: transparent; border: 0;
+    }
+    #examples .examples thead {
+      position: absolute; width: 1px; height: 1px; overflow: hidden;
+      clip-path: inset(50%); white-space: nowrap;
+    }
+    #examples .examples tbody { display: grid; gap: 18px; }
+    #examples .examples tbody tr,
+    #examples .examples tbody tr:nth-child(even) {
+      display: block; padding: 22px; border: 1px solid var(--rule);
+      border-radius: 8px; background: var(--paper);
+    }
+    #examples .examples tbody th {
+      display: block; padding: 0 0 18px; border: 0;
+      border-bottom: 1px solid var(--rule); background: transparent;
+    }
+    #examples .product-name { font-size: 19px; }
+    #examples .product-maker { margin-top: 5px; font-size: 13px; }
+    #examples .examples tbody td { display: block; padding: 18px 0 0; border: 0; }
+    #examples .examples tbody td::before {
+      content: attr(data-label); display: block; margin-bottom: 9px;
+      color: var(--ink-soft); font-family: var(--sans); font-size: 11px;
+      font-weight: 500; line-height: 1.5;
+    }
+    #examples .examples tbody td.scores { width: auto; }
+    #examples .vintage-grid { gap: 8px; }
+    #examples .vintage-score { gap: 8px; padding: 11px 6px 12px; }
+    #examples .vintage-year { font-size: 11px; }
+    #examples .vintage-level { font-size: 17px; }
+    #examples .onet-quote { font-size: 16px; }
+    #examples .onet-occupation { margin-top: 9px; }
+  }
   .results p { margin-bottom: 1em; }
   .access { border-top: 1px solid var(--rule); padding-top: 4px; margin-top: 58px; }
   footer { margin-top: 56px; padding-top: 20px; border-top: 1px solid var(--rule); font-family: var(--sans); font-size: 14px; }
@@ -197,18 +274,6 @@
     table { font-size: 13px; }
     th, td { padding: 10px; }
     .detail-body .table-wrap th, .detail-body .table-wrap td { padding: 9px 8px; }
-    .examples-wrap { border: 0; overflow: visible; }
-    .examples { display: block; min-width: 0; background: transparent; }
-    .examples caption { display: block; padding: 0 0 14px; background: transparent; border: 0; }
-    .examples thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
-    .examples tbody { display: grid; gap: 16px; }
-    .examples tbody tr { display: block; border: 1px solid var(--rule); border-radius: 3px; padding: 20px; background: var(--paper); }
-    .examples tbody th { display: block; padding: 0; border: 0; background: transparent; font-size: 17px; }
-    .examples .occupation { font-size: 13px; margin-top: 6px; }
-    .examples tbody td { display: block; padding: 18px 0 0; border: 0; font-size: 14px; }
-    .examples td::before { content: attr(data-label); display: block; font-size: 12px; font-weight: 600; color: var(--ink); margin-bottom: 7px; }
-    .examples tbody td.scores { display: grid; width: auto; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px 14px; }
-    .examples td.scores::before { grid-column: 1 / -1; margin-bottom: 1px; }
   }
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 </style>
@@ -433,10 +498,30 @@
             <caption>Fixed FY2022 tasks, rescored against each vintage</caption>
             <thead><tr><th class="product" scope="col">Product</th><th class="task" scope="col">Customer-facing task</th><th class="scores" scope="col">R by vintage</th><th scope="col">Similar O*NET task</th></tr></thead>
             <tbody>
-              <tr><th scope="row">Illustrator<br><span class="occupation">Adobe</span></th><td data-label="Customer-facing task">create digital graphics and illustrations</td><td class="scores" data-label="R by vintage"><span>2022: R1</span><span>2023: R2</span><span>2024: R4</span><span>2025: R4</span></td><td data-label="Similar O*NET task">“Develop graphics and layouts for product illustrations, company logos, and Web sites.”<span class="occupation">Graphic Designers · Task 306</span></td></tr>
-              <tr><th scope="row">Analyzer<br><span class="occupation">DocuSign</span></th><td data-label="Customer-facing task">analyze inbound agreements</td><td class="scores" data-label="R by vintage"><span>2022: R1</span><span>2023: R3</span><span>2024: R4</span><span>2025: R4</span></td><td data-label="Similar O*NET task">“Prepare, edit, or review legal documents, including legislation, briefs, pleadings, appeals, wills, contracts, and real estate closing statements.”<span class="occupation">Paralegals and Legal Assistants · Task 23994</span></td></tr>
-              <tr><th scope="row">QuickBooks Online<br><span class="occupation">Intuit</span></th><td data-label="Customer-facing task">create and send invoices and estimates</td><td class="scores" data-label="R by vintage"><span>2022: R1</span><span>2023: R3</span><span>2024: R3</span><span>2025: R4</span></td><td data-label="Similar O*NET task">“Prepare itemized statements, bills, or invoices and record amounts due for items purchased or services rendered.”<span class="occupation">Billing and Posting Clerks · Task 23240</span></td></tr>
-              <tr><th scope="row">Sales Hub<br><span class="occupation">HubSpot</span></th><td data-label="Customer-facing task">manage conversations and live chat</td><td class="scores" data-label="R by vintage"><span>2022: R1</span><span>2023: R3</span><span>2024: R4</span><span>2025: R4</span></td><td data-label="Similar O*NET task">“Answer customers' questions about products, prices, availability, product uses, and credit terms.”<span class="occupation">Sales Representatives, Wholesale and Manufacturing, Except Technical and Scientific Products · Task 8113</span></td></tr>
+              <tr>
+                <th scope="row"><span class="product-name">Illustrator</span><span class="product-maker">Adobe</span></th>
+                <td class="customer-task" data-label="Customer-facing task">create digital graphics and illustrations</td>
+                <td class="scores" data-label="R by vintage"><div class="vintage-grid"><span class="vintage-score"><span class="vintage-year">2022:</span> <span class="vintage-level">R1</span></span><span class="vintage-score"><span class="vintage-year">2023:</span> <span class="vintage-level">R2</span></span><span class="vintage-score"><span class="vintage-year">2024:</span> <span class="vintage-level">R4</span></span><span class="vintage-score"><span class="vintage-year">2025:</span> <span class="vintage-level">R4</span></span></div></td>
+                <td data-label="Similar O*NET task"><span class="onet-quote">“Develop graphics and layouts for product illustrations, company logos, and Web sites.”</span><span class="onet-occupation">Graphic Designers · Task 306</span></td>
+              </tr>
+              <tr>
+                <th scope="row"><span class="product-name">Analyzer</span><span class="product-maker">DocuSign</span></th>
+                <td class="customer-task" data-label="Customer-facing task">analyze inbound agreements</td>
+                <td class="scores" data-label="R by vintage"><div class="vintage-grid"><span class="vintage-score"><span class="vintage-year">2022:</span> <span class="vintage-level">R1</span></span><span class="vintage-score"><span class="vintage-year">2023:</span> <span class="vintage-level">R3</span></span><span class="vintage-score"><span class="vintage-year">2024:</span> <span class="vintage-level">R4</span></span><span class="vintage-score"><span class="vintage-year">2025:</span> <span class="vintage-level">R4</span></span></div></td>
+                <td data-label="Similar O*NET task"><span class="onet-quote">“Prepare, edit, or review legal documents, including legislation, briefs, pleadings, appeals, wills, contracts, and real estate closing statements.”</span><span class="onet-occupation">Paralegals and Legal Assistants · Task 23994</span></td>
+              </tr>
+              <tr>
+                <th scope="row"><span class="product-name">QuickBooks Online</span><span class="product-maker">Intuit</span></th>
+                <td class="customer-task" data-label="Customer-facing task">create and send invoices and estimates</td>
+                <td class="scores" data-label="R by vintage"><div class="vintage-grid"><span class="vintage-score"><span class="vintage-year">2022:</span> <span class="vintage-level">R1</span></span><span class="vintage-score"><span class="vintage-year">2023:</span> <span class="vintage-level">R3</span></span><span class="vintage-score"><span class="vintage-year">2024:</span> <span class="vintage-level">R3</span></span><span class="vintage-score"><span class="vintage-year">2025:</span> <span class="vintage-level">R4</span></span></div></td>
+                <td data-label="Similar O*NET task"><span class="onet-quote">“Prepare itemized statements, bills, or invoices and record amounts due for items purchased or services rendered.”</span><span class="onet-occupation">Billing and Posting Clerks · Task 23240</span></td>
+              </tr>
+              <tr>
+                <th scope="row"><span class="product-name">Sales Hub</span><span class="product-maker">HubSpot</span></th>
+                <td class="customer-task" data-label="Customer-facing task">manage conversations and live chat</td>
+                <td class="scores" data-label="R by vintage"><div class="vintage-grid"><span class="vintage-score"><span class="vintage-year">2022:</span> <span class="vintage-level">R1</span></span><span class="vintage-score"><span class="vintage-year">2023:</span> <span class="vintage-level">R3</span></span><span class="vintage-score"><span class="vintage-year">2024:</span> <span class="vintage-level">R4</span></span><span class="vintage-score"><span class="vintage-year">2025:</span> <span class="vintage-level">R4</span></span></div></td>
+                <td data-label="Similar O*NET task"><span class="onet-quote">“Answer customers' questions about products, prices, availability, product uses, and credit terms.”</span><span class="onet-occupation">Sales Representatives, Wholesale and Manufacturing, Except Technical and Scientific Products · Task 8113</span></td>
+              </tr>
             </tbody>
           </table>
         </div>
