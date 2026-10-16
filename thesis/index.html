@@ -132,6 +132,16 @@
   .detail-body > :last-child { margin-bottom: 0; }
   .ledger { border-left: 3px solid var(--accent); padding-left: 18px; margin-top: 22px; }
   .ledger h3 { font-size: 1.2rem; margin-top: 0; }
+  .ledger-group { margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--rule); }
+  .ledger-group h4 { margin: 0 0 8px; font-family: var(--sans); font-size: 14px; font-weight: 600; }
+  .ledger-fields { margin: 0; }
+  .ledger-field { display: grid; grid-template-columns: minmax(130px, 170px) minmax(0, 1fr); gap: 16px; padding: 12px 0; }
+  .ledger-field dt { margin: 0; font-size: 13px; }
+  .ledger-field dd { margin: 0; overflow-wrap: anywhere; font-size: 15px; line-height: 1.65; }
+  @media (max-width: 640px) {
+    .ledger { padding-left: 12px; }
+    .ledger-field { grid-template-columns: minmax(0, 1fr); gap: 5px; }
+  }
   .record-id { font-family: var(--sans); font-size: 13px; color: var(--accent); margin-bottom: 6px; }
   dl { margin: 18px 0; }
   dt { font-family: var(--sans); font-size: 13px; font-weight: 600; margin-top: 16px; }
@@ -279,17 +289,65 @@
             <p data-source="ledger-history">The ledger contains 66 dated operational capability records compiled from first-party documentation. It begins with the ChatGPT research preview of 30 November 2022; the latest records date from September 2026. Only records available by the relevant year-end enter each scored vintage.</p>
             <p data-source="ledger-cutoffs">Cumulative records at the year-end cutoffs are <strong>1 / 16 / 33 / 56</strong> for <strong>2022 / 2023 / 2024 / 2025</strong>.</p>
             <p>A task can be credited only with capabilities documented by that vintage; a citation to a later record is rejected. These checks constrain the supplied evidence dates, but do not eliminate every possible form of model look-ahead.</p>
-            <div class="ledger" data-source="ledger-example">
-              <p class="record-id">OC-2025-006 · Effective 25 March 2025</p>
-              <h3>One capability record</h3>
-              <dl>
-                <dt>System or surface</dt><dd>GPT-4o image generation in ChatGPT/API</dd>
-                <dt>Operational capability</dt><dd>Generate images with improved text rendering and instruction following, and transform user-uploaded images over multiple turns.</dd>
-                <dt>Required input</dt><dd>Text prompt and optional source image(s).</dd>
-                <dt>Produced result</dt><dd>Generated or edited raster image.</dd>
-                <dt>Not established</dt><dd>Pixel-perfect deterministic edits, layered source files, factual authenticity, or external publication.</dd>
-              </dl>
-              <p class="source">Source: frontier ledger, selected fields from this record; date also listed in the thesis frontier-record index.</p>
+            <div class="ledger" data-source="ledger-example" data-ledger-id="OC-2025-011">
+              <p class="record-id">OC-2025-011 · Effective 16 April 2025</p>
+              <h3>OpenAI o3 and o4-mini: reasoning with tools</h3>
+              <p>One complete operational capability record. All 20 fields below are reproduced from the saved frontier ledger.</p>
+              <div class="ledger-group">
+                <h4>Identity and date</h4>
+                <dl class="ledger-fields">
+                  <div class="ledger-field" data-ledger-field="contract_id"><dt>Record ID</dt><dd>OC-2025-011</dd></div>
+                  <div class="ledger-field" data-ledger-field="title"><dt>Record title</dt><dd>Reasoning that selects and uses ChatGPT tools</dd></div>
+                  <div class="ledger-field" data-ledger-field="effective_date"><dt>Effective date</dt><dd>2025-04-16</dd></div>
+                  <div class="ledger-field" data-ledger-field="system_or_surface"><dt>System or surface</dt><dd>OpenAI o3 and o4-mini in ChatGPT/API</dd></div>
+                  <div class="ledger-field" data-ledger-field="technology_layers"><dt>Technology layers</dt><dd>AGENT_ORCHESTRATION, CODE_WORK, LANGUAGE_REASONING, QUANTITATIVE_COMPUTATION</dd></div>
+                </dl>
+              </div>
+              <div class="ledger-group">
+                <h4>Capability, work and result</h4>
+                <dl class="ledger-fields">
+                  <div class="ledger-field" data-ledger-field="operational_capability"><dt>Operational capability</dt><dd>Combine deliberative reasoning with web search, Python, file analysis, and image
+  reasoning during one problem-solving process.</dd></div>
+                  <div class="ledger-field" data-ledger-field="capability_evidence"><dt>Capability evidence</dt><dd>The cited first-party release directly documents this operational delta: Integrates
+  reasoning and tool choice rather than keeping the reasoning model tool-free.</dd></div>
+                  <div class="ledger-field" data-ledger-field="work_performed"><dt>Work performed</dt><dd>Determine what information or computation is needed, call available tools, inspect
+  results, and revise the solution.</dd></div>
+                  <div class="ledger-field" data-ledger-field="required_input"><dt>Required input</dt><dd>User task, relevant files/images, and enabled tools/data.</dd></div>
+                  <div class="ledger-field" data-ledger-field="produced_result"><dt>Produced result</dt><dd>Tool-grounded analysis, calculation, code, or answer.</dd></div>
+                </dl>
+              </div>
+              <div class="ledger-group">
+                <h4>Access and execution</h4>
+                <dl class="ledger-fields">
+                  <div class="ledger-field" data-ledger-field="required_tool_or_surface"><dt>Required tool or surface</dt><dd>o3/o4-mini plus the ChatGPT/API tool environment; each tool contributes its own access
+  and execution capability.</dd></div>
+                  <div class="ledger-field" data-ledger-field="access_state"><dt>Access state</dt><dd>Dated access begins through OpenAI o3 and o4-mini in ChatGPT/API. Availability is
+  restricted to the named product/API and the following conditions: Tools must be enabled
+  and supplied; tool output and reasoning still require verification.</dd></div>
+                  <div class="ledger-field" data-ledger-field="autonomy_horizon"><dt>Autonomy horizon</dt><dd>BOUNDED_AGENT_LOOP — the named surface can choose and sequence multiple steps or tools
+  for a bounded objective.</dd></div>
+                  <div class="ledger-field" data-ledger-field="composition_contract"><dt>Composition contract</dt><dd>May compose only the tools and state explicitly exposed by the named agent surface.
+  Other portfolio capabilities require an evidenced connector, file handoff, API, or
+  user-mediated transfer.</dd></div>
+                </dl>
+              </div>
+              <div class="ledger-group">
+                <h4>Evidence, conditions and limits</h4>
+                <dl class="ledger-fields">
+                  <div class="ledger-field" data-ledger-field="reliability_evidence"><dt>Reliability evidence</dt><dd>Arbitrary external actions, credentials, formal authority, or automatic access to
+  unconnected systems.</dd></div>
+                  <div class="ledger-field" data-ledger-field="explicit_conditions"><dt>Explicit conditions</dt><dd>Tools must be enabled and supplied; tool output and reasoning still require
+  verification.</dd></div>
+                  <div class="ledger-field" data-ledger-field="not_established"><dt>Not established</dt><dd>Arbitrary external actions, credentials, formal authority, or automatic access to
+  unconnected systems.</dd></div>
+                  <div class="ledger-field" data-ledger-field="progression"><dt>Progression</dt><dd>Integrates reasoning and tool choice rather than keeping the reasoning model tool-free.</dd></div>
+                  <div class="ledger-field" data-ledger-field="source_roles"><dt>Source roles</dt><dd>The listed first-party sources jointly support the dated surface, positive capability,
+  and stated conditions; benchmark or architecture claims do not independently establish
+  public access or execution.</dd></div>
+                  <div class="ledger-field" data-ledger-field="sources"><dt>Sources</dt><dd><a href="https://openai.com/index/introducing-o3-and-o4-mini/">OpenAI — o3 and o4-mini</a></dd></div>
+                </dl>
+              </div>
+              <p class="source">Source: saved frontier ledger, OC-2025-011; field wording retained as recorded. The source link above points to the first-party release.</p>
             </div>
           </div>
         </details>
