@@ -188,7 +188,38 @@
   footer { margin-top: 56px; padding-top: 20px; border-top: 1px solid var(--rule); font-family: var(--sans); font-size: 14px; display: flex; gap: 20px; flex-wrap: wrap; }
   ::selection { background: var(--accent); color: var(--bg); }
 
+  /* Data excerpt: spreadsheet look */
+  .sheet-wrap { overflow-x: auto; max-width: 100%; margin: 24px 0 12px; border: 1px solid var(--rule); border-radius: 3px; background: var(--bg); }
+  .sheet { min-width: 1080px; font-size: 13px; }
+  .sheet th, .sheet td { padding: 10px 12px; border-right: 1px solid var(--rule); }
+  .sheet th:last-child, .sheet td:last-child { border-right: none; }
+  .sheet thead th { position: relative; vertical-align: bottom; background: var(--paper); font-size: 12.5px; line-height: 1.35; }
+  .sheet thead th code { display: block; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 10.5px; font-weight: 400; color: var(--ink-faint); margin-top: 3px; letter-spacing: 0; }
+  .sheet tbody th { font-weight: 600; color: var(--ink); background: var(--paper); position: sticky; left: 0; z-index: 1; min-width: 150px; }
+  .sheet tbody th small { display: block; font-weight: 400; color: var(--ink-soft); font-size: 12px; margin-top: 2px; }
+  .sheet td { color: var(--ink-soft); }
+  .sheet td.task { color: var(--ink); min-width: 170px; }
+  .sheet td.task small { display: block; color: var(--ink-faint); font-size: 11.5px; margin-top: 3px; }
+  .sheet td.done { min-width: 170px; font-style: italic; }
+  .sheet .chips { display: flex; flex-direction: column; gap: 4px; min-width: 190px; }
+  .sheet .chip { font-size: 12px; border: 1px solid var(--rule); border-radius: 999px; padding: 1px 8px; background: var(--paper); width: fit-content; }
+  .sheet .code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 11.5px; }
+  .sheet .r { text-align: center; font-weight: 600; font-variant-numeric: tabular-nums; width: 46px; padding: 10px 4px; }
+  .r0 { background: var(--r0); color: var(--ink-faint) !important; }
+  .r1 { background: var(--r1); color: var(--ink) !important; }
+  .r2 { background: var(--r2); color: var(--ink) !important; }
+  .r3 { background: var(--r3); color: #fff !important; }
+  .r4 { background: var(--r4); color: #fff !important; }
+  :root { --r0: #f7f3ea; --r1: #f2e0d9; --r2: #e5b6a9; --r3: #c8705f; --r4: #a83232; }
+  @media (prefers-color-scheme: dark) {
+    :root { --r0: #1c1a14; --r1: #36241f; --r2: #5a332d; --r3: #8a4840; --r4: #c25e58; }
+  }
+  @media (min-width: 900px) { .sheet-wrap.wide { max-width: none; width: min(1120px, calc(100vw - 64px)); position: relative; left: 50%; transform: translateX(-50%); } }
+  .scroll-hint { display: none; font-family: var(--sans); font-size: 12.5px; color: var(--ink-faint); margin-top: 6px; }
+
   @media (max-width: 640px) {
+    .scroll-hint { display: block; }
+    .sheet tbody th { min-width: 120px; }
     body { font-size: 17px; }
     .container { padding: 32px 18px 72px; }
     h2 { font-size: 1.6rem; margin-top: 48px; }
@@ -228,7 +259,7 @@
     <h1>The product–capability–task (PCT) dataset <span class="title-subtitle">What B2B software products do for their customers, built from annual reports with a validated language-model pipeline</span></h1>
     <p class="byline"><strong>Hakan Zeki Gülmez</strong> · Built for the master's thesis <a href="/thesis/">Generative AI as a Task Shock</a>, TUM School of Management · 2026</p>
     <nav class="page-nav" aria-label="Dataset sections">
-      <a href="#what">What it is</a><a href="#build">How it is built</a><a href="#glance">At a glance</a><a href="#example">Example</a><a href="#reliability">Reliability</a><a href="#structure">Structure</a><a href="#access">Access</a>
+      <a href="#what">What it is</a><a href="#build">How it is built</a><a href="#glance">At a glance</a><a href="#example">Example</a><a href="#records">Records</a><a href="#reliability">Reliability</a><a href="#structure">Structure</a><a href="#access">Access</a>
     </nav>
   </header>
 
@@ -383,6 +414,89 @@
             </div>
           </div>
           <figcaption id="tree-caption">Recorded content as in the dataset; each role decision carries a written reason. R shows the fixed-basket score at the 2022 and 2025 vintages. A task linked to a single capability receives it as essential by rule. Source: thesis, Appendix B.3, Tables B4–B5.</figcaption>
+        </figure>
+      </section>
+
+      <section id="records" aria-labelledby="records-heading">
+        <h2 id="records-heading">Six records from the dataset</h2>
+        <p>The rows below are taken directly from the dataset: one FY2022 task each from six firms, with the recorded fields and the frontier score of the same fixed task at each vintage. They are chosen to show the range, from tasks that reach R4 by 2025 to tasks that stay at R0 throughout, such as executing an electronic signature or validating a product design before it is built.</p>
+        <figure aria-labelledby="records-caption">
+          <div class="sheet-wrap wide" tabindex="0" role="region" aria-label="Six task records from the PCT dataset">
+            <table class="sheet">
+              <thead>
+                <tr>
+                  <th scope="col">Firm · product<code>firm, product, product_form</code></th>
+                  <th scope="col">Task<code>task_label, task_id</code></th>
+                  <th scope="col">Done when<code>completion_condition</code></th>
+                  <th scope="col" class="r">R 2022</th>
+                  <th scope="col" class="r">R 2023</th>
+                  <th scope="col" class="r">R 2024</th>
+                  <th scope="col" class="r">R 2025</th>
+                  <th scope="col">Linked capabilities<code>capability, role</code></th>
+                  <th scope="col">Surface · role<code>surface, task_role</code></th>
+                  <th scope="col">Source<code>passage_refs</code></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Datadog<small>Incident Management · independent software</small></th>
+                  <td class="task">manage incidents and generate post-mortems<small>T4</small></td>
+                  <td class="done">incidents are resolved and post-mortem documentation is auto-generated</td>
+                  <td class="r r1">R1</td><td class="r r2">R2</td><td class="r r3">R3</td><td class="r r4">R4</td>
+                  <td><div class="chips"><span class="chip">declare incidents</span><span class="chip">investigate root cause and dependencies</span><span class="chip">collaborate around a shared view of the incident</span><span class="chip">follow incidents to resolution</span><span class="chip">auto-generate post-mortem documentations</span></div></td>
+                  <td><span class="code">HYBRID_FUNCTION</span><br><span class="code">CORE</span></td>
+                  <td class="code">P006</td>
+                </tr>
+                <tr>
+                  <th scope="row">Salesforce<small>Tableau · embedded module</small></th>
+                  <td class="task">analyze business data and make decisions<small>T3</small></td>
+                  <td class="done">decisions are made from any device</td>
+                  <td class="r r1">R1</td><td class="r r2">R2</td><td class="r r3">R3</td><td class="r r4">R4</td>
+                  <td><div class="chips"><span class="chip">understand business data</span><span class="chip">prepare data</span><span class="chip">make decisions from any device</span></div></td>
+                  <td><span class="code">CUSTOMER_OPERATION</span><br><span class="code">CORE</span></td>
+                  <td class="code">P003</td>
+                </tr>
+                <tr>
+                  <th scope="row">Intuit<small>TurboTax · suite or platform</small></th>
+                  <td class="task">prepare and file federal and state income tax returns<small>T1</small></td>
+                  <td class="done">returns are prepared and filed</td>
+                  <td class="r r1">R1</td><td class="r r1">R1</td><td class="r r1">R1</td><td class="r r3">R3</td>
+                  <td><div class="chips"><span class="chip">prepare and file federal and state income tax returns</span></div></td>
+                  <td><span class="code">CUSTOMER_OPERATION</span><br><span class="code">CORE</span></td>
+                  <td class="code">P005</td>
+                </tr>
+                <tr>
+                  <th scope="row">Zoom<small>Zoom Meetings · independent software</small></th>
+                  <td class="task">record meetings<small>T2</small></td>
+                  <td class="done">meetings are recorded to the cloud or locally with transcripts</td>
+                  <td class="r r0">R0</td><td class="r r2">R2</td><td class="r r2">R2</td><td class="r r2">R2</td>
+                  <td><div class="chips"><span class="chip">record meetings to the cloud or locally with transcripts</span></div></td>
+                  <td><span class="code">CUSTOMER_OPERATION</span><br><span class="code">SUPPLEMENTAL</span></td>
+                  <td class="code">P003</td>
+                </tr>
+                <tr>
+                  <th scope="row">DocuSign<small>eSignature · independent software</small></th>
+                  <td class="task">send and sign agreements electronically<small>T1</small></td>
+                  <td class="done">agreements are sent and signed electronically</td>
+                  <td class="r r0">R0</td><td class="r r0">R0</td><td class="r r0">R0</td><td class="r r0">R0</td>
+                  <td><div class="chips"><span class="chip">send and sign agreements electronically</span></div></td>
+                  <td><span class="code">CUSTOMER_OPERATION</span><br><span class="code">CORE</span></td>
+                  <td class="code">P001, P005</td>
+                </tr>
+                <tr>
+                  <th scope="row">Autodesk<small>Inventor · independent software</small></th>
+                  <td class="task">validate product form, fit, and function<small>T5</small></td>
+                  <td class="done">the form, fit, and function of the product are validated</td>
+                  <td class="r r0">R0</td><td class="r r0">R0</td><td class="r r0">R0</td><td class="r r0">R0</td>
+                  <td><div class="chips"><span class="chip">validate the form, fit, and function of a product before it is built</span></div></td>
+                  <td><span class="code">CUSTOMER_OPERATION</span><br><span class="code">CORE</span></td>
+                  <td class="code">P002</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="scroll-hint" aria-hidden="true">Scroll sideways to see all columns →</p>
+          <figcaption id="records-caption">All capabilities shown are recorded as essential to their task. Column names are simplified. R is the fixed-basket score of the same FY2022 task at each vintage; single-task scores are noisier than averages, and the rows illustrate the range rather than a typical task. Source: PCT dataset v1, Tasks and Products sheets; FY2022 Item 1 filings.</figcaption>
         </figure>
       </section>
 
