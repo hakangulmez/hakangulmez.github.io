@@ -211,6 +211,15 @@
   .sheet .src { color: var(--ink-faint); }
   .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
   .sheet .chips .chip + .chip::before { content: none; }
+  .sheet .chip { max-width: 240px; border-radius: 7px; padding: 4px 8px; line-height: 1.45; overflow-wrap: anywhere; }
+  .sheet .cap-role { display: block; margin-bottom: 2px; color: var(--ink-faint); font-size: 10px; font-weight: 600; letter-spacing: 0.025em; }
+  .sheet .chip[data-capability-role="SUPPLEMENTAL"] { border-style: dashed; }
+  .sheet td.task { min-width: 240px; }
+  .sheet td.task strong { font-weight: 600; }
+  .sheet .task-description { display: block; margin-top: 8px; font-size: 12.5px; line-height: 1.55; color: var(--ink-soft); }
+  #records .scroll-hint { display: block; margin-bottom: -12px; }
+  #records .code { overflow-wrap: anywhere; }
+  #records tbody td:last-child { min-width: 100px; }
   .r0 { background: var(--r0); color: var(--ink-faint) !important; }
   .r1 { background: var(--r1); color: var(--ink) !important; }
   .r2 { background: var(--r2); color: var(--ink) !important; }
@@ -425,16 +434,17 @@
 
       <section id="records" aria-labelledby="records-heading">
         <h2 id="records-heading">Records from the dataset</h2>
-        <p>The rows below are taken directly from the dataset. Each shows how several short, source-linked capabilities combine into one fixed product task with a completion condition, the product-local context recorded for that task, and the frontier score of the same FY2022 task at each vintage. They range from tasks that reach R4 by 2025 to a task that stays at R0 throughout.</p>
+        <p>These seven source-linked records show the work behind portfolio accounting, workforce analysis, document workflows, integration, process automation, site planning, and data protection. Each retains the recorded task description, completion condition, product context, and capability roles. The R columns rescore the same FY2022 task at each frontier vintage; the examples include partial support, end-to-end coverage, and a task that remains at R0.</p>
         <figure aria-labelledby="records-caption">
+          <p class="scroll-hint" aria-hidden="true">Scroll sideways to see all columns →</p>
           <div class="sheet-wrap wide" tabindex="0" role="region" aria-label="Task records from the PCT dataset">
             <table class="sheet">
               <thead>
                 <tr>
                   <th scope="col">Firm · product<code>firm, product, product_form</code></th>
-                  <th scope="col">Linked capabilities<code>capability (all essential)</code></th>
+                  <th scope="col">Linked capabilities<code>capability, role</code></th>
                   <th scope="col" class="join"><span class="visually-hidden">combine into</span></th>
-                  <th scope="col">Task<code>task_label, task_id, completion_condition</code></th>
+                  <th scope="col">Task<code>label, description, task_id, completion_condition</code></th>
                   <th scope="col">Product task context<code>context</code></th>
                   <th scope="col" class="r">R 2022</th>
                   <th scope="col" class="r">R 2023</th>
@@ -444,74 +454,73 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <th scope="row">Veeva Systems<small>Veeva CDB · independent software</small></th>
-                  <td><div class="chips"><span class="chip">aggregate data</span><span class="chip">clean data</span><span class="chip">report data</span><span class="chip">export data</span></div></td>
+                <tr data-task-key="[2022,&quot;0001402436&quot;,&quot;0000950170-23-005072&quot;,&quot;EP23&quot;,&quot;T24&quot;]">
+                  <th scope="row">SS&amp;C Technologies<small>PORTIA · suite or platform</small></th>
+                  <td><div class="chips"><span class="chip" data-capability-role="CORE"><span class="cap-role">Essential</span>perform portfolio accounting</span><span class="chip" data-capability-role="CORE"><span class="cap-role">Essential</span>perform fund accounting</span><span class="chip" data-capability-role="CORE"><span class="cap-role">Essential</span>measure performance</span><span class="chip" data-capability-role="CORE"><span class="cap-role">Essential</span>attribute performance</span><span class="chip" data-capability-role="CORE"><span class="cap-role">Essential</span>report to clients</span></div></td>
                   <td class="join" aria-hidden="true">→</td>
-                  <td class="task">manage study data<small>T29</small><span class="done-when">Done when: data is aggregated, cleaned, reported, and exported</span></td>
-                  <td class="ctx">Veeva CDB is an application that allows customers to manage study data. It provides capabilities to aggregate, clean, report, and export data, offering a complete and concurrent view across study data.</td>
-                  <td class="r r1">R1</td><td class="r r3">R3</td><td class="r r3">R3</td><td class="r r4">R4</td>
-                  <td><span class="code">CUSTOMER_OPERATION</span><br><span class="code">CORE</span><br><span class="code src">P004</span></td>
+                  <td class="task"><strong>perform portfolio and fund accounting, performance measurement, and client reporting</strong><small>T24</small><span class="task-description">Firms worldwide use the product to perform portfolio accounting, fund accounting, performance measurement and attribution, reconciliation, and client reporting for their global assets.</span><span class="done-when">Done when: portfolio accounting, fund accounting, performance measurement and attribution, reconciliation, and client reporting are performed</span></td>
+                  <td class="ctx">PORTIA is an investment operations platform that enables firms worldwide to manage their global assets. It provides capabilities for portfolio accounting, fund accounting, performance measurement and attribution, reconciliation, and client reporting.</td>
+                  <td class="r r1">R1</td><td class="r r3">R3</td><td class="r r3">R3</td><td class="r r2">R2</td>
+                  <td><span class="code">AUTOMATIC_PRODUCT_FUNCTION</span><br><span class="code">CORE</span><br><span class="code src">P012</span></td>
                 </tr>
-                <tr>
-                  <th scope="row">Procore<small>Project Management · independent software</small></th>
-                  <td><div class="chips"><span class="chip">log critical information</span><span class="chip">track project progress</span><span class="chip">escalate issues for approvals</span></div></td>
+                <tr data-task-key="[2022,&quot;0000008670&quot;,&quot;0000008670-22-000038&quot;,&quot;EP2&quot;,&quot;T23&quot;]">
+                  <th scope="row">ADP<small>ADP® DataCloud · suite or platform</small></th>
+                  <td><div class="chips"><span class="chip" data-capability-role="CORE"><span class="cap-role">Essential</span>analyze aggregated, anonymized and timely HCM and compensation data</span><span class="chip" data-capability-role="CORE"><span class="cap-role">Essential</span>provide clients with in-depth workforce and business insights</span></div></td>
                   <td class="join" aria-hidden="true">→</td>
-                  <td class="task">log information, track progress, and escalate issues<small>T15</small><span class="done-when">Done when: critical information is logged, project progress is tracked, and issues are escalated for approvals from correct team members</span></td>
-                  <td class="ctx">Project Management allows users to log critical information, track project progress, and escalate issues for approvals. This product provides team members with real-time access to information, centralizing and facilitating collaboration on various project aspects.</td>
-                  <td class="r r1">R1</td><td class="r r1">R1</td><td class="r r3">R3</td><td class="r r4">R4</td>
-                  <td><span class="code">CUSTOMER_OPERATION</span><br><span class="code">CORE</span><br><span class="code src">P011</span></td>
+                  <td class="task"><strong>analyze HCM and compensation data for workforce insights</strong><small>T23</small><span class="task-description">Clients can analyze aggregated, anonymized, and timely HCM and compensation data to gain in-depth workforce and business insights for critical HR decisions.</span><span class="done-when">Done when: in-depth workforce and business insights are gained</span></td>
+                  <td class="ctx">ADP DataCloud enables clients to analyze aggregated, anonymized, and timely HCM and compensation data. This analysis provides clients with in-depth workforce and business insights, which are crucial for making critical HR decisions.</td>
+                  <td class="r r0">R0</td><td class="r r4">R4</td><td class="r r4">R4</td><td class="r r4">R4</td>
+                  <td><span class="code">CUSTOMER_OPERATION</span><br><span class="code">CORE</span><br><span class="code src">P003</span></td>
                 </tr>
-                <tr>
-                  <th scope="row">Paylocity<small>Time and Attendance · independent software</small></th>
-                  <td><div class="chips"><span class="chip">request and manage time off</span><span class="chip">edit timecards</span><span class="chip">manage schedule changes</span></div></td>
+                <tr data-task-key="[2022,&quot;0000796343&quot;,&quot;0000796343-23-000007&quot;,&quot;EP2&quot;,&quot;T24&quot;]">
+                  <th scope="row">Adobe<small>Adobe Document Cloud · suite or platform</small></th>
+                  <td><div class="chips"><span class="chip" data-capability-role="CORE"><span class="cap-role">Essential</span>create documents</span><span class="chip" data-capability-role="CORE"><span class="cap-role">Essential</span>review documents</span><span class="chip" data-capability-role="CORE"><span class="cap-role">Essential</span>approve documents</span><span class="chip" data-capability-role="CORE"><span class="cap-role">Essential</span>sign documents</span><span class="chip" data-capability-role="CORE"><span class="cap-role">Essential</span>track documents</span><span class="chip" data-capability-role="CORE"><span class="cap-role">Essential</span>store documents in the cloud for easy access and sharing</span></div></td>
                   <td class="join" aria-hidden="true">→</td>
-                  <td class="task">manage employee time and attendance<small>T3</small><span class="done-when">Done when: employees have successfully requested and managed time off, edited timecards, and managed schedule changes</span></td>
-                  <td class="ctx">The Time and Attendance solution allows employees to manage their time and attendance by providing capabilities to request and manage time off, edit timecards, and manage schedule changes.</td>
-                  <td class="r r1">R1</td><td class="r r1">R1</td><td class="r r3">R3</td><td class="r r4">R4</td>
-                  <td><span class="code">CUSTOMER_OPERATION</span><br><span class="code">CORE</span><br><span class="code src">P004</span></td>
-                </tr>
-                <tr>
-                  <th scope="row">Salesforce<small>Service · independent software</small></th>
-                  <td><div class="chips"><span class="chip">connect agents, dispatchers and mobile employees</span><span class="chip">schedule and dispatch work</span><span class="chip">track and manage jobs in real-time</span></div></td>
-                  <td class="join" aria-hidden="true">→</td>
-                  <td class="task">manage field service operations<small>T12</small><span class="done-when">Done when: agents, dispatchers, and mobile employees are connected, work is scheduled and dispatched, and jobs are tracked and managed in real-time</span></td>
-                  <td class="ctx">The Service offering provides a field service solution that allows customers to connect agents, dispatchers, and mobile employees through a centralized platform. This platform enables them to schedule and dispatch work intelligently, and track and manage jobs in real-time.</td>
-                  <td class="r r0">R0</td><td class="r r1">R1</td><td class="r r1">R1</td><td class="r r3">R3</td>
-                  <td><span class="code">CUSTOMER_OPERATION</span><br><span class="code">CORE</span><br><span class="code src">P002</span></td>
-                </tr>
-                <tr>
-                  <th scope="row">Box<small>Box Governance · embedded module</small></th>
-                  <td><div class="chips"><span class="chip">manage retention policies</span><span class="chip">manage legal holds</span><span class="chip">manage disposition of data</span></div></td>
-                  <td class="join" aria-hidden="true">→</td>
-                  <td class="task">manage data retention and disposition<small>T10</small><span class="done-when">Done when: adherence to applicable laws and regulations</span></td>
-                  <td class="ctx">Box Governance allows customers to manage retention policies, legal holds, and disposition of data. This ensures adherence to applicable laws and regulations.</td>
-                  <td class="r r0">R0</td><td class="r r1">R1</td><td class="r r3">R3</td><td class="r r3">R3</td>
-                  <td><span class="code">CUSTOMER_OPERATION</span><br><span class="code">CORE</span><br><span class="code src">P002</span></td>
-                </tr>
-                <tr>
-                  <th scope="row">Adobe<small>Photoshop · independent software</small></th>
-                  <td><div class="chips"><span class="chip">select objects in images</span><span class="chip">fill content aware areas with one tap</span></div></td>
-                  <td class="join" aria-hidden="true">→</td>
-                  <td class="task">select and fill content in images<small>T61</small><span class="done-when">Done when: content-aware areas are filled with one tap after selecting objects</span></td>
-                  <td class="ctx">Photoshop enables users to select objects within images and then fill content-aware areas with a single tap. This functionality is part of the product&#x27;s powerful editing and effects tools for transforming photos.</td>
-                  <td class="r r0">R0</td><td class="r r1">R1</td><td class="r r1">R1</td><td class="r r2">R2</td>
-                  <td><span class="code">CUSTOMER_OPERATION</span><br><span class="code">CORE</span><br><span class="code src">P011</span></td>
-                </tr>
-                <tr>
-                  <th scope="row">Adobe<small>Acrobat Reader · independent software</small></th>
-                  <td><div class="chips"><span class="chip">view Adobe PDF documents reliably</span><span class="chip">annotate Adobe PDF documents</span><span class="chip">print Adobe PDF documents</span></div></td>
-                  <td class="join" aria-hidden="true">→</td>
-                  <td class="task">view, annotate, and print PDF documents<small>T63</small><span class="done-when">Done when: Adobe PDF documents are reliably viewed, annotated, and printed.</span></td>
-                  <td class="ctx">Adobe Acrobat Reader allows users to reliably view, annotate, and print Adobe PDF documents. This free software provides the necessary capabilities for users to interact with PDF files on various desktop and mobile platforms.</td>
-                  <td class="r r0">R0</td><td class="r r0">R0</td><td class="r r0">R0</td><td class="r r0">R0</td>
+                  <td class="task"><strong>create, review, approve, sign, track, and store documents</strong><small>T24</small><span class="task-description">Users create, review, approve, sign, and track documents and store them in the cloud for easy access and sharing.</span><span class="done-when">Done when: documents are created, reviewed, approved, signed, tracked, and stored in the cloud for easy access and sharing</span></td>
+                  <td class="ctx">Adobe Document Cloud enables users to create, review, approve, sign, track, and store documents in the cloud. This product supports a complete digital document workflow across various devices and applications.</td>
+                  <td class="r r1">R1</td><td class="r r2">R2</td><td class="r r2">R2</td><td class="r r3">R3</td>
                   <td><span class="code">CUSTOMER_OPERATION</span><br><span class="code">CORE</span><br><span class="code src">P013</span></td>
+                </tr>
+                <tr data-task-key="[2022,&quot;0001108524&quot;,&quot;0001108524-22-000013&quot;,&quot;EP13&quot;,&quot;T5&quot;]">
+                  <th scope="row">Salesforce<small>MuleSoft · embedded module</small></th>
+                  <td><div class="chips"><span class="chip" data-capability-role="CORE"><span class="cap-role">Essential</span>connect data from any system</span><span class="chip" data-capability-role="CORE"><span class="cap-role">Essential</span>unlock, unify and secure data</span><span class="chip" data-capability-role="CORE"><span class="cap-role">Essential</span>use discoverable, reusable APIs and integrations</span><span class="chip" data-capability-role="CORE"><span class="cap-role">Essential</span>create connected experiences</span></div></td>
+                  <td class="join" aria-hidden="true">→</td>
+                  <td class="task"><strong>connect and secure data to create experiences</strong><small>T5</small><span class="task-description">Customers use MuleSoft to connect data from any system, unlock, unify, and secure their data using reusable APIs and integrations to create connected experiences.</span><span class="done-when">Done when: connected experiences are created</span></td>
+                  <td class="ctx">MuleSoft enables customers to connect data from various systems, and then unlock, unify, and secure this data. This is achieved through the use of discoverable, reusable APIs and integrations, ultimately allowing customers to create connected experiences.</td>
+                  <td class="r r0">R0</td><td class="r r1">R1</td><td class="r r2">R2</td><td class="r r2">R2</td>
+                  <td><span class="code">CUSTOMER_OPERATION</span><br><span class="code">CORE</span><br><span class="code src">P003</span></td>
+                </tr>
+                <tr data-task-key="[2022,&quot;0001441683&quot;,&quot;0001441683-23-000021&quot;,&quot;EP1&quot;,&quot;T1&quot;]">
+                  <th scope="row">Appian<small>Appian Platform · suite or platform</small></th>
+                  <td><div class="chips"><span class="chip" data-capability-role="CORE"><span class="cap-role">Essential</span>design, automate, and optimize end-to-end processes and complex business operations</span><span class="chip" data-capability-role="SUPPLEMENTAL"><span class="cap-role">Supporting</span>improve customer and employee experiences</span><span class="chip" data-capability-role="SUPPLEMENTAL"><span class="cap-role">Supporting</span>achieve operational excellence</span><span class="chip" data-capability-role="SUPPLEMENTAL"><span class="cap-role">Supporting</span>simplify global risk management and compliance</span></div></td>
+                  <td class="join" aria-hidden="true">→</td>
+                  <td class="task"><strong>design, automate, and optimize end-to-end processes and complex business operations</strong><small>T1</small><span class="task-description">Customers use the Appian Platform to design, automate, and optimize end-to-end processes and complex business operations, improve customer and employee experiences, achieve operational excellence, and simplify global risk management and compliance.</span><span class="done-when">Done when: processes and operations are designed, automated, and optimized, experiences are improved, operational excellence is achieved, and risk management and compliance are simplified</span></td>
+                  <td class="ctx">The Appian Platform enables customers to design, automate, and optimize end-to-end processes and complex business operations. It also helps them improve customer and employee experiences, achieve operational excellence, and simplify global risk management and compliance.</td>
+                  <td class="r r1">R1</td><td class="r r3">R3</td><td class="r r3">R3</td><td class="r r3">R3</td>
+                  <td><span class="code">CUSTOMER_OPERATION</span><br><span class="code">CORE</span><br><span class="code src">P001</span></td>
+                </tr>
+                <tr data-task-key="[2022,&quot;0001031308&quot;,&quot;0001628280-23-005568&quot;,&quot;EP15&quot;,&quot;T7&quot;]">
+                  <th scope="row">Bentley Systems<small>SITEOPS · independent software</small></th>
+                  <td><div class="chips"><span class="chip" data-capability-role="CORE"><span class="cap-role">Essential</span>simulate compliant site layout</span><span class="chip" data-capability-role="CORE"><span class="cap-role">Essential</span>optimize earthworks</span><span class="chip" data-capability-role="CORE"><span class="cap-role">Essential</span>optimize drainage</span><span class="chip" data-capability-role="CORE"><span class="cap-role">Essential</span>optimize parking</span></div></td>
+                  <td class="join" aria-hidden="true">→</td>
+                  <td class="task"><strong>simulate compliant site layout and optimize earthworks, drainage, and parking</strong><small>T7</small><span class="task-description">Users simulate compliant site layout and optimize earthworks, drainage, and parking using SITEOPS.</span><span class="done-when">Done when: compliant site layout is simulated and earthworks, drainage, and parking are optimized</span></td>
+                  <td class="ctx">SITEOPS is an open simulation application that users employ to simulate compliant site layouts. It also allows users to optimize earthworks, drainage, and parking for a site.</td>
+                  <td class="r r0">R0</td><td class="r r0">R0</td><td class="r r1">R1</td><td class="r r2">R2</td>
+                  <td><span class="code">CUSTOMER_OPERATION</span><br><span class="code">CORE</span><br><span class="code src">P013</span></td>
+                </tr>
+                <tr data-task-key="[2022,&quot;0001169561&quot;,&quot;0001169561-22-000018&quot;,&quot;EP8&quot;,&quot;T8&quot;]">
+                  <th scope="row">Commvault<small>Commvault Distributed Storage · independent software</small></th>
+                  <td><div class="chips"><span class="chip" data-capability-role="CORE"><span class="cap-role">Essential</span>store data across private and public cloud data centers</span><span class="chip" data-capability-role="CORE"><span class="cap-role">Essential</span>protect data across private and public cloud data centers</span><span class="chip" data-capability-role="CORE"><span class="cap-role">Essential</span>replicate data across private and public cloud data centers</span></div></td>
+                  <td class="join" aria-hidden="true">→</td>
+                  <td class="task"><strong>store, protect, and replicate data across cloud data centers</strong><small>T8</small><span class="task-description">Customers store, protect, and replicate data across any number of private and public cloud data centers.</span><span class="done-when">Done when: data is stored, protected, and replicated across private and public cloud data centers</span></td>
+                  <td class="ctx">Commvault Distributed Storage enables customers to store, protect, and replicate data across private and public cloud data centers. This is achieved through its software-defined storage built on HyperScale architecture, which uses modern distributed system techniques.</td>
+                  <td class="r r0">R0</td><td class="r r0">R0</td><td class="r r0">R0</td><td class="r r0">R0</td>
+                  <td><span class="code">CUSTOMER_OPERATION</span><br><span class="code">CORE</span><br><span class="code src">P002</span></td>
                 </tr>
               </tbody>
             </table>
           </div>
-          <p class="scroll-hint" aria-hidden="true">Scroll sideways to see all columns →</p>
-          <figcaption id="records-caption">FY2022 records, recorded text unedited. Column names are simplified. R is the fixed-basket score of the same task at each vintage; single-task scores are noisier than averages, and the rows illustrate the range rather than a typical task. Source: PCT dataset v1, Tasks and Products sheets; FY2022 Item 1 filings.</figcaption>
+          <figcaption id="records-caption">Selected FY2022 records; recorded wording and R scores are unchanged. Essential and Supporting correspond to capability roles CORE and SUPPLEMENTAL; these differ from the task's role within its product. R follows the same FY2022 task across vintages. Single-task scores are noisier than averages, and these examples illustrate different workflows rather than a representative sample. Source: PCT release <span class="code">pct_dataset_v2_20260927</span>, tasks, products and capability links; fixed-FY2022 R scores; FY2022 Item 1 filings.</figcaption>
         </figure>
       </section>
 
