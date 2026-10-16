@@ -234,7 +234,7 @@
       <section id="question" aria-labelledby="question-heading">
         <h2 id="question-heading">The question</h2>
         <p>Software products perform work that customers would otherwise have to do themselves. As external AI systems become more capable, they may support the tasks customers buy software to perform. The question is how this technical exposure is associated with early adjustment among software suppliers.</p>
-        <p class="contribution">The contribution is to measure AI exposure at the level of software product tasks, track the same tasks against dated capability evidence, and measure suppliers' own AI functionality separately.</p>
+        <p class="contribution">The contribution is a product-level task dataset built from annual reports with a validated language-model pipeline. It allows AI exposure to be measured for the tasks software products perform, tracked against dated capability evidence, and kept separate from suppliers' own AI functionality.</p>
         <p data-source="question-channels">The thesis distinguishes three possible channels: AI may replace a worker directly, replace the worker who operates existing software, or replace the software itself. These are conceptual possibilities, not outcomes separately identified by the estimates. <strong>An agent operating a product still needs the product.</strong></p>
         <figure aria-labelledby="channels-caption" data-source="question-channels">
           <div class="channels">
@@ -269,6 +269,7 @@
           <li><span class="count">14,435</span><span class="label">Customer-facing tasks</span></li>
         </ol>
         <p class="source">Source: thesis, Data and Measurement; counts cover the full product–task universe before the business-customer and financial screens.</p>
+        <p>The dataset is built by a fixed sequence of language-model instructions, each with a required output format and deterministic validator checks, and every response is archived with its request. The <a href="/pct/">dataset page</a> describes it in more detail.</p>
         <p data-source="basket">The main exposure comparison uses a smaller, fixed basket: <strong>3,251 numerically scored FY2022 tasks from 207 firms</strong>. Each firm's baseline tasks are rescored against successive frontier vintages. Later changes in product descriptions do not redefine that basket.</p>
         <p>The external exposure score <strong>R</strong> measures technical supportability. A separate measure, <strong>T</strong>, records the depth of AI functionality the supplier discloses for its own products. Keeping these measures separate avoids building the supplier's response into exposure.</p>
 
@@ -315,9 +316,10 @@
         </details>
 
         <h3>Measurement and reliability</h3>
+        <p data-source="reliability-construction">The decisions that build the dataset are the most reproducible part of the measurement. In a fresh FY2022 run, about 92% of offering names recur, and structural decisions (consolidation, task surfaces, roles and market classification) agree in 86–99% of matched units. The graded frontier judgment is less stable.</p>
         <p data-source="reliability">The classifications use Gemini 2.5 Flash at temperature 0, with required formats and citation checks. On identical inputs, 95% of task-level R classifications in the repeatability sample are identical. Repeating the full scoring chain gives the same level for 62% of tasks and a level within one step for 87%.</p>
         <p>A stronger model rates exposure higher. These are repeatability and model-comparison checks, not validation against an independent expert benchmark; that benchmark remains future work.</p>
-        <p class="source">Source: thesis, Measurement reliability and the repeatability table.</p>
+        <p class="source">Source: thesis, Measurement reliability, the repeatability table and Table D1.</p>
       </section>
 
       <section id="design" aria-labelledby="design-heading">
@@ -487,7 +489,7 @@
         <h3>Switching and renewal</h3>
         <p>Customers may need to migrate data, redesign workflows and retrain users before changing products. Existing contracts and renewal cycles can add delay. The lagged pattern is consistent with this possibility, but the analysis does not observe contract duration or renewal decisions.</p>
         <h3>Competition through new suppliers</h3>
-        <p>Substitution could arrive through AI-native suppliers packaging frontier capabilities for a particular workflow. That route may take time to reach enterprise customers. The sample observes listed incumbents, so it cannot measure those entrants' growth or distinguish their competition from direct use of general-purpose AI.</p>
+        <p>Substitution could arrive through AI-native suppliers packaging frontier capabilities for a particular workflow. The sample observes only listed incumbents. Because these entrants are mostly private and need time to win enterprise customers, their effect can also lag the frontier.</p>
         <p class="source">Source: thesis, Discussion. These are possible mechanisms, not separately established findings.</p>
       </section>
 
@@ -516,8 +518,8 @@
 
       <section id="access" class="access" aria-labelledby="access-heading">
         <h2 id="access-heading">Access</h2>
-        <p>The full thesis, the product–capability–task dataset and the frontier ledger are available on request.</p>
-        <p><a href="mailto:hakanzekigulmez@gmail.com?subject=Thesis%20request">Request the thesis and materials</a></p>
+        <p>The product–capability–task (PCT) dataset is available on request for research use. The <a href="/pct/">dataset page</a> describes its construction, coverage and reliability.</p>
+        <p><a href="mailto:hakanzekigulmez@gmail.com?subject=PCT%20dataset%20request">Request the PCT dataset</a></p>
       </section>
     </article>
   </main>

@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The PCT dataset — Hakan Zeki Gülmez</title>
+<meta name="description" content="The product–capability–task (PCT) dataset: 1,122 annual reports of U.S.-listed software firms turned into 9,824 products, 25,750 capabilities and 14,435 customer-facing tasks with a validated language-model pipeline.">
+<link rel="canonical" href="https://hakangulmez.github.io/pct/">
+<link rel="icon" href="data:,">
+<meta property="og:type" content="article">
+<meta property="og:title" content="The product–capability–task (PCT) dataset">
+<meta property="og:description" content="What B2B software products do for their customers, as structured, source-linked records built from 1,122 annual reports.">
+<meta property="og:url" content="https://hakangulmez.github.io/pct/">
+<meta property="og:image" content="https://hakangulmez.github.io/thesis/img/R_by_vintage.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="1200">
+<meta property="og:image:alt" content="The same software tasks become more technically supportable as dated frontier evidence expands.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The product–capability–task (PCT) dataset">
+<meta name="twitter:description" content="What B2B software products do for their customers, as structured, source-linked records built from 1,122 annual reports.">
+<meta name="twitter:image" content="https://hakangulmez.github.io/thesis/img/R_by_vintage.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+  :root {
+    color-scheme: light dark;
+    --bg: #fdfcf8;
+    --ink: #1a1814;
+    --ink-soft: #4a463f;
+    --ink-faint: #7a766e;
+    --accent: #a83232;
+    --accent-soft: #f4ebe5;
+    --rule: #d9d3c7;
+    --paper: #f7f3ea;
+    --seg-1: #a83232;
+    --seg-2: #d48a7a;
+    --seg-3: #9b958a;
+    --seg-4: #d9d3c7;
+    --bar-b: #9b958a;
+    --serif: 'Fraunces', Georgia, 'Times New Roman', serif;
+    --sans: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #14120e;
+      --ink: #ebe5d6;
+      --ink-soft: #b8b0a0;
+      --ink-faint: #a49c8c;
+      --accent: #d97a7a;
+      --accent-soft: #2a1e1c;
+      --rule: #2f2b24;
+      --paper: #1c1a14;
+      --seg-1: #d97a7a;
+      --seg-2: #9a5248;
+      --seg-3: #7d766a;
+      --seg-4: #4a453c;
+      --bar-b: #7d766a;
+    }
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg); color: var(--ink); font-family: var(--serif);
+    font-size: 19px; line-height: 1.7; -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale; text-rendering: optimizeLegibility;
+  }
+  .container { max-width: 760px; margin: 0 auto; padding: 60px 28px 100px; }
+  a { color: var(--accent); text-underline-offset: 0.2em; text-decoration-thickness: 1px; }
+  a:hover { text-decoration-thickness: 2px; }
+  a:focus-visible, .table-wrap:focus-visible { outline: 2px solid var(--accent); outline-offset: 5px; border-radius: 2px; }
+  .skip-link { position: absolute; top: -80px; left: 20px; padding: 8px 14px; background: var(--bg); font-family: var(--sans); z-index: 1; }
+  .skip-link:focus { top: 12px; }
+  .back-link { display: inline-block; font-family: var(--sans); font-size: 14px; margin-bottom: 34px; }
+  .post-header { border-bottom: 1px solid var(--rule); padding-bottom: 36px; margin-bottom: 40px; }
+  .eyebrow { color: var(--accent); font-family: var(--sans); font-size: 12px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 22px; }
+  h1 { font-size: clamp(2.1rem, 5.2vw, 3.3rem); font-weight: 500; line-height: 1.08; letter-spacing: -0.02em; font-variation-settings: "opsz" 72; margin-bottom: 26px; }
+  .title-subtitle { display: block; font-size: 0.6em; line-height: 1.25; margin-top: 14px; }
+  .byline { font-family: var(--sans); font-size: 14px; line-height: 1.7; color: var(--ink-soft); }
+  .byline strong { color: var(--ink); font-weight: 500; }
+  .page-nav { display: flex; flex-wrap: wrap; gap: 9px 20px; margin-top: 28px; font-family: var(--sans); font-size: 14px; }
+  section { scroll-margin-top: 24px; }
+  h2 { font-size: 2rem; font-weight: 500; line-height: 1.15; letter-spacing: -0.015em; font-variation-settings: "opsz" 72; margin: 64px 0 22px; }
+  h3 { font-size: 1.35rem; font-weight: 500; line-height: 1.3; margin: 34px 0 12px; }
+  p { margin-bottom: 1.25em; }
+  ul { margin: 0 0 24px 1.3em; padding-left: 0.2em; }
+  li { padding-left: 0.15em; margin-bottom: 10px; }
+  li::marker { color: var(--accent); }
+  .lede { font-size: 21px; line-height: 1.6; }
+  .source, figcaption, .note { font-family: var(--sans); font-size: 13px; line-height: 1.65; color: var(--ink-soft); }
+  .source { margin-top: 14px; }
+  figure { margin: 30px 0 22px; }
+  figcaption { margin-top: 12px; }
+  .callout { border-left: 3px solid var(--accent); background: var(--paper); padding: 20px 24px; margin: 24px 0; }
+  .callout p:last-child { margin-bottom: 0; }
+
+  /* Diagram 1: the unit chain */
+  .chain { list-style: none; margin: 28px 0 10px; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0; }
+  .chain li { margin: 0; padding: 0 0 0 0; position: relative; text-align: center; }
+  .chain .box { display: block; margin: 0 14px 0 0; padding: 16px 6px 14px; background: var(--paper); border: 1px solid var(--rule); border-top: 3px solid var(--accent); }
+  .chain .num { display: block; font-size: 1.45rem; line-height: 1.15; font-variant-numeric: lining-nums tabular-nums; }
+  .chain .unit { display: block; font-family: var(--sans); font-size: 12.5px; line-height: 1.35; color: var(--ink-soft); margin-top: 6px; }
+  .chain li:not(:last-child)::after { content: "→"; position: absolute; right: -3px; top: 50%; transform: translateY(-50%); color: var(--accent); font-family: var(--sans); font-size: 15px; }
+  .chain li:last-child .box { margin-right: 0; }
+
+  /* Diagram 2: one step of the pipeline */
+  .loop { display: flex; align-items: stretch; gap: 0; margin: 26px 0 8px; font-family: var(--sans); font-size: 13px; }
+  .loop .node { flex: 1 1 0; padding: 14px 10px; border: 1px solid var(--rule); background: var(--paper); text-align: center; line-height: 1.4; }
+  .loop .node strong { display: block; font-weight: 600; font-size: 13.5px; color: var(--ink); margin-bottom: 4px; }
+  .loop .node span { color: var(--ink-soft); font-size: 12.5px; }
+  .loop .node.model { border-color: var(--accent); }
+  .loop .arrow { flex: 0 0 26px; display: flex; align-items: center; justify-content: center; color: var(--accent); }
+  .loop-back { font-family: var(--sans); font-size: 12.5px; color: var(--ink-soft); border: 1px dashed var(--rule); border-top: 0; padding: 10px 14px 8px; text-align: center; margin: 0 0 6px; }
+  .loop-back b { color: var(--accent); font-weight: 600; }
+
+  /* Diagram 3: the step pipeline */
+  .steps { list-style: none; margin: 28px 0 0; padding: 0; counter-reset: step; }
+  .steps > li { position: relative; margin: 0; padding: 0 0 18px 54px; counter-increment: step; }
+  .steps > li::before { content: counter(step); position: absolute; left: 0; top: 2px; width: 34px; height: 34px; border-radius: 50%; background: var(--bg); border: 2px solid var(--accent); color: var(--accent); font-family: var(--sans); font-size: 14px; font-weight: 600; display: flex; align-items: center; justify-content: center; z-index: 1; }
+  .steps > li:not(:last-child)::after { content: ""; position: absolute; left: 16px; top: 36px; bottom: 0; width: 2px; background: var(--rule); }
+  .step { border: 1px solid var(--rule); background: var(--paper); padding: 14px 18px; display: grid; grid-template-columns: 1fr auto; gap: 4px 16px; align-items: baseline; }
+  .step h3 { margin: 0; font-size: 1.12rem; line-height: 1.3; }
+  .step .out { font-family: var(--sans); font-size: 13.5px; color: var(--ink-soft); grid-column: 1 / 2; line-height: 1.5; }
+  .step .chk { font-family: var(--sans); font-size: 12.5px; color: var(--ink-faint); grid-column: 1 / 2; line-height: 1.5; }
+  .step .chk::before { content: "✓ "; color: var(--accent); }
+  .step .badge { grid-column: 2 / 3; grid-row: 1 / 4; align-self: center; text-align: right; font-variant-numeric: lining-nums tabular-nums; font-size: 1.3rem; line-height: 1.1; white-space: nowrap; }
+  .step .badge small { display: block; font-family: var(--sans); font-size: 11.5px; color: var(--ink-soft); margin-top: 3px; }
+  .layer { margin: 6px 0 0 54px; border: 1px dashed var(--accent); padding: 16px 18px; font-family: var(--sans); font-size: 14px; line-height: 1.6; color: var(--ink-soft); }
+  .layer strong { color: var(--ink); font-weight: 600; }
+  .layer-label { display: block; font-size: 11.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; font-weight: 500; }
+
+  /* Diagram 4: proportional bars */
+  .stack { margin: 22px 0 8px; font-family: var(--sans); }
+  .stack-title { font-size: 13.5px; font-weight: 600; margin-bottom: 8px; }
+  .stack-bar { display: flex; height: 30px; border-radius: 3px; overflow: hidden; border: 1px solid var(--rule); }
+  .stack-bar span { display: block; height: 100%; }
+  .legend { list-style: none; margin: 10px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 13px; color: var(--ink-soft); }
+  .legend li { margin: 0; padding: 0; display: flex; align-items: center; gap: 7px; }
+  .legend i { width: 12px; height: 12px; border-radius: 2px; display: inline-block; flex: 0 0 12px; }
+  .legend b { color: var(--ink); font-weight: 600; font-variant-numeric: tabular-nums; }
+  .s1 { background: var(--seg-1); } .s2 { background: var(--seg-2); } .s3 { background: var(--seg-3); } .s4 { background: var(--seg-4); }
+
+  .hbars { list-style: none; margin: 18px 0 8px; padding: 0; font-family: var(--sans); font-size: 13.5px; }
+  .hbars li { display: grid; grid-template-columns: minmax(0, 15em) 1fr; gap: 12px; align-items: center; margin: 0 0 9px; padding: 0; }
+  .hbars .lab { color: var(--ink-soft); line-height: 1.35; }
+  .hbars .track { position: relative; height: 22px; }
+  .hbars .fill { display: block; height: 100%; background: var(--seg-1); border-radius: 2px; min-width: 2px; }
+  .hbars .fill.b { background: var(--bar-b); }
+  .hbars .val { position: absolute; top: 50%; transform: translateY(-50%); font-variant-numeric: tabular-nums; color: var(--ink); font-size: 12.5px; padding-left: 7px; white-space: nowrap; }
+  .hbars .fill.in { display: flex; align-items: center; justify-content: flex-end; }
+  .hbars .fill.in em { font-style: normal; font-variant-numeric: tabular-nums; font-size: 12.5px; color: var(--bg); padding-right: 7px; font-weight: 600; }
+  .hbars .group { display: block; grid-template-columns: none; font-size: 11.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin: 18px 0 8px; font-weight: 500; }
+  .hbars .group:first-child { margin-top: 0; }
+
+  /* Diagram 5: worked-example tree */
+  .tree { margin: 26px 0 10px; font-family: var(--sans); font-size: 14px; }
+  .tree .t-node { border: 1px solid var(--rule); background: var(--paper); padding: 12px 16px; line-height: 1.5; }
+  .tree .t-node .k { display: block; font-size: 11.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); font-weight: 500; margin-bottom: 2px; }
+  .tree .t-node .s { color: var(--ink-soft); font-size: 13px; }
+  .tree .kids { margin-left: 22px; padding-left: 22px; border-left: 2px solid var(--rule); }
+  .tree .kids > .t-wrap { position: relative; padding-top: 14px; }
+  .tree .kids > .t-wrap::before { content: ""; position: absolute; left: -22px; top: 36px; width: 22px; height: 2px; background: var(--rule); }
+  .tree .task { border-left: 3px solid var(--accent); }
+  .tree .caps { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+  .tree .cap { font-size: 12.5px; border: 1px solid var(--rule); background: var(--bg); padding: 3px 9px; border-radius: 999px; color: var(--ink-soft); }
+  .tree .cap b { color: var(--ink); font-weight: 600; }
+  .tree .meta { display: flex; flex-wrap: wrap; gap: 4px 16px; margin-top: 8px; font-size: 12.5px; color: var(--ink-soft); }
+  .tree .meta b { color: var(--ink); font-weight: 600; }
+  .r-path { font-variant-numeric: tabular-nums; color: var(--accent); font-weight: 600; }
+  blockquote { border-left: 3px solid var(--rule); padding: 4px 0 4px 18px; margin: 18px 0; color: var(--ink-soft); font-style: italic; }
+  blockquote cite { display: block; font-style: normal; font-family: var(--sans); font-size: 12.5px; margin-top: 6px; }
+
+  .table-wrap { overflow-x: auto; max-width: 100%; margin: 22px 0 14px; border: 1px solid var(--rule); border-radius: 3px; }
+  table { width: 100%; border-collapse: collapse; font-family: var(--sans); font-size: 14px; line-height: 1.55; background: var(--bg); }
+  caption { text-align: left; padding: 12px 14px; background: var(--paper); color: var(--ink-soft); border-bottom: 1px solid var(--rule); }
+  th, td { text-align: left; padding: 11px 14px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  th { font-weight: 600; background: var(--paper); }
+  td { color: var(--ink-soft); }
+  tbody tr:last-child > * { border-bottom: none; }
+  .numbers { font-variant-numeric: lining-nums tabular-nums; white-space: nowrap; text-align: right; }
+
+  .uses { list-style: none; margin: 18px 0 24px; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+  .uses li { margin: 0; padding: 16px; border: 1px solid var(--rule); background: var(--paper); font-family: var(--sans); font-size: 14px; line-height: 1.55; color: var(--ink-soft); }
+  .uses li strong { display: block; color: var(--ink); font-weight: 600; margin-bottom: 4px; }
+  .access { border-top: 1px solid var(--rule); padding-top: 4px; margin-top: 58px; }
+  .button { display: inline-block; font-family: var(--sans); font-size: 15px; font-weight: 500; padding: 10px 18px; border: 1px solid var(--accent); border-radius: 3px; text-decoration: none; }
+  .button:hover { background: var(--accent-soft); }
+  footer { margin-top: 56px; padding-top: 20px; border-top: 1px solid var(--rule); font-family: var(--sans); font-size: 14px; display: flex; gap: 20px; flex-wrap: wrap; }
+  ::selection { background: var(--accent); color: var(--bg); }
+
+  @media (max-width: 640px) {
+    body { font-size: 17px; }
+    .container { padding: 32px 18px 72px; }
+    h2 { font-size: 1.6rem; margin-top: 48px; }
+    h3 { font-size: 1.2rem; }
+    .lede { font-size: 18px; }
+    .byline { font-size: 13px; }
+    .chain { grid-template-columns: minmax(0, 1fr); gap: 0; }
+    .chain .box { margin: 0 0 22px; display: flex; align-items: baseline; justify-content: space-between; gap: 12px; padding: 12px 16px; text-align: left; border-top: 1px solid var(--rule); border-left: 3px solid var(--accent); }
+    .chain .unit { margin-top: 0; text-align: right; }
+    .chain li:not(:last-child)::after { content: "↓"; right: auto; left: 50%; top: auto; bottom: 0; transform: translateX(-50%); }
+    .chain li:last-child .box { margin-bottom: 0; }
+    .loop { flex-direction: column; }
+    .loop .arrow { flex: 0 0 22px; transform: rotate(90deg); }
+    .steps > li { padding-left: 46px; }
+    .steps > li::before { width: 30px; height: 30px; font-size: 13px; }
+    .steps > li:not(:last-child)::after { left: 14px; top: 32px; }
+    .step { grid-template-columns: minmax(0, 1fr); padding: 13px 15px; }
+    .step .badge { grid-column: 1; grid-row: auto; text-align: left; margin-top: 6px; font-size: 1.15rem; }
+    .step .badge small { display: inline; margin-left: 6px; }
+    .layer { margin-left: 0; }
+    .hbars li { grid-template-columns: minmax(0, 1fr); gap: 4px; margin-bottom: 12px; }
+    .tree .kids { margin-left: 10px; padding-left: 14px; }
+    .tree .kids > .t-wrap::before { left: -14px; width: 14px; }
+    .uses { grid-template-columns: minmax(0, 1fr); }
+    table { font-size: 13px; }
+    th, td { padding: 9px 10px; }
+  }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to the dataset description</a>
+<div class="container">
+  <a class="back-link" href="/#thesis">Back to the portfolio</a>
+  <header class="post-header">
+    <p class="eyebrow">Dataset · Text as data</p>
+    <h1>The product–capability–task (PCT) dataset <span class="title-subtitle">What B2B software products do for their customers, built from annual reports with a validated language-model pipeline</span></h1>
+    <p class="byline"><strong>Hakan Zeki Gülmez</strong> · Built for the master's thesis <a href="/thesis/">Generative AI as a Task Shock</a>, TUM School of Management · 2026</p>
+    <nav class="page-nav" aria-label="Dataset sections">
+      <a href="#what">What it is</a><a href="#build">How it is built</a><a href="#glance">At a glance</a><a href="#example">Example</a><a href="#reliability">Reliability</a><a href="#structure">Structure</a><a href="#access">Access</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <article>
+      <section id="what" aria-labelledby="what-heading">
+        <h2 id="what-heading" style="margin-top:0">What it is</h2>
+        <p class="lede">No standard dataset records which tasks a software product performs for its customers. The PCT dataset does, for every B2B software product that U.S.-listed software and IT-service firms describe in their annual reports.</p>
+        <p>It covers all 1,122 Item&nbsp;1 business descriptions of fiscal years 2022–2025 and turns them into linked, structured records: from each filing to the offerings it names, to distinct economic products, to their customer-facing capabilities, to fixed product tasks with a completion condition. It is, in spirit, a task map for software products, comparable to occupational task databases for workers. Every record carries passage identifiers that link it back to the filing text.</p>
+        <figure aria-labelledby="chain-caption">
+          <ol class="chain" aria-label="Unit chain of the dataset">
+            <li><span class="box"><span class="num">1,122</span><span class="unit">annual reports (Item 1)</span></span></li>
+            <li><span class="box"><span class="num">14,687</span><span class="unit">candidate offerings</span></span></li>
+            <li><span class="box"><span class="num">9,824</span><span class="unit">economic products</span></span></li>
+            <li><span class="box"><span class="num">25,750</span><span class="unit">customer-facing capabilities</span></span></li>
+            <li><span class="box"><span class="num">14,435</span><span class="unit">fixed product tasks</span></span></li>
+          </ol>
+          <figcaption id="chain-caption">The unit chain. Counts pool FY2022–FY2025 and precede the thesis's business-customer and financial screens. Source: thesis, Table B3.</figcaption>
+        </figure>
+      </section>
+
+      <section id="build" aria-labelledby="build-heading">
+        <h2 id="build-heading">How it is built</h2>
+        <p>The dataset is produced by a fixed sequence of language-model instructions, one decision at a time. Each step has a defined unit, a defined input and a required output format. Every response passes deterministic validator checks and is archived together with its request, so each record can be traced and rerun.</p>
+
+        <figure aria-labelledby="loop-caption">
+          <div class="loop" role="img" aria-label="Each step: fixed instruction and schema, model, deterministic validator, archived record">
+            <div class="node"><strong>Fixed instruction</strong><span>unit, input and output schema</span></div>
+            <div class="arrow" aria-hidden="true">→</div>
+            <div class="node model"><strong>Language model</strong><span>Gemini 2.5 Flash, temperature 0</span></div>
+            <div class="arrow" aria-hidden="true">→</div>
+            <div class="node"><strong>Validator</strong><span>fields, identifiers, coverage, cited passages</span></div>
+            <div class="arrow" aria-hidden="true">→</div>
+            <div class="node"><strong>Archived record</strong><span>response stored with its request</span></div>
+          </div>
+          <div class="loop-back" aria-hidden="true"><b>↺</b> Outputs that fail the checks go to automatic recovery</div>
+          <figcaption id="loop-caption">The same pattern governs every step. In product consolidation, 18 of 1,122 filings (1.6%) still failed validation after automatic recovery and were resolved by a documented correction with passage references. Source: thesis, Appendix B.1.</figcaption>
+        </figure>
+
+        <h3>The construction sequence</h3>
+        <ol class="steps" aria-label="Construction steps">
+          <li><div class="step"><h3>Offering discovery</h3><p class="out">Per filing: every software offering named in Item&nbsp;1, with evidence</p><p class="chk">Passage identifiers and required fields</p><p class="badge">14,687<small>offerings</small></p></div></li>
+          <li><div class="step"><h3>Consolidation into economic products</h3><p class="out">Each offering is kept, merged into another product or excluded, always with a reason code</p><p class="chk">Coverage, identifiers and citations</p><p class="badge">9,824<small>products</small></p></div></li>
+          <li><div class="step"><h3>Product form</h3><p class="out">Independent software, suite or platform, embedded module, software-enabled service and other forms</p><p class="chk">Permitted category and evidence</p><p class="badge">8<small>categories</small></p></div></li>
+          <li><div class="step"><h3>Capabilities</h3><p class="out">The customer-facing capabilities each product provides</p><p class="chk">Identifiers and passage support</p><p class="badge">25,750<small>capabilities</small></p></div></li>
+          <li><div class="step"><h3>Customer tasks</h3><p class="out">Fixed product tasks, each with a description and a completion condition</p><p class="chk">Coverage and capability links</p><p class="badge">14,435<small>tasks</small></p></div></li>
+          <li><div class="step"><h3>Task context and surface</h3><p class="out">Product-local context; whether the customer performs the task through the product, the product performs it automatically, or both</p><p class="chk">Task identity and evidence references</p><p class="badge">4<small>surfaces</small></p></div></li>
+          <li><div class="step"><h3>Task roles</h3><p class="out">Whether a task is a primary or a supporting function of its product</p><p class="chk">Complete ordered task coverage</p><p class="badge">2<small>roles</small></p></div></li>
+          <li><div class="step"><h3>Capability roles</h3><p class="out">Whether each linked capability is essential or supporting for the task</p><p class="chk">Complete ordered capability coverage</p><p class="badge">23,651<small>links</small></p></div></li>
+        </ol>
+        <div class="layer">
+          <span class="layer-label">Scored on top of the dataset</span>
+          <strong>Frontier replicability (R)</strong> rates each task against dated evidence of what frontier AI systems could do, and <strong>product AI functionality (T)</strong> records the depth of AI functionality the supplier discloses. Both are kept separate from the construction steps. <a href="/thesis/#measurement">How R and T are measured</a>
+        </div>
+        <p class="source">Steps and checks from thesis Table B1. Generic references to AI, machine learning or automation do not count as evidence. The instruction texts are not published.</p>
+      </section>
+
+      <section id="glance" aria-labelledby="glance-heading">
+        <h2 id="glance-heading">At a glance</h2>
+        <p>Consolidation separates what is sold as a distinct product from pricing tiers, payment methods, features, services and hardware. About two thirds of the named offerings become economic products of their own.</p>
+
+        <figure aria-labelledby="stack1-caption">
+          <div class="stack">
+            <p class="stack-title">14,687 candidate offerings</p>
+            <div class="stack-bar" role="img" aria-label="Kept 9,757, merged 2,857, excluded 2,031, unresolved 42">
+              <span class="s1" style="width:66.43%"></span><span class="s2" style="width:19.45%"></span><span class="s3" style="width:13.83%"></span><span class="s4" style="width:0.29%"></span>
+            </div>
+            <ul class="legend">
+              <li><i class="s1"></i>Kept as a product <b>9,757</b></li>
+              <li><i class="s2"></i>Merged into another product <b>2,857</b></li>
+              <li><i class="s3"></i>Excluded <b>2,031</b></li>
+              <li><i class="s4"></i>Unresolved <b>42</b></li>
+            </ul>
+          </div>
+          <figcaption id="stack1-caption">Exclusions: feature not sold separately (737), business segment or service line (476), human-delivered service (381), hardware or content (289), other (148). Source: thesis, Table B3.</figcaption>
+        </figure>
+
+        <figure aria-labelledby="forms-caption">
+          <p class="stack-title" style="font-family:var(--sans);font-size:13.5px;font-weight:600;margin-bottom:4px">9,824 economic products by form</p>
+          <ul class="hbars" aria-label="Economic products by form">
+            <li><span class="lab">Independent customer software</span><span class="track"><span class="fill" style="width:85%"></span><span class="val" style="left:85%">5,521</span></span></li>
+            <li><span class="lab">Integrated suite or platform</span><span class="track"><span class="fill" style="width:24.7%"></span><span class="val" style="left:24.7%">1,604</span></span></li>
+            <li><span class="lab">Embedded software module</span><span class="track"><span class="fill" style="width:20.5%"></span><span class="val" style="left:20.5%">1,333</span></span></li>
+            <li><span class="lab">Software-enabled service or bundle</span><span class="track"><span class="fill" style="width:10.1%"></span><span class="val" style="left:10.1%">654</span></span></li>
+            <li><span class="lab">Solution category or business line</span><span class="track"><span class="fill" style="width:4.7%"></span><span class="val" style="left:4.7%">308</span></span></li>
+            <li><span class="lab">Commercial variant or access path</span><span class="track"><span class="fill" style="width:3.1%"></span><span class="val" style="left:3.1%">201</span></span></li>
+            <li><span class="lab">Non-software customer offering</span><span class="track"><span class="fill" style="width:2.5%"></span><span class="val" style="left:2.5%">165</span></span></li>
+            <li><span class="lab">Unresolved</span><span class="track"><span class="fill" style="width:0.6%"></span><span class="val" style="left:0.6%">38</span></span></li>
+          </ul>
+          <figcaption id="forms-caption">Product form is kept as a label rather than used as a filter. Capabilities are extracted for 8,849 products; 975 have insufficient capability evidence in Item&nbsp;1. Source: thesis, Table B3.</figcaption>
+        </figure>
+
+        <figure aria-labelledby="tasks-caption">
+          <div class="stack">
+            <p class="stack-title">14,435 tasks: how the task is performed</p>
+            <div class="stack-bar" role="img" aria-label="Customer through the product 12,740; automatically by the product 1,218; hybrid 454; boundary ambiguous 23">
+              <span class="s1" style="width:88.26%"></span><span class="s2" style="width:8.44%"></span><span class="s3" style="width:3.15%"></span><span class="s4" style="width:0.16%"></span>
+            </div>
+            <ul class="legend">
+              <li><i class="s1"></i>By the customer through the product <b>12,740</b></li>
+              <li><i class="s2"></i>Automatically by the product <b>1,218</b></li>
+              <li><i class="s3"></i>Hybrid <b>454</b></li>
+              <li><i class="s4"></i>Ambiguous <b>23</b></li>
+            </ul>
+          </div>
+          <div class="stack">
+            <p class="stack-title">14,435 tasks: role within the product</p>
+            <div class="stack-bar" role="img" aria-label="Primary 12,141; supporting 2,294">
+              <span class="s1" style="width:84.11%"></span><span class="s3" style="width:15.89%"></span>
+            </div>
+            <ul class="legend">
+              <li><i class="s1"></i>Primary function (CORE) <b>12,141</b></li>
+              <li><i class="s3"></i>Supporting function <b>2,294</b></li>
+            </ul>
+          </div>
+          <figcaption id="tasks-caption">Of the 23,651 task–capability links with an assigned role, 22,381 are essential to the task and 1,270 supporting. Source: thesis, Table B3.</figcaption>
+        </figure>
+      </section>
+
+      <section id="example" aria-labelledby="example-heading">
+        <h2 id="example-heading">A worked example: HubSpot Service Hub, FY2022</h2>
+        <p>HubSpot's annual report for the fiscal year ending 31 December 2022 names seven offerings. All seven are kept as separate economic products, none merged or excluded. Service Hub is classified as an embedded customer software module within the CRM Platform, and the filing states its purpose directly:</p>
+        <blockquote>“Service Hub is our customer service software designed to help businesses manage, respond and connect with customers.”<cite>HubSpot, Form 10-K for FY2022, Item 1, passage P004</cite></blockquote>
+
+        <figure aria-labelledby="tree-caption">
+          <div class="tree">
+            <div class="t-node"><span class="k">Filing</span>HubSpot · Form 10-K · FY2022 · Item 1<br><span class="s">7 offerings named → 7 kept, 0 merged, 0 excluded</span></div>
+            <div class="kids">
+              <div class="t-wrap">
+                <div class="t-node"><span class="k">Economic product EP4</span>Service Hub<br><span class="s">Embedded customer software module · six fixed tasks; three shown</span></div>
+                <div class="kids">
+                  <div class="t-wrap">
+                    <div class="t-node task"><span class="k">Task T17 · primary</span>Manage and respond to customer interactions
+                      <div class="caps"><span class="cap"><b>C1</b> manage customer interactions · essential</span><span class="cap"><b>C2</b> respond to customer inquiries · essential</span><span class="cap"><b>C3</b> connect with customers · essential</span></div>
+                      <div class="meta"><span>Done when: <b>customer interactions are managed, responded to, and connected</b></span><span>Surface: <b>customer through the product</b></span><span>R: <span class="r-path">R2 → R2</span></span></div>
+                    </div>
+                  </div>
+                  <div class="t-wrap">
+                    <div class="t-node task"><span class="k">Task T19 · primary</span>Manage tickets and help desk
+                      <div class="caps"><span class="cap"><b>C5</b> manage tickets and help desk · essential</span></div>
+                      <div class="meta"><span>Done when: <b>not stated in Item 1</b></span><span>Surface: <b>customer through the product</b></span><span>R: <span class="r-path">R1 → R4</span></span></div>
+                    </div>
+                  </div>
+                  <div class="t-wrap">
+                    <div class="t-node task"><span class="k">Task T18 · supporting</span>Use conversational bots for customer service
+                      <div class="caps"><span class="cap"><b>C4</b> use conversational bots · essential</span></div>
+                      <div class="meta"><span>Done when: <b>not stated in Item 1</b></span><span>Surface: <b>customer through the product</b></span><span>R: <span class="r-path">R3 → R4</span></span></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <figcaption id="tree-caption">Recorded content as in the dataset; each role decision carries a written reason. R shows the fixed-basket score at the 2022 and 2025 vintages. A task linked to a single capability receives it as essential by rule. Source: thesis, Appendix B.3, Tables B4–B5.</figcaption>
+        </figure>
+      </section>
+
+      <section id="reliability" aria-labelledby="reliability-heading">
+        <h2 id="reliability-heading">Reliability</h2>
+        <p>A language-model measure must return the same answer to the same evidence before one can ask whether it is accurate. Each step was therefore rerun independently and compared unit by unit. <strong>The decisions that build the dataset are the most reproducible part of the measurement.</strong> The graded frontier judgment that produces R is less stable.</p>
+        <figure aria-labelledby="rel-caption">
+          <ul class="hbars" aria-label="Agreement between independent runs">
+            <li class="group">A · Building the dataset</li>
+            <li><span class="lab">Offering discovery · name F1</span><span class="track"><span class="fill in" style="width:91.9%"><em>0.919</em></span></span></li>
+            <li><span class="lab">Product consolidation · decision</span><span class="track"><span class="fill in" style="width:85.8%"><em>0.858</em></span></span></li>
+            <li><span class="lab">Capability extraction · text F1</span><span class="track"><span class="fill in" style="width:77.1%"><em>0.771</em></span></span></li>
+            <li><span class="lab">Task extraction · label F1</span><span class="track"><span class="fill in" style="width:77.6%"><em>0.776</em></span></span></li>
+            <li><span class="lab">Task surface · agreement</span><span class="track"><span class="fill in" style="width:95.1%"><em>0.951</em></span></span></li>
+            <li><span class="lab">Capability roles · exact</span><span class="track"><span class="fill in" style="width:97.2%"><em>0.972</em></span></span></li>
+            <li><span class="lab">Task roles · exact</span><span class="track"><span class="fill in" style="width:89.5%"><em>0.895</em></span></span></li>
+            <li><span class="lab">Market classification · replicate</span><span class="track"><span class="fill in" style="width:98.9%"><em>0.989</em></span></span></li>
+            <li class="group">B · Scoring against the frontier (for comparison)</li>
+            <li><span class="lab">Frontier support · exact</span><span class="track"><span class="fill b in" style="width:82%"><em>0.820</em></span></span></li>
+            <li><span class="lab">R, full chain · exact</span><span class="track"><span class="fill b in" style="width:62.2%"><em>0.622</em></span></span></li>
+            <li><span class="lab">R, full chain · within one level</span><span class="track"><span class="fill b in" style="width:86.7%"><em>0.867</em></span></span></li>
+          </ul>
+          <figcaption id="rel-caption">Proportions or F1 scores on a 0–1 scale; rows differ in units and matched samples and are not averaged. F1 uses a strict character match, so a paraphrase counts as a disagreement. Discovery and consolidation compare a fresh FY2022 run with the production run (274 filings); per-filing product counts correlate at 0.93. Source: thesis, Table D1.</figcaption>
+        </figure>
+        <div class="callout"><p>Reproducibility is not accuracy. The scores have not yet been benchmarked against independent expert coding; that benchmark is the next step.</p></div>
+      </section>
+
+      <section id="structure" aria-labelledby="structure-heading">
+        <h2 id="structure-heading">Structure</h2>
+        <div class="table-wrap" tabindex="0" role="region" aria-label="Tables in the dataset">
+          <table>
+            <caption>Tables and their grain</caption>
+            <thead><tr><th scope="col">Table</th><th scope="col">One row per</th><th scope="col" class="numbers">Rows</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Firms</th><td>annual filing (issuer × fiscal year)</td><td class="numbers">1,122</td></tr>
+              <tr><th scope="row">Offering decisions</th><td>candidate offering, with its decision and reason</td><td class="numbers">14,687</td></tr>
+              <tr><th scope="row">Products</th><td>economic product</td><td class="numbers">9,824</td></tr>
+              <tr><th scope="row">Capabilities</th><td>customer-facing capability of a product</td><td class="numbers">25,750</td></tr>
+              <tr><th scope="row">Tasks</th><td>fixed product task</td><td class="numbers">14,435</td></tr>
+              <tr><th scope="row">Task–capability links</th><td>task × capability with an assigned role</td><td class="numbers">23,651</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="note">Delivered as UTF-8 CSV files and an Excel workbook with a codebook. Keys link every level to its filing; array-valued passage references point to the Item&nbsp;1 text. Blank cells mean missing, never zero, and UNKNOWN remains an explicit category.</p>
+
+        <h3>Possible uses</h3>
+        <ul class="uses">
+          <li><strong>Technology exposure</strong>Measure how new technologies reach the tasks products perform, not only the tasks of occupations.</li>
+          <li><strong>Task ownership</strong>Link product tasks to occupational tasks to code whether work is done by a worker, a product or both.</li>
+          <li><strong>Product strategy</strong>Track how firms describe, bundle and extend their products over time.</li>
+        </ul>
+      </section>
+
+      <section id="access" class="access" aria-labelledby="access-heading">
+        <h2 id="access-heading">Access</h2>
+        <p>The PCT dataset is available on request for research use.</p>
+        <p><a class="button" href="mailto:hakanzekigulmez@gmail.com?subject=PCT%20dataset%20request">Request the PCT dataset</a></p>
+      </section>
+    </article>
+  </main>
+  <footer><a href="/thesis/">Thesis summary</a><a href="/#thesis">Back to the portfolio</a></footer>
+</div>
+</body>
+</html>
