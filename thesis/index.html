@@ -189,6 +189,7 @@
     display: block; margin-top: 6px; color: var(--ink-soft);
     font-size: 12px; font-weight: 400; line-height: 1.5;
   }
+  #examples .examples .pressure-tag { display: inline-block; margin-top: 10px; padding: 2px 8px; border: 1px solid var(--accent); border-radius: 10px; color: var(--accent); font-family: var(--sans); font-size: 11px; font-weight: 600; white-space: nowrap; }
   #examples .examples .customer-task { color: var(--ink); font-size: 15px; line-height: 1.6; }
   #examples .vintage-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; }
   #examples .vintage-score {
@@ -285,9 +286,9 @@
   <header class="post-header">
     <p class="eyebrow">Master's thesis · Applied econometrics</p>
     <h1 data-source="identity">Generative AI as a Task Shock: <span class="title-subtitle">Product-Level LLM Substitution in B2B Software Markets</span></h1>
-    <p class="byline" data-source="identity"><strong>Hakan Zeki Gülmez</strong> · Master's thesis, TUM School of Management · Supervisor: Prof. Dr. Helmut Farbmacher · 2026</p>
+    <p class="byline" data-source="identity"><strong>Hakan Zeki Gülmez</strong> · Master's thesis, TUM School of Management · Professorship of Applied Econometrics · Supervisor: Prof. Dr. Helmut Farbmacher · 2026</p>
     <nav class="page-nav" aria-label="Thesis sections">
-      <a href="#question">Question</a><a href="#measurement">Measurement</a><a href="#design">Design</a><a href="#findings">Findings</a><a href="#interpretation">Interpretation</a><a href="#limits">Limits</a><a href="#access">Access</a>
+      <a href="#context">Context</a><a href="#question">Question</a><a href="#measurement">Measurement</a><a href="#design">Design</a><a href="#findings">Findings</a><a href="#interpretation">Interpretation</a><a href="#limits">Limits</a><a href="#access">Access</a>
     </nav>
   </header>
   <main id="main">
@@ -304,6 +305,14 @@
         <h2 id="abstract-heading">Abstract</h2>
         <p class="abstract-text" data-source="abstract">Generative AI systems can increasingly perform work for which business customers currently purchase software. This thesis examines what this development has meant, to date, for the firms that supply such software. Using the business descriptions in 1,122 annual reports, I represent the B2B software products of U.S.-listed software and IT-service firms as sets of customer-facing tasks and score each task against dated evidence on the capabilities of frontier AI systems. Holding each firm’s 2022 tasks fixed, measured exposure more than triples by 2025, and most of the increase is already visible in 2023. Revenue has followed, if at all, only with a delay. A continuous-treatment difference-in-differences design detects no statistically distinguishable differential revenue response between more and less exposed suppliers in the same period. With a one-year lag, more exposed suppliers’ revenue grows more slowly, although the estimate halves once firm-specific trends are allowed. The clearest difference appears in suppliers’ products: conditional on initial functionality, more exposed suppliers add more substantive AI functionality. The structural coding replicates closely across independent runs; the graded exposure scores are noisier, and a stronger model rates them higher. Some disagreements involve AI agents that operate the incumbent’s software, which points to a question that the task framework leaves open: whether AI replaces the worker who uses the software or the software itself. The findings describe early adjustment, not the absence of later substitution.</p>
         <p class="source">Source: thesis abstract, reproduced verbatim.</p>
+      </section>
+
+      <section id="context" aria-labelledby="context-heading">
+        <h2 id="context-heading">Where it fits</h2>
+        <p data-source="lit-tasks">The task-based approach treats work as a bundle of activities whose allocation between people and machines shifts with technology. Autor, Levy and Murnane (2003) show that computerization substituted for routine tasks while complementing other work. Acemoglu and Autor (2011) build the allocation of tasks between labor and capital into a broader framework, and Acemoglu and Restrepo (2019) add that technology can create new tasks as well as displace existing ones.</p>
+        <p data-source="lit-exposure">Measures of AI exposure follow the same logic on the worker side: occupational task descriptions, such as those in O*NET, are scored for what AI can do (Webb, 2020; Eloundou et al., 2024). Product-side work asks which offerings AI may displace (Green et al., 2026).</p>
+        <div class="callout" data-source="lit-gap"><p>Task-based models treat capital as a single factor. Much of the work that occupational measures describe is done with software, and an AI gain can reach it by replacing the worker who operates the software or by replacing the software itself. Neither representation records the tasks a software product performs for its customers. This thesis builds that unit.</p></div>
+        <p class="source">Source: thesis, Sections 2.1–2.3 and Discussion.</p>
       </section>
 
       <section id="question" aria-labelledby="question-heading">
@@ -491,41 +500,53 @@
       </section>
 
       <section id="examples" aria-labelledby="examples-heading">
-        <h2 id="examples-heading">Examples</h2>
-        <p>These product tasks sit next to similar occupational tasks. The comparison illustrates why task ownership matters: performing work through software and supplying that software are different economic positions.</p>
+        <h2 id="examples-heading">Examples: who comes under pressure</h2>
+        <p>These product tasks sit next to similar occupational tasks. The comparison illustrates why task ownership matters: performing work through software and supplying that software are different economic positions. A similar rise in R can put pressure on the worker who operates the product, on the product itself, or on both.</p>
         <div class="table-wrap examples-wrap" tabindex="0" role="region" aria-label="Product tasks and illustrative occupational matches" data-source="examples">
           <table class="examples" role="table">
             <caption>Fixed FY2022 tasks, rescored against each vintage</caption>
             <thead><tr><th class="product" scope="col">Product</th><th class="task" scope="col">Customer-facing task</th><th class="scores" scope="col">R by vintage</th><th scope="col">Similar O*NET task</th></tr></thead>
             <tbody>
               <tr>
-                <th scope="row"><span class="product-name">Illustrator</span><span class="product-maker">Adobe</span></th>
-                <td class="customer-task" data-label="Customer-facing task">create digital graphics and illustrations</td>
-                <td class="scores" data-label="R by vintage"><div class="vintage-grid"><span class="vintage-score"><span class="vintage-year">2022:</span> <span class="vintage-level">R1</span></span><span class="vintage-score"><span class="vintage-year">2023:</span> <span class="vintage-level">R2</span></span><span class="vintage-score"><span class="vintage-year">2024:</span> <span class="vintage-level">R4</span></span><span class="vintage-score"><span class="vintage-year">2025:</span> <span class="vintage-level">R4</span></span></div></td>
-                <td data-label="Similar O*NET task"><span class="onet-quote">“Develop graphics and layouts for product illustrations, company logos, and Web sites.”</span><span class="onet-occupation">Graphic Designers · Task 306</span></td>
-              </tr>
-              <tr>
-                <th scope="row"><span class="product-name">Analyzer</span><span class="product-maker">DocuSign</span></th>
-                <td class="customer-task" data-label="Customer-facing task">analyze inbound agreements</td>
+                <th scope="row"><span class="product-name">Sales Hub</span><span class="product-maker">HubSpot</span><span class="pressure-tag">Pressure on: worker</span></th>
+                <td class="customer-task" data-label="Customer-facing task">manage conversations and live chat</td>
                 <td class="scores" data-label="R by vintage"><div class="vintage-grid"><span class="vintage-score"><span class="vintage-year">2022:</span> <span class="vintage-level">R1</span></span><span class="vintage-score"><span class="vintage-year">2023:</span> <span class="vintage-level">R3</span></span><span class="vintage-score"><span class="vintage-year">2024:</span> <span class="vintage-level">R4</span></span><span class="vintage-score"><span class="vintage-year">2025:</span> <span class="vintage-level">R4</span></span></div></td>
-                <td data-label="Similar O*NET task"><span class="onet-quote">“Prepare, edit, or review legal documents, including legislation, briefs, pleadings, appeals, wills, contracts, and real estate closing statements.”</span><span class="onet-occupation">Paralegals and Legal Assistants · Task 23994</span></td>
+                <td data-label="Similar O*NET task"><span class="onet-quote">“Answer customers' questions about products, prices, availability, product uses, and credit terms.”</span><span class="onet-occupation">Sales Representatives, Wholesale and Manufacturing, Except Technical and Scientific Products · Task 8113</span></td>
               </tr>
               <tr>
-                <th scope="row"><span class="product-name">QuickBooks Online</span><span class="product-maker">Intuit</span></th>
+                <th scope="row"><span class="product-name">QuickBooks Online</span><span class="product-maker">Intuit</span><span class="pressure-tag">Pressure on: worker</span></th>
                 <td class="customer-task" data-label="Customer-facing task">create and send invoices and estimates</td>
                 <td class="scores" data-label="R by vintage"><div class="vintage-grid"><span class="vintage-score"><span class="vintage-year">2022:</span> <span class="vintage-level">R1</span></span><span class="vintage-score"><span class="vintage-year">2023:</span> <span class="vintage-level">R3</span></span><span class="vintage-score"><span class="vintage-year">2024:</span> <span class="vintage-level">R3</span></span><span class="vintage-score"><span class="vintage-year">2025:</span> <span class="vintage-level">R4</span></span></div></td>
                 <td data-label="Similar O*NET task"><span class="onet-quote">“Prepare itemized statements, bills, or invoices and record amounts due for items purchased or services rendered.”</span><span class="onet-occupation">Billing and Posting Clerks · Task 23240</span></td>
               </tr>
               <tr>
-                <th scope="row"><span class="product-name">Sales Hub</span><span class="product-maker">HubSpot</span></th>
-                <td class="customer-task" data-label="Customer-facing task">manage conversations and live chat</td>
+                <th scope="row"><span class="product-name">Analyzer</span><span class="product-maker">DocuSign</span><span class="pressure-tag">Pressure on: both</span></th>
+                <td class="customer-task" data-label="Customer-facing task">analyze inbound agreements</td>
                 <td class="scores" data-label="R by vintage"><div class="vintage-grid"><span class="vintage-score"><span class="vintage-year">2022:</span> <span class="vintage-level">R1</span></span><span class="vintage-score"><span class="vintage-year">2023:</span> <span class="vintage-level">R3</span></span><span class="vintage-score"><span class="vintage-year">2024:</span> <span class="vintage-level">R4</span></span><span class="vintage-score"><span class="vintage-year">2025:</span> <span class="vintage-level">R4</span></span></div></td>
-                <td data-label="Similar O*NET task"><span class="onet-quote">“Answer customers' questions about products, prices, availability, product uses, and credit terms.”</span><span class="onet-occupation">Sales Representatives, Wholesale and Manufacturing, Except Technical and Scientific Products · Task 8113</span></td>
+                <td data-label="Similar O*NET task"><span class="onet-quote">“Prepare, edit, or review legal documents, including legislation, briefs, pleadings, appeals, wills, contracts, and real estate closing statements.”</span><span class="onet-occupation">Paralegals and Legal Assistants · Task 23994</span></td>
+              </tr>
+              <tr>
+                <th scope="row"><span class="product-name">Illustrator</span><span class="product-maker">Adobe</span><span class="pressure-tag">Pressure on: software</span></th>
+                <td class="customer-task" data-label="Customer-facing task">create digital graphics and illustrations</td>
+                <td class="scores" data-label="R by vintage"><div class="vintage-grid"><span class="vintage-score"><span class="vintage-year">2022:</span> <span class="vintage-level">R1</span></span><span class="vintage-score"><span class="vintage-year">2023:</span> <span class="vintage-level">R2</span></span><span class="vintage-score"><span class="vintage-year">2024:</span> <span class="vintage-level">R4</span></span><span class="vintage-score"><span class="vintage-year">2025:</span> <span class="vintage-level">R4</span></span></div></td>
+                <td data-label="Similar O*NET task"><span class="onet-quote">“Develop graphics and layouts for product illustrations, company logos, and Web sites.”</span><span class="onet-occupation">Graphic Designers · Task 306</span></td>
+              </tr>
+              <tr>
+                <th scope="row"><span class="product-name">Tableau</span><span class="product-maker">Salesforce</span><span class="pressure-tag">Pressure on: software</span></th>
+                <td class="customer-task" data-label="Customer-facing task">analyze business data and make decisions</td>
+                <td class="scores" data-label="R by vintage"><div class="vintage-grid"><span class="vintage-score"><span class="vintage-year">2022:</span> <span class="vintage-level">R1</span></span><span class="vintage-score"><span class="vintage-year">2023:</span> <span class="vintage-level">R2</span></span><span class="vintage-score"><span class="vintage-year">2024:</span> <span class="vintage-level">R3</span></span><span class="vintage-score"><span class="vintage-year">2025:</span> <span class="vintage-level">R4</span></span></div></td>
+                <td data-label="Similar O*NET task"><span class="onet-quote">“Generate standard or custom reports summarizing business, financial, or economic data for review by executives, managers, clients, and other stakeholders.”</span><span class="onet-occupation">Business Intelligence Analysts · Task 16150</span></td>
+              </tr>
+              <tr>
+                <th scope="row"><span class="product-name">TurboTax</span><span class="product-maker">Intuit</span><span class="pressure-tag">Pressure on: software</span></th>
+                <td class="customer-task" data-label="Customer-facing task">prepare and file federal and state income tax returns</td>
+                <td class="scores" data-label="R by vintage"><div class="vintage-grid"><span class="vintage-score"><span class="vintage-year">2022:</span> <span class="vintage-level">R1</span></span><span class="vintage-score"><span class="vintage-year">2023:</span> <span class="vintage-level">R1</span></span><span class="vintage-score"><span class="vintage-year">2024:</span> <span class="vintage-level">R1</span></span><span class="vintage-score"><span class="vintage-year">2025:</span> <span class="vintage-level">R3</span></span></div></td>
+                <td data-label="Similar O*NET task"><span class="onet-quote">“Prepare or assist in preparing simple to complex tax returns for individuals or small businesses.”</span><span class="onet-occupation">Tax Preparers · Task 7359</span></td>
               </tr>
             </tbody>
           </table>
         </div>
-        <p class="note">Illustrative matches, not a formal crosswalk; single-task scores are noisier than averages.</p>
+        <p class="note">Illustrative matches, not a formal crosswalk; single-task scores are noisier than averages. “Pressure on” is an illustrative reading of each task, not a coded variable: worker where AI can do the work through the product, software where AI can produce the result without it. The channels are not separately identified.</p>
         <p class="source" data-source="onet-license">Source: PCT workbook, Tasks sheet; O*NET Task Statements, USDOL/ETA. Occupational statements reproduced verbatim under <a href="https://creativecommons.org/licenses/by/4.0/" rel="license">CC BY 4.0</a>. O*NET® is a trademark of USDOL/ETA.</p>
       </section>
 

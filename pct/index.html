@@ -11,14 +11,14 @@
 <meta property="og:title" content="The product–capability–task (PCT) dataset">
 <meta property="og:description" content="What B2B software products do for their customers, as structured, source-linked records built from 1,122 annual reports.">
 <meta property="og:url" content="https://hakangulmez.github.io/pct/">
-<meta property="og:image" content="https://hakangulmez.github.io/thesis/img/R_by_vintage.png">
+<meta property="og:image" content="https://hakangulmez.github.io/pct/img/pct-og.png">
 <meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="1200">
-<meta property="og:image:alt" content="The same software tasks become more technically supportable as dated frontier evidence expands.">
+<meta property="og:image:height" content="627">
+<meta property="og:image:alt" content="The PCT dataset: 1,122 annual reports, 9,824 software products, 25,750 capabilities, 14,435 customer tasks.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="The product–capability–task (PCT) dataset">
 <meta name="twitter:description" content="What B2B software products do for their customers, as structured, source-linked records built from 1,122 annual reports.">
-<meta name="twitter:image" content="https://hakangulmez.github.io/thesis/img/R_by_vintage.png">
+<meta name="twitter:image" content="https://hakangulmez.github.io/pct/img/pct-og.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
@@ -268,9 +268,9 @@
   <header class="post-header">
     <p class="eyebrow">Dataset · Text as data</p>
     <h1>The product–capability–task (PCT) dataset <span class="title-subtitle">What B2B software products do for their customers, built from annual reports with a validated language-model pipeline</span></h1>
-    <p class="byline"><strong>Hakan Zeki Gülmez</strong> · Built for the master's thesis <a href="/thesis/">Generative AI as a Task Shock</a>, TUM School of Management · 2026</p>
+    <p class="byline"><strong>Hakan Zeki Gülmez</strong> · Built for the master's thesis <a href="/thesis/">Generative AI as a Task Shock</a>, TUM School of Management · Professorship of Applied Econometrics · 2026</p>
     <nav class="page-nav" aria-label="Dataset sections">
-      <a href="#what">What it is</a><a href="#build">How it is built</a><a href="#glance">At a glance</a><a href="#example">Example</a><a href="#records">Records</a><a href="#reliability">Reliability</a><a href="#structure">Structure</a><a href="#access">Access</a>
+      <a href="#what">What it is</a><a href="#build">How it is built</a><a href="#glance">At a glance</a><a href="#example">Example</a><a href="#records">Records</a><a href="#reliability">Reliability</a><a href="#structure">Structure</a><a href="#limits">Limits</a><a href="#access">Access</a>
     </nav>
   </header>
 
@@ -280,6 +280,8 @@
         <h2 id="what-heading" style="margin-top:0">What it is</h2>
         <p class="lede">No standard dataset records which tasks a software product performs for its customers. The PCT dataset does, for every B2B software product that U.S.-listed software and IT-service firms describe in their annual reports.</p>
         <p>It covers all 1,122 Item&nbsp;1 business descriptions of fiscal years 2022–2025 and turns them into linked, structured records: from each filing to the offerings it names, to distinct economic products, to their customer-facing capabilities, to fixed product tasks with a completion condition. It is, in spirit, a task map for software products, comparable to occupational task databases for workers. Every record carries passage identifiers that link it back to the filing text.</p>
+        <p>Occupational task data such as O*NET describe what workers do. The PCT dataset describes what software products do. Much work is shared between the two: a person operates the product, and the product performs part of the task. Linking the two representations makes it possible to ask whether a task is done by a worker, by a product, or by both, and therefore whether a new technology puts pressure on the worker, on the software, or on both.</p>
+        <p class="note">Sample: the 504 U.S. issuers with SIC codes 7370–7374 that filed a 10-K between January 2020 and 29 November 2022, before the release of ChatGPT. The dataset keeps the 281 issuers with an annual report for fiscal 2025 and for at least three of fiscal years 2022–2025, selected from SEC filing records only. Their 1,122 annual reports form the universe. Source: thesis, Section 3.1 and Appendix A.</p>
         <figure aria-labelledby="chain-caption">
           <ol class="chain" aria-label="Unit chain of the dataset">
             <li><span class="box"><span class="num">1,122</span><span class="unit">annual reports (Item 1)</span></span></li>
@@ -574,21 +576,34 @@
             </tbody>
           </table>
         </div>
-        <p class="note">Delivered as UTF-8 CSV files and an Excel workbook with a codebook. Keys link every level to its filing; array-valued passage references point to the Item&nbsp;1 text. Blank cells mean missing, never zero, and UNKNOWN remains an explicit category.</p>
+        <p class="note">Delivered as UTF-8 CSV files and an Excel workbook with a codebook. Keys link every level to its filing; array-valued passage references point to the Item&nbsp;1 text. Blank cells mean missing, never zero, and UNKNOWN remains an explicit category. Version 1, released 27 September 2026.</p>
 
         <h3>Possible uses</h3>
         <ul class="uses">
           <li><strong>Technology exposure</strong>Measure how new technologies reach the tasks products perform, not only the tasks of occupations.</li>
-          <li><strong>Task ownership</strong>Link product tasks to occupational tasks to code whether work is done by a worker, a product or both.</li>
+          <li><strong>Task ownership</strong>Link product tasks to occupational tasks such as O*NET to code whether work is done by a worker, a product or both, and so separate pressure on workers from pressure on software.</li>
           <li><strong>Product strategy</strong>Track how firms describe, bundle and extend their products over time.</li>
           <li><strong>Product responses</strong>Track suppliers’ disclosed AI functionality (T) across product-years and examine how product responses relate to frontier exposure (R).</li>
         </ul>
+      </section>
+
+      <section id="limits" aria-labelledby="limits-heading">
+        <h2 id="limits-heading">Limits</h2>
+        <ul>
+          <li><strong>Disclosure, not observed use.</strong> Records follow how firms describe their products in Item 1 of the annual report, not how customers use them. Products without capability evidence in Item 1 (975 of 9,824) have no tasks.</li>
+          <li><strong>Who is covered.</strong> U.S.-listed issuers in SIC 7370–7374 that kept filing through fiscal 2025. Private suppliers are not covered, and firms that were acquired or delisted earlier drop out of the cohort.</li>
+          <li><strong>Language-model coding.</strong> Every step is validated and rerun-checked, but the records are not yet benchmarked against independent expert coding. Individual records can contain errors, and single-task scores are noisier than averages.</li>
+          <li><strong>Exposure scores are judgments.</strong> R is less reproducible than the structural records, and a stronger model rates exposure higher. It measures technical possibility, not adoption.</li>
+        </ul>
+        <p class="source">Source: thesis, Sections 3.7 and 6, Appendices A and D.</p>
       </section>
 
       <section id="access" class="access" aria-labelledby="access-heading">
         <h2 id="access-heading">Access</h2>
         <p>The PCT dataset is available on request for research use.</p>
         <p><a class="button" href="mailto:hakanzekigulmez@gmail.com?subject=PCT%20dataset%20request">Request the PCT dataset</a></p>
+        <h3>How to cite</h3>
+        <p class="callout cite">Gülmez, H. Z. (2026). <em>The product–capability–task (PCT) dataset</em>, version 1. Built for the master's thesis “Generative AI as a Task Shock: Product-Level LLM Substitution in B2B Software Markets”, Technical University of Munich. https://hakangulmez.github.io/pct/</p>
       </section>
     </article>
   </main>
