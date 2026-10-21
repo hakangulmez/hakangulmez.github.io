@@ -259,6 +259,10 @@
     th, td { padding: 9px 10px; }
   }
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  @media (max-width: 640px) { .t-scale { min-width: 680px; } }
+  #t-scale .scroll-hint { margin-bottom: -6px; }
+  .t-scale tbody th { white-space: nowrap; }
+  .t-scale td:nth-child(3) { white-space: nowrap; color: var(--ink); }
 </style>
 </head>
 <body>
@@ -270,7 +274,7 @@
     <h1>The product–capability–task (PCT) dataset <span class="title-subtitle">What B2B software products do for their customers, built from annual reports with a validated language-model pipeline</span></h1>
     <p class="byline"><strong>Hakan Zeki Gülmez</strong> · Built for the master's thesis <a href="/thesis/">Generative AI as a Task Shock</a>, TUM School of Management · Professorship of Applied Econometrics · 2026</p>
     <nav class="page-nav" aria-label="Dataset sections">
-      <a href="#what">What it is</a><a href="#build">How it is built</a><a href="#glance">At a glance</a><a href="#example">Example</a><a href="#records">Records</a><a href="#reliability">Reliability</a><a href="#structure">Structure</a><a href="#limits">Limits</a><a href="#access">Access</a>
+      <a href="#what">What it is</a><a href="#build">How it is built</a><a href="#glance">At a glance</a><a href="#example">Example</a><a href="#records">Records</a><a href="#t-scale">T scale</a><a href="#reliability">Reliability</a><a href="#structure">Structure</a><a href="#limits">Limits</a><a href="#access">Access</a>
     </nav>
   </header>
 
@@ -533,6 +537,30 @@
             </table>
           </div>
           <figcaption id="records-caption">Illustrative FY2022 records; task wording and saved R scores are unchanged. R describes technical support for the stated task at each frontier vintage. Individual scores are noisier than averages. <a href="/thesis/#scale-details">How to read the R scale</a>. Source: PCT dataset and fixed-FY2022 R assessments.</figcaption>
+        </figure>
+      </section>
+
+      <section id="t-scale" aria-labelledby="t-scale-heading">
+        <h2 id="t-scale-heading">The T scale, with examples</h2>
+        <p>T records the depth of AI functionality a supplier discloses for each product in a fiscal year. It is scored product by product from cited Item&nbsp;1 passages, so a firm's general AI statements do not carry over to its products. Each product receives the highest level the filing directly establishes; T does not measure how many of a product's features use AI.</p>
+        <figure aria-labelledby="t-scale-caption">
+          <p class="scroll-hint" aria-hidden="true">Scroll sideways to see all columns →</p>
+          <div class="table-wrap" tabindex="0" role="region" aria-label="T levels with example products">
+            <table class="t-scale">
+              <caption>One FY2025 product per level</caption>
+              <thead><tr><th scope="col">Level</th><th scope="col">What the filing must establish</th><th scope="col">Example</th><th scope="col">Why it receives this level</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">T0</th><td>No current AI function for this product.</td><td><strong>Microsoft Teams</strong><br>Microsoft</td><td>The filing calls Microsoft 365 Commercial, which includes Teams, an “AI-powered” platform, but attributes no AI function to Teams itself. Copilot is recorded as a separate product.</td></tr>
+                <tr><th scope="row">T1</th><td>AI assists with information, suggestions or guidance, but does not perform a substantive part of the function.</td><td><strong>ADP Marketplace</strong><br>ADP</td><td>A generative-AI search helps customers find and compare partner applications in natural language. It assists the choice; it does not do the HR work.</td></tr>
+                <tr><th scope="row">T2</th><td>AI produces or transforms a substantive customer-facing output.</td><td><strong>Adobe Acrobat</strong><br>Adobe</td><td>Acrobat AI Assistant summarizes documents, answers questions and generates content.</td></tr>
+                <tr><th scope="row">T3</th><td>AI carries out connected steps of a customer workflow, using task-specific context or tools.</td><td><strong>ADP Assist</strong><br>ADP</td><td>It validates payroll, identifies and helps resolve missing tax registrations, and builds reports from HR data across practice areas.</td></tr>
+                <tr><th scope="row">T4</th><td>The workflow also includes an operational action or a change to a persistent record.</td><td><strong>Marketing</strong><br>Salesforce</td><td>AI agents generate briefs, content and journeys, and act on customer profiles to build segments and drive automations.</td></tr>
+                <tr><th scope="row">T5</th><td>AI pursues a stated customer goal: it identifies the work, plans it and executes the plan end to end.</td><td><strong>Agentforce</strong><br>Salesforce</td><td>Agents are described as identifying what work needs to be done, building a plan and executing it with connected business data.</td></tr>
+                <tr><th scope="row">UNKNOWN</th><td>A relevant AI function is suggested, but its link to the product or its effect cannot be resolved.</td><td><strong>Adobe Illustrator</strong><br>Adobe</td><td>The filing says only that AI-powered features are “natively integrated”, without saying what they do.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <figcaption id="t-scale-caption">FY2025 product records from the PCT dataset; reasons shortened from the recorded scoring rationale. T describes what the annual report establishes, not everything a product can do: Illustrator's AI features are well known, but its FY2025 Item&nbsp;1 does not describe them. Single examples are illustrative, and individual scores are noisier than averages. T ≥ 2 is the thesis's main summary; UNKNOWN stays outside the denominator. <a href="/thesis/#claims-vs-function">How T avoids counting AI talk, and how claims compare with T over time</a>.</figcaption>
         </figure>
       </section>
 
