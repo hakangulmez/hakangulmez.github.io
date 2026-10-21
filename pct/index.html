@@ -262,6 +262,10 @@
   @media (max-width: 640px) { .t-scale { min-width: 680px; } }
   #t-scale .scroll-hint { margin-bottom: -6px; }
   .t-scale tbody th { white-space: nowrap; }
+  .t-claims tbody th { white-space: nowrap; }
+  .t-claims td { width: 42%; }
+  @media (max-width: 640px) { .t-claims { min-width: 560px; } }
+  #t-scale th .note { font-weight: 400; font-size: 12.5px; color: var(--ink-soft); }
   .t-scale td:nth-child(3) { white-space: nowrap; color: var(--ink); }
 </style>
 </head>
@@ -562,6 +566,33 @@
           </div>
           <figcaption id="t-scale-caption">FY2025 product records from the PCT dataset; reasons shortened from the recorded scoring rationale. T describes what the annual report establishes, not everything a product can do: Illustrator's AI features are well known, but its FY2025 Item&nbsp;1 does not describe them. The reverse can also happen: a detailed description can overstate how a product works in practice. Single examples are illustrative, and individual scores are noisier than averages. T ≥ 2 is the thesis's main summary; UNKNOWN stays outside the denominator. <a href="/thesis/#claims-vs-function">How T avoids counting AI talk, and how claims compare with T over time</a>.</figcaption>
         </figure>
+        <h3 id="t-rejected">Claims the second pass did not accept</h3>
+        <p>A first step records whether the filing links a current AI offering to a product. The T step then re-reads the same passages and can overrule it. Each year about 7–10% of product-linked AI claims end at T0. Three examples:</p>
+        <div class="table-wrap" tabindex="0" role="region" aria-label="AI claims scored T0">
+          <table class="t-claims">
+            <caption>Product-linked AI claims scored T0</caption>
+            <thead><tr><th scope="col">Product</th><th scope="col">What the filing says</th><th scope="col">Why T0</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Commerce Hub<br><span class="note">HubSpot · FY2024</span></th><td>Commerce Hub is one of the “AI-powered engagement Hubs”.</td><td>No specific AI function or customer-facing output is described for Commerce Hub.</td></tr>
+              <tr><th scope="row">Dynamics 365<br><span class="note">Microsoft · FY2025</span></th><td>Dynamics provides “agentic AI” and low-code platforms.</td><td>The label is not tied to a current customer-facing AI function in Dynamics 365 itself.</td></tr>
+              <tr><th scope="row">Fusion Cloud EPM<br><span class="note">Oracle · FY2024</span></th><td>Oracle's SaaS offerings are “designed to natively incorporate advanced technologies such as AI”.</td><td>A portfolio-wide statement; no AI function is described within the product.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <h3 id="t-paths">How products move up the scale</h3>
+        <p>Because T is scored every year, the same product can be followed as its disclosure changes.</p>
+        <div class="table-wrap" tabindex="0" role="region" aria-label="T levels of selected products by fiscal year">
+          <table>
+            <caption>Disclosed T level by fiscal year</caption>
+            <thead><tr><th scope="col">Product</th><th scope="col">FY2022</th><th scope="col">FY2023</th><th scope="col">FY2024</th><th scope="col">FY2025</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">GitHub <span class="note">Microsoft</span></th><td>T0</td><td>T2</td><td>T2</td><td>T2</td></tr>
+              <tr><th scope="row">Slack <span class="note">Salesforce</span></th><td>T0</td><td>T0</td><td>T2</td><td>T2</td></tr>
+              <tr><th scope="row">Sales Hub <span class="note">HubSpot</span></th><td>T0</td><td>T0</td><td>T2</td><td>T2</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="source">Source: PCT dataset, product AI-use and T records for the 207-firm estimation cohort; quotations are from the recorded Item&nbsp;1 passages. Paths describe what each year's filing establishes, not when a feature shipped.</p>
       </section>
 
       <section id="reliability" aria-labelledby="reliability-heading">
